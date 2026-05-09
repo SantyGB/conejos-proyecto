@@ -1,0 +1,222 @@
+:host {
+  --primary: #012d1d;
+  --primary-container: #1b4332;
+  --secondary: #486459;
+  --bg: #f8faf9;
+  --surface: #ffffff;
+  --surface-soft: #eceeed;
+  --text: #191c1c;
+  --text-soft: #6b7280;
+  --radius: 14px;
+
+  display: block;
+}
+
+/* ===== LAYOUT ===== */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+  width: 240px;
+  background: linear-gradient(to bottom, #014421, #00331a);
+  color: white;
+  padding: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+
+/* ===== MENU ===== */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: background 0.2s ease;
+}
+
+.menu a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.menu a.active {
+  background: #1e6b4c;
+}
+
+.material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* ===== MAIN ===== */
+
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* ===== HEADER ===== */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 40px;
+  color: var(--primary);
+  margin: 0;
+}
+
+.header p {
+  color: gray;
+  margin: 0;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-light {
+  background: var(--surface-soft);
+  color: var(--primary);
+}
+
+/* ===== GRID ===== */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+}
+
+/* ===== CARD ===== */
+
+.card {
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+/* ===== SPACING ===== */
+
+.mt {
+  margin-top: 15px;
+}
+
+.mt-lg {
+  margin-top: 20px;
+}
+
+/* ===== LIST ===== */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list a {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.list a.active {
+  background: var(--surface-soft);
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* ===== ITEM ===== */
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #f4f6f5;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* ===== FORM ===== */
+
+.form-group {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: var(--surface-soft);
+  box-sizing: border-box;
+}
+
+.range {
+  width: 100%;
+}
+
+/* ===== ACTIONS ===== */
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}

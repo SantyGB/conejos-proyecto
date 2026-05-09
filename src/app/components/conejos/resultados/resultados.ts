@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-resultados',
-  imports: [],
   templateUrl: './resultados.html',
-  styleUrl: './resultados.scss',
+  standalone: true,
+  imports: [RouterModule],
+  styleUrls: ['./resultados.scss']
 })
-export class Resultados {
+export class ResultadosComponent {
 
 }

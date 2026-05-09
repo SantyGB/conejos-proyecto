@@ -11,7 +11,8 @@ import { LoginComponent } from './components/conejos/login/login';
 import { DashboardComponent } from './components/conejos/dashboard/dashboard';
 import { EvaluacionesComponent } from './components/conejos/evaluaciones/evaluaciones';
 import { GranjasComponent } from './components/conejos/granjas/granjas';
-//import { ConfiguracionComponent } from './components/conejos/configuracion/configuracion';
+import { ConfiguracionComponent } from './components/conejos/configuracion/configuracion';
+import { ResultadosComponent } from './components/conejos/resultados/resultados';
 
 export const routes: Routes = [
 
@@ -33,7 +34,9 @@ export const routes: Routes = [
 
       { path: 'granjas', component: GranjasComponent, children: [] },
 
-    //  { path: 'configuracion', component: ConfiguracionComponent },
+      { path: 'configuracion', component: ConfiguracionComponent },
+
+      { path: 'resultados', component: ResultadosComponent },
       
       { 
         path: 'evaluaciones', 

@@ -1,0 +1,188 @@
+:host {
+  --primary: #012d1d;
+  --primary-container: #1b4332;
+  --bg: #f8faf9;
+  --surface: #ffffff;
+  --surface-soft: #eceeed;
+  --radius: 14px;
+
+  display: block;
+}
+
+/* ===== LAYOUT ===== */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+  width: 240px;
+  background: linear-gradient(to bottom, #014421, #00331a);
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 30px;
+  color: white;
+}
+
+/* ===== MENU ===== */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.menu a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.menu a.active {
+  background: #1e6b4c;
+}
+
+.material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* ===== MAIN ===== */
+
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* ===== GRID ===== */
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* ===== CARD ===== */
+
+.card {
+  background: var(--surface);
+  padding: 25px;
+  border-radius: 20px;
+}
+
+/* ===== RESULT ===== */
+
+.result-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* ===== SCORE ===== */
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 12px solid var(--surface-soft);
+  position: relative;
+}
+
+.circle::after {
+  content: "85";
+  position: absolute;
+  top: 35%;
+  left: 38%;
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* ===== TITLES ===== */
+
+h2 {
+  color: var(--primary);
+}
+
+.section-title {
+  margin-top: 30px;
+}
+
+/* ===== PROGRESS ===== */
+
+.bar {
+  height: 6px;
+  background: #ddd;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+/* ===== GRID 3 ===== */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+/* ===== INSIGHT ===== */
+
+.insight {
+  background: var(--primary-container);
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+/* ===== TABLE ===== */
+
+.table-container {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}

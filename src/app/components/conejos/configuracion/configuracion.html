@@ -1,1 +1,172 @@
-<p>configuracion works!</p>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="logo">
+      <span class="material-symbols-outlined logo-icon"></span>
+      <h2>Cunicultura</h2>
+    </div>
+
+    <div class="menu">
+
+      <a routerLink="/dashboard">
+        <span class="material-symbols-outlined"></span>
+        Dashboard
+      </a>
+
+      <a routerLink="/granjas">
+        <span class="material-symbols-outlined"></span>
+        Granjas
+      </a>
+
+      <a routerLink="/evaluaciones">
+        <span class="material-symbols-outlined"></span>
+        Evaluaciones
+      </a>
+
+      <a routerLink="/resultados">
+        <span class="material-symbols-outlined"></span>
+        Resultados
+      </a>
+
+      <a class="active" routerLink="/configuracion">
+        <span class="material-symbols-outlined"></span>
+        Sistema
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+
+      <div>
+        <p>Gestión del sistema</p>
+        <h1>Configuración</h1>
+      </div>
+
+      <div class="header-buttons">
+
+        <button class="btn btn-light">
+          Exportar
+        </button>
+
+        <button class="btn btn-primary">
+          + Nueva especie
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- LEFT -->
+      <div>
+
+        <!-- ESPECIES -->
+        <div class="card">
+
+          <h3>Especies</h3>
+
+          <div class="list">
+
+            <a class="active">
+              Conejo
+            </a>
+
+            <a>
+              Cuy
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- TOTAL -->
+        <div class="card mt">
+
+          <h3>Total indicadores</h3>
+
+          <h1>124</h1>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+
+        <!-- CRITERIOS -->
+        <div class="card">
+
+          <h2>Criterios</h2>
+
+          <div class="item">
+
+            <div>
+              <b>Recursos</b><br>
+              <small>Ambiente y alimentación</small>
+            </div>
+
+            <span>12</span>
+
+          </div>
+
+        </div>
+
+        <!-- FORM -->
+        <div class="card mt-lg">
+
+          <h2>Nuevo indicador</h2>
+
+          <div class="form-group">
+
+            <label>Nombre</label>
+
+            <input
+              type="text"
+              placeholder="Ej: Alimentación"
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Peso</label>
+
+            <input
+              type="range"
+              class="range"
+            >
+
+          </div>
+
+          <div class="actions">
+
+            <button class="btn btn-light">
+              Reset
+            </button>
+
+            <button class="btn btn-primary">
+              Crear
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  
+</div>
