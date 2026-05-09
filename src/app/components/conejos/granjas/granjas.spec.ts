@@ -1,23 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Routes } from '@angular/router';
+import { GranjasComponent } from './granjas';
 
-import { Granjas } from './granjas';
+export const routes: Routes = [
 
-describe('Granjas', () => {
-  let component: Granjas;
-  let fixture: ComponentFixture<Granjas>;
+  {
+    path: 'granjas',
+    component: GranjasComponent
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Granjas]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(Granjas);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+];

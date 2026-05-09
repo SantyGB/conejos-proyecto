@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-granjas',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule],
   templateUrl: './granjas.html',
-  styleUrl: './granjas.scss',
+  styleUrls: ['./granjas.scss']
 })
-export class Granjas {
+export class GranjasComponent {
 
 }

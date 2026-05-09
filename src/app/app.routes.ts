@@ -10,11 +10,11 @@ import { LoginComponent } from './components/conejos/login/login';
 // Tus vistas
 import { DashboardComponent } from './components/conejos/dashboard/dashboard';
 import { EvaluacionesComponent } from './components/conejos/evaluaciones/evaluaciones';
+import { GranjasComponent } from './components/conejos/granjas/granjas';
 //import { ConfiguracionComponent } from './components/conejos/configuracion/configuracion';
 
 export const routes: Routes = [
 
-  // 🧱 PANEL PRINCIPAL COMO RAÍZ
   {
     path: '',
     component: AdminPanel,
@@ -30,7 +30,9 @@ export const routes: Routes = [
 
 
       { path: 'dashboard', component: DashboardComponent },
-   
+
+      { path: 'granjas', component: GranjasComponent, children: [] },
+
     //  { path: 'configuracion', component: ConfiguracionComponent },
       
       { 
