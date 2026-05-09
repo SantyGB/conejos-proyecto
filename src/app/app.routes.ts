@@ -1,21 +1,23 @@
 import { Routes } from '@angular/router';
-
-// Layout
 import { AdminPanel } from './components/admin-panel/admin-panel';
-
-// Páginas
 import { Inicio } from './components/inicio/inicio';
 import { LoginComponent } from './components/conejos/login/login';
-
-// NUEVO
 import { SeleccionComponent } from './components/conejos/seleccion/seleccion';
-
-// Tus vistas
 import { DashboardComponent } from './components/conejos/dashboard/dashboard';
 import { EvaluacionesComponent } from './components/conejos/evaluaciones/evaluaciones';
 import { GranjasComponent } from './components/conejos/granjas/granjas';
 import { ConfiguracionComponent } from './components/conejos/configuracion/configuracion';
 import { ResultadosComponent } from './components/conejos/resultados/resultados';
+import { RegistroComponent } from './components/conejos/evaluaciones/registro/registro';
+import { ConejosComponent } from './components/conejos/evaluaciones/conejos/conejos';
+import { AlimentacionComponent } from './components/conejos/evaluaciones/alimentacion/alimentacion';
+import { InstalacionesComponent } from './components/conejos/evaluaciones/instalaciones/instalaciones';
+import { ObservacionComponent } from './components/conejos/evaluaciones/observacion/observacion';
+import { SaludComponent } from './components/conejos/evaluaciones/salud/salud';
+import { GestionComponent } from './components/conejos/evaluaciones/gestion/gestion';
+import { CapacitacionComponent } from './components/conejos/evaluaciones/capacitacion/capacitacion';
+import { EvaluacionFinalComponent } from './components/conejos/evaluaciones/evaluacion-final/evaluacion-final';
+
 
 export const routes: Routes = [
 
@@ -44,15 +46,43 @@ export const routes: Routes = [
       { 
         path: 'evaluaciones', 
         component: EvaluacionesComponent,
-        children: [
-
-          // futuras rutas
-
-          // { path: 'registro', component: RegistroComponent }
-
-        ]
+      },
+      {
+        path: 'evaluaciones/registro',
+        component: RegistroComponent
+      },
+      {
+        path: 'evaluaciones/conejos',
+        component: ConejosComponent
+      },
+      {
+        path: 'evaluaciones/alimentacion',
+        component: AlimentacionComponent
+      },
+      {
+        path: 'evaluaciones/instalaciones',
+        component: InstalacionesComponent
+      },
+      {
+        path: 'evaluaciones/observacion',
+        component: ObservacionComponent
+      },
+      {
+        path: 'evaluaciones/salud',
+        component: SaludComponent
+      },
+      {
+        path: 'evaluaciones/gestion',
+        component: GestionComponent
+      },
+      {
+        path: 'evaluaciones/capacitacion',
+        component: CapacitacionComponent
+      },
+      {
+        path: 'evaluaciones/evaluacion-final',
+        component: EvaluacionFinalComponent
       }
-
     ]
   },
 

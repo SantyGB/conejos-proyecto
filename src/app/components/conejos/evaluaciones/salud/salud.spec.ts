@@ -1,0 +1,28 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SaludComponent } from './salud';
+
+describe('SaludComponent', () => {
+
+  let component: SaludComponent;
+  let fixture: ComponentFixture<SaludComponent>;
+
+  beforeEach(async () => {
+
+    await TestBed.configureTestingModule({
+      imports: [SaludComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(SaludComponent);
+    component = fixture.componentInstance;
+
+    fixture.detectChanges();
+
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+});

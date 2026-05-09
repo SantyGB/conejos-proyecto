@@ -1,0 +1,211 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="logo">
+      <span class="material-symbols-outlined"></span>
+      <h2>Cunicultura</h2>
+    </div>
+
+    <a routerLink="/evaluaciones" class="back-btn">
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+
+      Regresar
+    </a>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="header">
+
+      <div>
+        <h1>Observación Animal</h1>
+
+        <p>
+          Evaluación del comportamiento y confort de los conejos
+        </p>
+      </div>
+
+      <!-- PROGRESS -->
+      <div class="progress">
+
+        <small>Progreso</small>
+
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>
+          Comportamientos anormales en conejos
+        </h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+            *ngFor="let item of comportamientos"
+            [class.active]="item.active"
+            (click)="seleccionar(comportamientos, item)"
+          >
+            {{ item.nombre }}
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>
+          Conejos totalmente estirados
+        </h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+            *ngFor="let item of estirados"
+            [class.active]="item.active"
+            (click)="seleccionar(estirados, item)"
+          >
+            {{ item.nombre }}
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>
+          Signos de estrés térmico en conejos
+        </h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+            *ngFor="let item of estres"
+            [class.active]="item.active"
+            (click)="seleccionar(estres, item)"
+          >
+            {{ item.nombre }}
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>
+          Torsión del cuello en conejos
+        </h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+            *ngFor="let item of torsion"
+            [class.active]="item.active"
+            (click)="seleccionar(torsion, item)"
+          >
+            {{ item.nombre }}
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>
+          Conejos mojados
+        </h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+            *ngFor="let item of mojados"
+            [class.active]="item.active"
+            (click)="seleccionar(mojados, item)"
+          >
+            {{ item.nombre }}
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>
+          Conejos sucios
+        </h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+            *ngFor="let item of sucios"
+            [class.active]="item.active"
+            (click)="seleccionar(sucios, item)"
+          >
+            {{ item.nombre }}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BOTONES -->
+    <div class="actions">
+
+      <button class="btn secondary">
+
+        <span class="material-symbols-outlined">
+          arrow_back
+        </span>
+
+        Anterior
+
+      </button>
+
+      <button class="btn">
+
+        Guardar y continuar
+
+        <span class="material-symbols-outlined">
+          arrow_forward
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

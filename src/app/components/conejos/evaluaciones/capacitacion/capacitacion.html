@@ -1,0 +1,166 @@
+<div class="sidebar">
+
+  <div class="logo">
+    <span class="material-symbols-outlined logo-icon">
+    </span>
+
+    <h3>Cunicultura</h3>
+  </div>
+
+  <a routerLink="/evaluaciones" class="back-btn">
+    <span class="material-symbols-outlined">
+      arrow_back
+    </span>
+
+    Regresar
+  </a>
+
+</div>
+
+<div class="main">
+
+  <div class="header">
+    <h1>Capacitación y protocolos</h1>
+
+    <p>
+      Evaluación del conocimiento del personal y manejo técnico
+    </p>
+  </div>
+
+  <!-- SELECT FINCA -->
+  <div class="finca-bar">
+
+    <div class="finca-select">
+
+      <label>Elegir finca para el registro</label>
+
+      <select>
+        <option>Seleccionar finca</option>
+        <option>Finca El Paraíso</option>
+        <option>Granja Los Conejos</option>
+      </select>
+
+    </div>
+
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- CARD -->
+    <div class="card">
+
+      <h3>Personal capacitado</h3>
+
+      <div class="options">
+
+        <div class="option" (click)="seleccionar($event)">
+          Todos certificados
+        </div>
+
+        <div class="option" (click)="seleccionar($event)">
+          Más de la mitad certificados
+        </div>
+
+        <div class="option" (click)="seleccionar($event)">
+          Más de la mitad sin certificado
+        </div>
+
+        <div class="option" (click)="seleccionar($event)">
+          Muy pocos capacitados
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="card">
+
+      <h3>Protocolo de sacrificio</h3>
+
+      <div class="options">
+
+        <div class="option" (click)="seleccionar($event)">
+          Existe y se aplica
+        </div>
+
+        <div class="option" (click)="seleccionar($event)">
+          No existe
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="card">
+
+      <h3>Protocolo de eutanasia</h3>
+
+      <div class="options">
+
+        <div class="option" (click)="seleccionar($event)">
+          Completo y firmado
+        </div>
+
+        <div class="option" (click)="seleccionar($event)">
+          Incompleto o no existe
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+    <div class="card">
+
+      <h3>Plan de contingencia</h3>
+
+      <div class="options">
+
+        <div class="option" (click)="seleccionar($event)">
+          Completo e implementado
+        </div>
+
+        <div class="option" (click)="seleccionar($event)">
+          Solo escrito
+        </div>
+
+        <div class="option" (click)="seleccionar($event)">
+          Solo lo conocen
+        </div>
+
+        <div class="option" (click)="seleccionar($event)">
+          No existe
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- OBSERVACIONES -->
+  <div class="extra">
+
+    <textarea
+      placeholder="Observaciones generales del técnico..."
+    ></textarea>
+
+  </div>
+
+  <!-- BOTONES -->
+  <div class="actions">
+
+    <button class="btn secondary">
+      Anterior
+    </button>
+
+    <button class="btn primary">
+      Finalizar evaluación
+    </button>
+
+  </div>
+
+</div>

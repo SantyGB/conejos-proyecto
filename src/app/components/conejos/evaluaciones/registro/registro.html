@@ -1,0 +1,223 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="logo">
+
+      <span class="material-symbols-outlined logo-icon">
+      </span>
+
+      <h2>Cunicultura</h2>
+
+    </div>
+
+    <!-- BOTÓN REGRESAR -->
+    <a
+      routerLink="/evaluaciones"
+      class="back-btn">
+
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+
+      Regresar
+
+    </a>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+
+      <h1>Registro de la Finca</h1>
+
+      <p>
+        Ingresa los datos básicos de la finca
+        y del productor
+      </p>
+
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="form-grid">
+
+      <div class="input-group">
+
+        <label>Nombre de la finca</label>
+
+        <input
+          type="text"
+          placeholder="Ej: Finca El Paraíso">
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Nombre del propietario</label>
+
+        <input
+          type="text"
+          placeholder="Ej: Juan Pérez">
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Ubicación / Municipio</label>
+
+        <input
+          type="text"
+          placeholder="Ej: Bogotá - Ciudad Bolívar">
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Teléfono</label>
+
+        <input
+          type="text"
+          placeholder="Ej: 3001234567">
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Tipo de productor</label>
+
+        <select>
+
+          <option>Seleccionar</option>
+          <option>Pequeño</option>
+          <option>Mediano</option>
+          <option>Intensivo</option>
+
+        </select>
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Total de conejos</label>
+
+        <input
+          type="number"
+          placeholder="Ej: 120">
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Número de empleados</label>
+
+        <input
+          type="number"
+          placeholder="Ej: 3">
+
+      </div>
+
+      <div class="input-group">
+
+        <label>Fecha de visita</label>
+
+        <input type="date">
+
+      </div>
+
+      <div class="input-group full">
+
+        <label>Técnico evaluador</label>
+
+        <input
+          type="text"
+          placeholder="Ej: Carlos Gómez">
+
+      </div>
+
+    </div>
+
+    <!-- BOTONES -->
+    <div class="actions">
+
+      <button class="btn secondary">
+        Anterior
+      </button>
+
+      <button class="btn">
+        Guardar y continuar
+      </button>
+
+    </div>
+
+    <!-- LISTADO -->
+    <div class="listado">
+
+      <h2>Fincas registradas</h2>
+
+      <div class="table">
+
+        <!-- HEADER -->
+        <div class="row header">
+
+          <div>Nombre de la finca</div>
+
+          <div>Fecha de registro</div>
+
+          <div>Acción</div>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="row">
+
+          <div>Finca El Paraíso</div>
+
+          <div>12/03/2026</div>
+
+          <div>
+            <button class="btn-ver">
+              Ver
+            </button>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div>Granja Los Conejos</div>
+
+          <div>10/03/2026</div>
+
+          <div>
+            <button class="btn-ver">
+              Ver
+            </button>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div>Finca San José</div>
+
+          <div>05/03/2026</div>
+
+          <div>
+            <button class="btn-ver">
+              Ver
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,133 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="logo">
+
+      <span
+        class="material-symbols-outlined logo-icon">
+      </span>
+
+      <h2>Cunicultura</h2>
+
+    </div>
+
+    <!-- REGRESAR -->
+    <a
+      routerLink="/evaluaciones"
+      class="back-btn">
+
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+
+      Regresar
+
+    </a>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+
+      <h1>Datos de los Conejos</h1>
+
+      <p>
+        Selecciona los grupos y completa
+        la información básica
+      </p>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- GRUPOS -->
+      <div class="card">
+
+        <h3>Grupos de conejos</h3>
+
+        <div class="options-grid">
+
+          <div
+            *ngFor="let grupo of grupos"
+
+            class="option"
+
+            [class.active]="estaActivo(grupo)"
+
+            (click)="toggleGrupo(grupo)">
+
+            {{ grupo }}
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TOTAL -->
+      <div class="card">
+
+        <h3>Total de conejos</h3>
+
+        <input
+          type="number"
+
+          [(ngModel)]="totalConejos"
+
+          placeholder="Ej: 150">
+
+      </div>
+
+      <!-- JAULAS -->
+      <div class="card">
+
+        <h3>Jaulas o galpones</h3>
+
+        <input
+          type="number"
+
+          placeholder="Ej: 20">
+
+      </div>
+
+      <!-- MUESTRA -->
+      <div class="card">
+
+        <h3>Tamaño de muestra</h3>
+
+        <div class="result">
+
+          {{ muestra }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BOTONES -->
+    <div class="actions">
+
+      <button class="btn secondary">
+
+        Anterior
+
+      </button>
+
+      <button class="btn primary">
+
+        Guardar y continuar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

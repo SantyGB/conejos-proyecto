@@ -1,0 +1,344 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="logo">
+      <span class="material-symbols-outlined"></span>
+      <h2>Cunicultura</h2>
+    </div>
+
+    <a routerLink="/evaluaciones" class="back-btn">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Regresar
+    </a>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="header">
+
+      <div>
+        <h1>Salud de los Conejos</h1>
+        <p>Revisión general del estado de salud</p>
+      </div>
+
+    </div>
+
+    <div class="grid">
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Problemas respiratorios</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muy pocos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Algunos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Varios
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muchos
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Ojos con secreción</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muy pocos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Algunos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Varios
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muchos
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Condición corporal</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muy buena
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Buena
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Regular
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Mala
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Lesiones en el cuerpo</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muy pocas
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Algunas
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Varias
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muchas
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Problemas digestivos</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Ninguno
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Pocos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Algunos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muchos
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Problemas en patas</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Leve
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Moderado
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Alto
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muy alto
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Diarrea</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muy poca
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Poca
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Regular
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Mucha
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Mastitis en hembras</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Ninguna
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Pocas
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Algunas
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muchas
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Problemas de piel</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muy pocos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Pocos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Algunos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muchos
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Conejos aislados</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Ninguno
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Pocos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Algunos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Muchos
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+      routerLink="/evaluaciones/observacion"
+      class="btn secondary">
+
+        Anterior
+
+      </button>
+
+      <button class="btn">
+
+        Guardar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

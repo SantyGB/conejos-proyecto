@@ -1,0 +1,367 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="logo">
+      <span class="material-symbols-outlined"></span>
+      <h2>Cunicultura</h2>
+    </div>
+
+    <a routerLink="/evaluaciones" class="back-btn">
+
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+
+      Regresar
+
+    </a>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="header">
+
+      <h1>Gestión del predio</h1>
+
+      <p>
+        Evaluación del manejo sanitario y administrativo
+      </p>
+
+    </div>
+
+    <!-- SELECT -->
+    <div class="finca-bar">
+
+      <div class="finca-select">
+
+        <label>Elegir finca para el registro</label>
+
+        <select>
+
+          <option>Seleccionar finca</option>
+          <option>Finca El Paraíso</option>
+          <option>Granja Los Conejos</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Mortalidad de gazapos</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Baja
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Media
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Alta
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Mortalidad en engorde</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Baja
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Media
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Alta
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Mortalidad reproductores</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Baja
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Media
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Alta
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Manejo del predio</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Completo
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Parcial
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Básico
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            No tiene
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Plan sanitario</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Completo
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Parcial
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Básico
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            No tiene
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Medicamentos legales</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Sí cumple
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            No cumple
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Medicamentos vencidos</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            No hay
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Sí hay
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Tratamientos veterinarios</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Siempre
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            A veces
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Nunca
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <h3>Registros veterinarios</h3>
+
+        <div class="options">
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Completos
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            Parciales
+          </div>
+
+          <div class="option"
+          (click)="seleccionar($event)">
+            No tienen
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- EXTRA -->
+    <div class="extra">
+
+      <textarea
+      placeholder="Observaciones del técnico...">
+      </textarea>
+
+      <!-- SUBIR -->
+      <div class="upload-container">
+
+        <label for="fileUpload" class="upload-box">
+
+          <span class="material-symbols-outlined icon">
+            cloud_upload
+          </span>
+
+          <span class="upload-title">
+            Subir fotos
+          </span>
+
+          <span class="upload-subtitle">
+            JPG, PNG
+          </span>
+
+        </label>
+
+        <input
+          type="file"
+          id="fileUpload"
+          multiple
+          hidden
+          (change)="subirFotos($event)"
+        >
+
+        <div
+          class="preview"
+          *ngIf="imagenes.length > 0">
+
+          <div
+            class="file-name"
+            *ngFor="let img of imagenes">
+
+            {{ img }}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+
+      <button
+      routerLink="/evaluaciones/salud"
+      class="btn secondary">
+
+        Anterior
+
+      </button>
+
+      <button class="btn primary">
+
+        Guardar y finalizar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,207 @@
+/* ===== BASE ===== */
+
+:host {
+  display: flex;
+  background: #f8faf9;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+  width: 240px;
+  background: linear-gradient(to bottom, #014421, #00331a);
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* LOGO */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo h2 {
+  margin: 0;
+}
+
+.logo .material-symbols-outlined {
+  font-size: 30px;
+}
+
+/* BOTÓN */
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  transition: 0.3s;
+  text-decoration: none;
+  color: white;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* MAIN */
+
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* HEADER */
+
+.header {
+  margin-bottom: 25px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #012d1d;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: gray;
+}
+
+/* SECTION */
+
+.section {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+/* GRID */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* INPUTS */
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #dcdcdc;
+  margin-top: 8px;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #012d1d;
+}
+
+/* OPTIONS */
+
+.options {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.option {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #dcdcdc;
+  background: #f4f6f5;
+  transition: 0.2s;
+}
+
+.option:hover {
+  border-color: #012d1d;
+}
+
+.option.active {
+  background: #012d1d;
+  color: white;
+  border-color: #012d1d;
+}
+
+/* SUBIR FOTO */
+
+.upload {
+  border: 2px dashed #1b7a5a;
+  padding: 30px;
+  text-align: center;
+  border-radius: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+  display: block;
+  transition: 0.3s;
+  background: #eefaf4;
+}
+
+.upload:hover {
+  background: #dff5ea;
+}
+
+.upload .material-symbols-outlined {
+  font-size: 45px;
+  color: #1b7a5a;
+}
+
+.upload p {
+  margin-top: 10px;
+  color: #014421;
+  font-weight: 600;
+}
+
+/* PREVIEW */
+
+.preview {
+  margin-top: 20px;
+}
+
+.preview img {
+  width: 220px;
+  border-radius: 12px;
+  border: 3px solid #dff5ea;
+}
+
+/* BOTÓN */
+
+.btn {
+  margin-top: 25px;
+  background: #012d1d;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #014421;
+}

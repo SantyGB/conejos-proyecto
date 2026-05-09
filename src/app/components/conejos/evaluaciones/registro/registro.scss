@@ -1,0 +1,240 @@
+:host {
+  display: block;
+
+  --primary: #012d1d;
+  --primary-light: #014421;
+  --bg: #f4f7f6;
+  --surface: #ffffff;
+  --surface-soft: #e8f5ef;
+}
+
+/* ===== BASE ===== */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+  width: 240px;
+  background: linear-gradient(to bottom, #014421, #00331a);
+  color: white;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 30px;
+}
+/* ===== BOTÓN ===== */
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 15px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.1);
+
+  text-decoration: none;
+  color: white;
+
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ===== MAIN ===== */
+
+.main {
+  flex: 1;
+  padding: 35px;
+}
+
+/* ===== HEADER ===== */
+
+.header h1 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 36px;
+}
+
+.header p {
+  margin-top: 10px;
+  color: gray;
+}
+
+/* ===== FORM ===== */
+
+.form-grid {
+  margin-top: 30px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+.input-group {
+  background: var(--surface-soft);
+
+  padding: 16px;
+
+  border-radius: 14px;
+
+  border: 1px solid #c7eadc;
+}
+
+.input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-weight: 600;
+
+  color: #014d33;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid #ccc;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
+}
+
+.full {
+  grid-column: span 2;
+}
+
+/* ===== BOTONES ===== */
+
+.actions {
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  background: var(--primary);
+
+  color: white;
+
+  border: none;
+
+  padding: 13px 20px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #014421;
+}
+
+.btn.secondary {
+  background: #d1d5db;
+  color: black;
+}
+
+/* ===== LISTADO ===== */
+
+.listado {
+  margin-top: 45px;
+}
+
+.listado h2 {
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+/* ===== TABLA ===== */
+
+.table {
+  background: white;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  border: 1px solid #e5e7eb;
+}
+
+.row {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 120px;
+
+  align-items: center;
+
+  padding: 16px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.row.header {
+  background: var(--surface-soft);
+
+  font-weight: bold;
+
+  color: #014d33;
+}
+
+.row:hover {
+  background: #f9fafb;
+}
+
+/* ===== BOTÓN VER ===== */
+
+.btn-ver {
+  background: #1b7a5a;
+
+  color: white;
+
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn-ver:hover {
+  background: #145c43;
+}

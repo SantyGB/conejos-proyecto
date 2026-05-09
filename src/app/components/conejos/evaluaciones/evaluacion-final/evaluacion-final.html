@@ -1,0 +1,135 @@
+<div class="sidebar">
+
+  <div class="logo">
+    <span class="material-symbols-outlined"></span>
+    <h2>Cunicultura</h2>
+  </div>
+
+  <a routerLink="/evaluaciones" class="back-btn">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Regresar
+  </a>
+
+</div>
+
+<div class="main">
+
+  <div class="header">
+    <span class="subtitle">Nueva evaluación</span>
+    <div class="title">Registro de Bienestar Animal</div>
+  </div>
+
+  <!-- FINCA -->
+  <div class="section">
+    <h3>Seleccionar finca</h3>
+
+    <select>
+      <option>Granja Norte</option>
+      <option>Granja Sur</option>
+      <option>Granja Oeste</option>
+    </select>
+  </div>
+
+  <!-- DATOS -->
+  <div class="section grid">
+
+    <div>
+      <label>Cantidad de animales</label>
+      <input type="number" placeholder="Ej: 120">
+    </div>
+
+    <div>
+      <label>Evaluador</label>
+      <input type="text" placeholder="Nombre del evaluador">
+    </div>
+
+  </div>
+
+  <!-- CONDICIÓN -->
+  <div class="section">
+
+    <h3>Condición física</h3>
+
+    <div class="options" (click)="seleccionarOpcion($event)">
+      <div class="option">Malo</div>
+      <div class="option">Regular</div>
+      <div class="option">Bueno</div>
+      <div class="option">Excelente</div>
+    </div>
+
+    <textarea placeholder="Observaciones físicas..."></textarea>
+
+  </div>
+
+  <!-- COMPORTAMIENTO -->
+  <div class="section">
+
+    <h3>Comportamiento</h3>
+
+    <div class="options" (click)="seleccionarOpcion($event)">
+      <div class="option">Agresivo</div>
+      <div class="option">Nervioso</div>
+      <div class="option">Neutro</div>
+      <div class="option">Activo</div>
+    </div>
+
+    <textarea placeholder="Observaciones de comportamiento..."></textarea>
+
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="section">
+
+    <h3>Resultado final</h3>
+
+    <div class="options" (click)="seleccionarOpcion($event)">
+      <div class="option">Bajo</div>
+      <div class="option">Medio</div>
+      <div class="option">Alto</div>
+    </div>
+
+  </div>
+
+  <!-- FOTO -->
+  <div class="section">
+
+    <h3>Foto del estado del animal</h3>
+
+    <label class="upload">
+
+      <input
+        type="file"
+        hidden
+        accept="image/*"
+        (change)="subirImagen($event)"
+      >
+
+      <span class="material-symbols-outlined">
+        cloud_upload
+      </span>
+
+      <p>Haz clic para subir imagen</p>
+
+    </label>
+
+    <div class="preview" *ngIf="imagenSeleccionada">
+      <img [src]="imagenSeleccionada">
+    </div>
+
+  </div>
+
+  <!-- OBSERVACIÓN -->
+  <div class="section">
+
+    <h3>Observación general</h3>
+
+    <textarea placeholder="Escribe observaciones generales..."></textarea>
+
+  </div>
+
+  <!-- BOTÓN -->
+  <button class="btn" (click)="guardarEvaluacion()">
+    Guardar Evaluación
+  </button>
+
+</div>

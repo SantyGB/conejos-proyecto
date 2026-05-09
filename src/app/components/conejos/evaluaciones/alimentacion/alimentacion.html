@@ -1,0 +1,349 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="logo">
+
+      <span
+        class="material-symbols-outlined logo-icon">
+      </span>
+
+      <h2>Cunicultura</h2>
+
+    </div>
+
+    <a
+      routerLink="/evaluaciones"
+      class="back-btn">
+
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+
+      Regresar
+
+    </a>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+
+      <h1>Alimentación y Agua</h1>
+
+      <p>
+        Evaluación del manejo alimenticio
+        de los conejos
+      </p>
+
+      <div class="finca-bar">
+
+        <select>
+
+          <option>Seleccionar finca</option>
+
+          <option>Finca El Paraíso</option>
+
+          <option>Granja Los Conejos</option>
+
+          <option>Finca San José</option>
+
+        </select>
+
+        <button class="btn-small">
+
+          + Nueva finca
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- COMEDEROS -->
+      <div class="card">
+
+        <h3>Comederos</h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['comederos'] === 'Todos limpios'"
+
+            (click)="seleccionar('comederos','Todos limpios')">
+
+            Todos limpios
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['comederos'] === 'Mayoría limpios'"
+
+            (click)="seleccionar('comederos','Mayoría limpios')">
+
+            Mayoría limpios
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['comederos'] === 'Regular'"
+
+            (click)="seleccionar('comederos','Regular')">
+
+            Regular
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['comederos'] === 'Deficiente'"
+
+            (click)="seleccionar('comederos','Deficiente')">
+
+            Deficiente
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BEBEDEROS -->
+      <div class="card">
+
+        <h3>Bebederos</h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['bebederos'] === 'Todos bien'"
+
+            (click)="seleccionar('bebederos','Todos bien')">
+
+            Todos bien
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['bebederos'] === 'Mayoría bien'"
+
+            (click)="seleccionar('bebederos','Mayoría bien')">
+
+            Mayoría bien
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['bebederos'] === 'Regular'"
+
+            (click)="seleccionar('bebederos','Regular')">
+
+            Regular
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['bebederos'] === 'Deficiente'"
+
+            (click)="seleccionar('bebederos','Deficiente')">
+
+            Deficiente
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ACCESO -->
+      <div class="card">
+
+        <h3>Acceso al agua</h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['agua'] === 'Todos acceden'"
+
+            (click)="seleccionar('agua','Todos acceden')">
+
+            Todos acceden
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['agua'] === 'Casi todos'"
+
+            (click)="seleccionar('agua','Casi todos')">
+
+            Casi todos
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['agua'] === 'Algunos'"
+
+            (click)="seleccionar('agua','Algunos')">
+
+            Algunos
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['agua'] === 'No tienen'"
+
+            (click)="seleccionar('agua','No tienen')">
+
+            No tienen
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TIPO -->
+      <div class="card">
+
+        <h3>Tipo de alimento</h3>
+
+        <div class="checkbox-grid">
+
+          <label>
+            <input type="checkbox">
+            Balanceado ICA
+          </label>
+
+          <label>
+            <input type="checkbox">
+            Dieta casera
+          </label>
+
+          <label>
+            <input type="checkbox">
+            Forraje
+          </label>
+
+        </div>
+
+      </div>
+
+      <!-- ALMACENAMIENTO -->
+      <div class="card">
+
+        <h3>Almacenamiento</h3>
+
+        <div class="options">
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['almacenamiento'] === 'Adecuado'"
+
+            (click)="seleccionar('almacenamiento','Adecuado')">
+
+            Adecuado
+
+          </div>
+
+          <div
+            class="option"
+
+            [class.active]="opcionesSeleccionadas['almacenamiento'] === 'No adecuado'"
+
+            (click)="seleccionar('almacenamiento','No adecuado')">
+
+            No adecuado
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- EXTRA -->
+    <div class="extra">
+
+      <textarea
+        placeholder="Observaciones del técnico...">
+
+      </textarea>
+
+      <label class="upload-box">
+
+  <input
+    type="file"
+    accept="image/*"
+    multiple
+    hidden>
+
+  <span class="material-symbols-outlined upload-icon">
+    upload
+  </span>
+
+  <div class="upload-text">
+
+    <strong>Subir fotos</strong>
+
+    <small>
+      JPG, PNG o WEBP
+    </small>
+
+  </div>
+
+</label>
+
+    </div>
+
+    <!-- BOTONES -->
+    <div class="actions">
+
+      <button class="btn secondary">
+
+        Anterior
+
+      </button>
+
+      <button class="btn primary">
+
+        Guardar y continuar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

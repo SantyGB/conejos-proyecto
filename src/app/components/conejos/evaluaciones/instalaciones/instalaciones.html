@@ -1,0 +1,240 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="logo">
+      <span class="material-symbols-outlined"></span>
+      <h2>Cunicultura</h2>
+    </div>
+
+    <a routerLink="/evaluaciones" class="back-btn">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Regresar
+    </a>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="header">
+      <h1>Instalaciones</h1>
+
+      <p>
+        Revisión general de las condiciones de jaulas y galpones
+      </p>
+    </div>
+
+    <div class="finca-bar">
+
+      <div class="finca-select">
+
+        <label>Elegir finca para el registro</label>
+
+        <select>
+          <option>Seleccionar finca</option>
+          <option>Finca El Paraíso</option>
+          <option>Granja Los Conejos</option>
+          <option>Finca San José</option>
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="grid">
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Estado de jaulas</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of estadoJaulas"
+            [class.active]="item.active"
+            (click)="seleccionar(estadoJaulas, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Suciedad o residuos</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of suciedad"
+            [class.active]="item.active"
+            (click)="seleccionar(suciedad, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Reposa patas</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of reposaPatas"
+            [class.active]="item.active"
+            (click)="seleccionar(reposaPatas, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Nidales</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of nidales"
+            [class.active]="item.active"
+            (click)="seleccionar(nidales, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Espacio por conejo</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of espacio"
+            [class.active]="item.active"
+            (click)="seleccionar(espacio, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Altura de jaulas</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of altura"
+            [class.active]="item.active"
+            (click)="seleccionar(altura, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Iluminación</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of iluminacion"
+            [class.active]="item.active"
+            (click)="seleccionar(iluminacion, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Ventilación</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of ventilacion"
+            [class.active]="item.active"
+            (click)="seleccionar(ventilacion, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+        <h3>Protección</h3>
+
+        <div class="options">
+          <div
+            class="option"
+            *ngFor="let item of proteccion"
+            [class.active]="item.active"
+            (click)="seleccionar(proteccion, item)"
+          >
+            {{ item.nombre }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EXTRA -->
+    <div class="extra">
+
+      <textarea
+        placeholder="Observaciones del técnico..."
+      ></textarea>
+
+      <!-- SUBIR FOTO -->
+      <label class="upload-box">
+
+        <input
+          type="file"
+          multiple
+          hidden
+          (change)="subirFotos($event)"
+        >
+
+        <span class="material-symbols-outlined">
+          upload
+        </span>
+
+        <p>Subir fotos</p>
+
+        <small *ngIf="fotos.length > 0">
+          {{ fotos.length }} archivo(s)
+        </small>
+
+      </label>
+
+    </div>
+
+    <!-- BOTONES -->
+    <div class="actions">
+
+      <button class="btn secondary">
+        Anterior
+      </button>
+
+      <button class="btn primary">
+        Guardar y continuar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
