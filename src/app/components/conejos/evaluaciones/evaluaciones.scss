@@ -1,0 +1,156 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== VARIABLES ===== */
+:root {
+  --primary: #012d1d;
+  --primary-container: #1b4332;
+  --secondary: #486459;
+  --bg: #f8faf9;
+  --surface: #ffffff;
+  --surface-soft: #eceeed;
+  --text: #191c1c;
+  --text-soft: #6b7280;
+  --radius: 14px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(to bottom, #014421, #00331a);
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
+
+.menu a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.menu a.active {
+  background: #1e6b4c;
+}
+
+/* CONTENIDO */
+.container {
+  flex: 1;
+  padding: 40px;
+  background: var(--bg);
+  overflow-y: auto;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 32px;
+  margin: 0;
+  color: var(--primary);
+}
+
+.header p {
+  color: var(--text-soft);
+  margin-top: 5px;
+}
+
+/* SELECTOR */
+.selector-finca {
+  margin-top: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+  margin: 0 0 5px 0;
+  color: var(--primary);
+}
+
+.card p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.estado {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pendiente { background: #facc15; color: #000; }
+.completo { background: #34d399; color: #000; }
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  background: #aaa9ab;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #22c55e;
+}

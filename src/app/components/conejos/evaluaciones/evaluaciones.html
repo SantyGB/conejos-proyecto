@@ -1,1 +1,128 @@
-<p>evaluaciones works!</p>
+<div class="sidebar">
+  
+  <div class="logo">
+    <span class="material-symbols-outlined" style="font-size:30px;"></span>
+    <h2>Cunicultura</h2>
+  </div>
+
+  <div class="menu">
+    <a routerLink="/dashboard">
+      <span class="material-symbols-outlined"></span>
+      Dashboard
+    </a>
+
+    <a routerLink="/granjas">
+      <span class="material-symbols-outlined"></span>
+      Granjas
+    </a>
+
+    <a class="active" routerLink="/evaluaciones">
+      <span class="material-symbols-outlined"></span>
+      Evaluaciones
+    </a>
+
+    <a routerLink="/resultados">
+      <span class="material-symbols-outlined"></span>
+      Resultados
+    </a>
+
+    <a routerLink="/configuracion">
+      <span class="material-symbols-outlined"></span>
+      Sistema
+    </a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Evaluación de la finca</h1>
+    <p>Selecciona la finca y completa cada sección</p>
+  </div>
+
+  <!-- SELECTOR FINCA -->
+  <div class="selector-finca">
+    <label>Elegir finca:</label>
+
+    <select>
+      <option>Seleccionar finca</option>
+      <option>Finca El Paraíso</option>
+      <option>Granja Conejos</option>
+      <option>Finca La Esperanza</option>
+    </select>
+
+    <button (click)="iniciar()">Iniciar evaluación</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <div class="card">
+      <h3>Registro de la finca</h3>
+      <p>Datos básicos del predio</p>
+      <span class="estado completo">Completo</span>
+      <a routerLink="/evaluaciones/registro" class="btn">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h3>Datos de los conejos</h3>
+      <p>Información general</p>
+      <span class="estado pendiente">Pendiente</span>
+      <a routerLink="/evaluaciones/conejos" class="btn">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h3>Alimentación</h3>
+      <p>Comida y agua</p>
+      <span class="estado pendiente">Pendiente</span>
+      <a routerLink="/evaluaciones/alimentacion" class="btn">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h3>Instalaciones</h3>
+      <p>Condiciones del espacio</p>
+      <span class="estado pendiente">Pendiente</span>
+      <a routerLink="/evaluaciones/instalaciones" class="btn">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h3>Observación</h3>
+      <p>Comportamiento de conejos</p>
+      <span class="estado pendiente">Pendiente</span>
+      <a routerLink="/evaluaciones/observacion" class="btn">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h3>Salud</h3>
+      <p>Estado sanitario</p>
+      <span class="estado pendiente">Pendiente</span>
+      <a routerLink="/evaluaciones/salud" class="btn">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h3>Gestión</h3>
+      <p>Administración del predio</p>
+      <span class="estado pendiente">Pendiente</span>
+      <a routerLink="/evaluaciones/gestion" class="btn">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h3>Capacitación</h3>
+      <p>Protocolos y formación</p>
+      <span class="estado pendiente">Pendiente</span>
+      <a routerLink="/evaluaciones/capacitacion" class="btn">Abrir</a>
+    </div>
+
+    <div class="card">
+      <h3>Bienestar Animal</h3>
+      <p>Diagnóstico final</p>
+      <span class="estado pendiente">Pendiente</span>
+      <a routerLink="/evaluaciones/final" class="btn">Ver</a>
+    </div>
+
+  </div>
+
+  <!-- ROUTER OUTLET PARA SUBRUTAS -->
+  <router-outlet></router-outlet>
+
+</div>

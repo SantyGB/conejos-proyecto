@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="login-container">
+
+  <!-- IZQUIERDA -->
+  <div class="left">
+    <div>
+      <h1>Cunicultura Welfare System</h1>
+      <p>Gestión digital para el bienestar animal y producción eficiente.</p>
+    </div>
+    <p>© 2026 Sistema</p>
+  </div>
+
+  <!-- DERECHA -->
+  <div class="right">
+
+    <span class="tag">ACCESO AUTORIZADO</span>
+
+    <h2>Bienvenido de nuevo</h2>
+    <p>Gestiona tus granjas con precisión científica.</p>
+
+    <div class="input-group">
+      <label>Correo institucional</label>
+      <input type="email" [(ngModel)]="email" placeholder="correo@empresa.com">
+    </div>
+
+    <div class="input-group">
+      <label>Clave de seguridad</label>
+      <input type="password" [(ngModel)]="password" placeholder="********">
+    </div>
+
+    <!-- BOTÓN ANGULAR -->
+    <button class="btn" (click)="login()">
+      Autorizar acceso →
+    </button>
+
+    <div class="small">
+      ¿No tienes acceso? Contacta al administrador
+    </div>
+
+  </div>
+
+</div>

@@ -1,1 +1,150 @@
-<p>dashboard works!</p>
+<div class="sidebar">
+  
+  <div class="logo">
+    <span class="material-symbols-outlined" style="font-size:30px;"></span>
+    <h2>Cunicultura</h2>
+  </div>
+
+  <div class="menu">
+    <a class="active" routerLink="/dashboard">
+      <span class="material-symbols-outlined"></span>
+      Dashboard
+    </a>
+
+    <a routerLink="/granjas">
+      <span class="material-symbols-outlined"></span>
+      Granjas
+    </a>
+
+    <a routerLink="/evaluaciones">
+      <span class="material-symbols-outlined"></span>
+      Evaluaciones
+    </a>
+
+    <a routerLink="/resultados">
+      <span class="material-symbols-outlined"></span>
+      Resultados
+    </a>
+
+    <a routerLink="/configuracion">
+      <span class="material-symbols-outlined"></span>
+      Sistema
+    </a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="header">
+    <div>
+      <h1>Indicadores de Bienestar</h1>
+    </div>
+
+    <button class="btn">
+      <span class="material-symbols-outlined">add_circle</span>
+      Nueva Evaluación
+    </button>
+  </div>
+
+  <div class="grid">
+
+    <div class="card-big">
+      <p class="card-label">Puntaje promedio</p>
+      <div class="score-circle">
+        <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
+          <circle class="progress-ring-bg" cx="90" cy="90" r="80"/>
+          <circle class="progress-ring-fill" cx="90" cy="90" r="80" style="stroke-dashoffset: calc(502.65 * (1 - 0.84))"/>
+        </svg>
+        <div class="score-text">8.4</div>
+      </div>
+      <div class="trend">📈 +12% desde el mes pasado</div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <div class="value">24</div>
+      <p>Granjas activas</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <div class="value">07</div>
+      <p>Evaluaciones pendientes</p>
+    </div>
+
+  </div>
+
+  <div class="section">
+
+    <div>
+      <h2>Evaluaciones recientes</h2>
+
+      <div class="list">
+
+        <div class="item">
+          <div class="item-content">
+            <img src="https://picsum.photos/100?1" class="item-img">
+            <div class="item-info">
+              <b>Finca Meadowbrook</b><br>
+              <small>24 Oct • Dr. Aris</small>
+            </div>
+          </div>
+          <div class="score-badge">9.2</div>
+        </div>
+
+        <div class="item">
+          <div class="item-content">
+            <img src="https://picsum.photos/100?2" class="item-img">
+            <div class="item-info">
+              <b>Granja Green Valley</b><br>
+              <small>21 Oct • Dr. Aris</small>
+            </div>
+          </div>
+          <div class="score-badge">6.8</div>
+        </div>
+
+        <div class="item">
+          <div class="item-content">
+            <img src="https://picsum.photos/100?3" class="item-img">
+            <div class="item-info">
+              <b>Santuario Riverbend</b><br>
+              <small>18 Oct • Sarah</small>
+            </div>
+          </div>
+          <div class="score-badge">8.7</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="insight">
+      <h3>💧 Insight biológico</h3>
+      <p>
+        Los niveles de hidratación han bajado un 4%. Se recomienda revisión.
+      </p>
+
+      <div class="metric">
+        <div class="metric-header">
+          <small>🥗 Nutrición</small>
+          <span class="metric-value">94%</span>
+        </div>
+        <div class="bar">
+          <div class="fill" style="width:94%; background: linear-gradient(90deg, #4ade80, #22c55e);"></div>
+        </div>
+      </div>
+
+      <div class="metric">
+        <div class="metric-header">
+          <small>📐 Espacio</small>
+          <span class="metric-value">82%</span>
+        </div>
+        <div class="bar">
+          <div class="fill" style="width:82%; background: linear-gradient(90deg, #60a5fa, #3b82f6);"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

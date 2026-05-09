@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-evaluaciones',
-  imports: [],
   templateUrl: './evaluaciones.html',
-  styleUrl: './evaluaciones.scss',
+  styleUrls: ['./evaluaciones.scss'],
+  standalone: true,
+  imports: [CommonModule, RouterModule]
 })
-export class Evaluaciones {
+export class EvaluacionesComponent {
+
+  iniciar() {
+    console.log('Evaluación iniciada');
+  }
 
 }

@@ -1,21 +1,57 @@
 import { Routes } from '@angular/router';
+
+// Layout
 import { AdminPanel } from './components/admin-panel/admin-panel';
-//import { Login } from './login/login';
+
+// Páginas
 import { Inicio } from './components/inicio/inicio';
+import { LoginComponent } from './components/conejos/login/login';
+
+// Tus vistas
+import { DashboardComponent } from './components/conejos/dashboard/dashboard';
+import { EvaluacionesComponent } from './components/conejos/evaluaciones/evaluaciones';
+//import { ConfiguracionComponent } from './components/conejos/configuracion/configuracion';
 
 export const routes: Routes = [
-    { path: '**', redirectTo: 'Bienestar-animal', pathMatch: 'full' },
-    {
-        path:'Bienestar-animal',
-        component:AdminPanel,
-        
-        children:[
-            {path:'',redirectTo:'inicio',pathMatch:'full'},
-            { path: 'inicio', component: Inicio },
 
+  // 🧱 PANEL PRINCIPAL COMO RAÍZ
+  {
+    path: '',
+    component: AdminPanel,
+    children: [
+
+    
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+
+      { path: 'inicio', component: Inicio },
+
+
+      { path: 'login', component: LoginComponent },
+
+
+      { path: 'dashboard', component: DashboardComponent },
+   
+    //  { path: 'configuracion', component: ConfiguracionComponent },
+      
+      { 
+        path: 'evaluaciones', 
+        component: EvaluacionesComponent,
+        children: [
+    //   { path: 'registro', component: EvaluacionesComponent },
+    //      { path: 'conejos', component: EvaluacionesComponent },
+    //      { path: 'alimentacion', component: EvaluacionesComponent },
+    //      { path: 'instalaciones', component: EvaluacionesComponent },
+    //      { path: 'observacion', component: EvaluacionesComponent },
+    //      { path: 'salud', component: EvaluacionesComponent },
+    //      { path: 'gestion', component: EvaluacionesComponent },
+    //      { path: 'capacitacion', component: EvaluacionesComponent },
+    //      { path: 'final', component: EvaluacionesComponent }
         ]
-    }
+      }
 
+    ]
+  },
+  
+  { path: '**', redirectTo: '' }
 
 ];
-
