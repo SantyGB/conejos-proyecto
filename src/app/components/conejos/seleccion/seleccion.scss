@@ -1,0 +1,84 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.selector-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.55),
+    rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=2070');
+
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.selector-container {
+  text-align: center;
+  color: white;
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px;
+}
+
+.selector-container h1 {
+  font-size: 58px;
+  margin-bottom: 10px;
+}
+
+.selector-container p {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 50px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.option-card {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.2);
+
+  border-radius: 28px;
+
+  padding: 40px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255,255,255,0.18);
+}
+
+.icon {
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
+.option-card h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.option-card p {
+  font-size: 15px;
+  line-height: 1.6;
+}

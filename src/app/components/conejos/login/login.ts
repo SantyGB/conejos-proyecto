@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
   imports: [FormsModule]
@@ -16,15 +17,17 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   login() {
-    // validación básica
+
     if (this.email && this.password) {
 
       console.log('Login correcto');
 
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/seleccion']);
 
     } else {
+
       alert('Completa los campos');
+
     }
   }
 }
