@@ -31,7 +31,7 @@
       Sistema
     </a>
 
-    
+
   </div>
 </div>
 
@@ -53,26 +53,54 @@
     <div class="card-big">
       <p class="card-label">Puntaje promedio</p>
       <div class="score-circle">
-        <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
-          <circle class="progress-ring-bg" cx="90" cy="90" r="80"/>
-          <circle class="progress-ring-fill" cx="90" cy="90" r="80" style="stroke-dashoffset: calc(502.65 * (1 - 0.84))"/>
-        </svg>
-        <div class="score-text">8.4</div>
-      </div>
-      <div class="trend">📈 +12% desde el mes pasado</div>
+
+  <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
+
+    <defs>
+      <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#22c55e"/>
+        <stop offset="100%" stop-color="#16a34a"/>
+      </linearGradient>
+    </defs>
+
+    <circle
+      class="progress-ring-bg"
+      cx="90"
+      cy="90"
+      r="80"
+    />
+
+    <circle
+      class="progress-ring-fill"
+      cx="90"
+      cy="90"
+      r="80"
+      style="stroke-dashoffset: calc(502 * (1 - 0.84));"
+    />
+
+  </svg>
+
+  <div class="score-text">8.4</div>
+
+</div>
+      <div class="trend"> +12% desde el mes pasado</div>
     </div>
 
-    <div class="card">
-      <div class="card-icon">🏠</div>
-      <div class="value">24</div>
-      <p>Granjas activas</p>
-    </div>
+  <div class="card">
+     <div class="card-icon">
+       <span class="material-symbols-outlined">home_work</span>
+       </div>
+     <div class="value">24</div>
+    <p>Granjas activas</p>
+  </div>
 
-    <div class="card">
-      <div class="card-icon">📋</div>
-      <div class="value">07</div>
-      <p>Evaluaciones pendientes</p>
+  <div class="card">
+    <div class="card-icon">
+      <span class="material-symbols-outlined">fact_check</span>
     </div>
+    <div class="value">07</div>
+    <p>Evaluaciones pendientes</p>
+  </div>
 
   </div>
 
@@ -91,7 +119,14 @@
               <small>24 Oct • Dr. Aris</small>
             </div>
           </div>
-          <div class="score-badge">9.2</div>
+          <div class="score-progress">
+  <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
+    <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
+    <circle class="mini-ring-fill" cx="35" cy="35" r="28"
+      style="stroke-dashoffset: calc(176 * (1 - 0.92))"/>
+  </svg>
+  <div class="mini-score-text">9.2</div>
+</div>
         </div>
 
         <div class="item">
@@ -102,7 +137,14 @@
               <small>21 Oct • Dr. Aris</small>
             </div>
           </div>
-          <div class="score-badge">6.8</div>
+          <div class="score-progress">
+  <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
+    <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
+    <circle class="mini-ring-fill" cx="35" cy="35" r="28"
+      style="stroke-dashoffset: calc(176 * (1 - 0.68))"/>
+  </svg>
+  <div class="mini-score-text">6.8</div>
+</div>
         </div>
 
         <div class="item">
@@ -113,37 +155,64 @@
               <small>18 Oct • Sarah</small>
             </div>
           </div>
-          <div class="score-badge">8.7</div>
+          <div class="score-progress">
+  <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
+    <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
+    <circle class="mini-ring-fill" cx="35" cy="35" r="28"
+      style="stroke-dashoffset: calc(176 * (1 - 0.87))"/>
+  </svg>
+  <div class="mini-score-text">8.7</div>
+</div>
         </div>
 
       </div>
     </div>
 
     <div class="insight">
-      <h3>💧 Insight biológico</h3>
+      <h3>Insight biológico</h3>
       <p>
         Los niveles de hidratación han bajado un 4%. Se recomienda revisión.
       </p>
 
+      
       <div class="metric">
-        <div class="metric-header">
-          <small>🥗 Nutrición</small>
-          <span class="metric-value">94%</span>
-        </div>
-        <div class="bar">
-          <div class="fill" style="width:94%; background: linear-gradient(90deg, #4ade80, #22c55e);"></div>
-        </div>
-      </div>
+  <div class="metric-header">
 
-      <div class="metric">
-        <div class="metric-header">
-          <small>📐 Espacio</small>
-          <span class="metric-value">82%</span>
-        </div>
-        <div class="bar">
-          <div class="fill" style="width:82%; background: linear-gradient(90deg, #60a5fa, #3b82f6);"></div>
-        </div>
-      </div>
+    <small class="metric-title">
+      <span class="material-symbols-outlined" style="color:black;">
+  restaurant
+</span>
+    </small>
+
+    <span class="metric-value" style="color:black;">94%</span>
+  </div>
+
+  <div class="bar">
+    <div class="fill"
+      style="width:94%; background: linear-gradient(90deg, #4ade80, #22c55e);">
+    </div>
+  </div>
+</div>
+
+<div class="metric">
+  <div class="metric-header">
+
+    <small class="metric-title">
+      <span class="material-symbols-outlined" style="color:black;">
+  fullscreen
+</span>
+      Espacio
+    </small>
+
+    <span class="metric-value" style="color:black;">82%</span>
+  </div>
+
+  <div class="bar">
+    <div class="fill"
+      style="width:82%; background: linear-gradient(90deg, #60a5fa, #3b82f6);">
+    </div>
+  </div>
+</div>
 
     </div>
 
