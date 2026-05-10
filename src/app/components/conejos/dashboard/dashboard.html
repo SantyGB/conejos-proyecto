@@ -1,221 +1,353 @@
-<div class="sidebar">
-  
-  <div class="logo">
-    <span class="material-symbols-outlined" style="font-size:30px;"></span>
-    <h2>Cunicultura</h2>
-  </div> 
+<div class="dashboard-layout">
 
-  <div class="menu">  
-    <a class="active" routerLink="/dashboard">
-      <span class="material-symbols-outlined"></span>
-      Dashboard
-    </a>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
-    <a routerLink="/granjas">
-      <span class="material-symbols-outlined"></span>
-      Granjas
-    </a>
-
-    <a routerLink="/resultados">
-      <span class="material-symbols-outlined"></span>
-      Resultados
-    </a>
-
-    <a routerLink="/configuracion">
-      <span class="material-symbols-outlined"></span>
-      Sistema
-    </a>
-
-    <a routerLink="/seleccion">
-      <span class="material-symbols-outlined"></span>
-      menú principal
-    </a>
-
-
-  </div>
-</div>
-
-<div class="container">
-
-  <div class="header">
-    <div>
-      <h1>Indicadores de Bienestar</h1>
-    </div>
-
-    <button class="btn">
-      <span class="material-symbols-outlined">add_circle</span>
-      Nueva Evaluación
-    </button>
-  </div>
-
-  <div class="grid">
-
-    <div class="card-big">
-      <p class="card-label">Puntaje promedio</p>
-      <div class="score-circle">
-
-  <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
-
-    <defs>
-      <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#22c55e"/>
-        <stop offset="100%" stop-color="#16a34a"/>
-      </linearGradient>
-    </defs>
-
-    <circle
-      class="progress-ring-bg"
-      cx="90"
-      cy="90"
-      r="80"
-    />
-
-    <circle
-      class="progress-ring-fill"
-      cx="90"
-      cy="90"
-      r="80"
-      style="stroke-dashoffset: calc(502 * (1 - 0.84));"
-    />
-
-  </svg>
-
-  <div class="score-text">8.4</div>
-
-</div>
-      <div class="trend"> +12% desde el mes pasado</div>
-    </div>
-
-  <div class="card">
-     <div class="card-icon">
-       <span class="material-symbols-outlined">home_work</span>
-       </div>
-     <div class="value">24</div>
-    <p>Granjas activas</p>
-  </div>
-
-  <div class="card">
-    <div class="card-icon">
-      <span class="material-symbols-outlined">fact_check</span>
-    </div>
-    <div class="value">07</div>
-    <p>Evaluaciones pendientes</p>
-  </div>
-
-  </div>
-
-  <div class="section">
-
-    <div>
-      <h2>Evaluaciones recientes</h2>
-
-      <div class="list">
-
-        <div class="item">
-          <div class="item-content">
-            <img src="https://picsum.photos/100?1" class="item-img">
-            <div class="item-info">
-              <b>Finca Meadowbrook</b><br>
-              <small>24 Oct • Dr. Aris</small>
-            </div>
-          </div>
-          <div class="score-progress">
-  <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
-    <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
-    <circle class="mini-ring-fill" cx="35" cy="35" r="28"
-      style="stroke-dashoffset: calc(176 * (1 - 0.92))"/>
-  </svg>
-  <div class="mini-score-text">9.2</div>
-</div>
-        </div>
-
-        <div class="item">
-          <div class="item-content">
-            <img src="https://picsum.photos/100?2" class="item-img">
-            <div class="item-info">
-              <b>Granja Green Valley</b><br>
-              <small>21 Oct • Dr. Aris</small>
-            </div>
-          </div>
-          <div class="score-progress">
-  <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
-    <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
-    <circle class="mini-ring-fill" cx="35" cy="35" r="28"
-      style="stroke-dashoffset: calc(176 * (1 - 0.68))"/>
-  </svg>
-  <div class="mini-score-text">6.8</div>
-</div>
-        </div>
-
-        <div class="item">
-          <div class="item-content">
-            <img src="https://picsum.photos/100?3" class="item-img">
-            <div class="item-info">
-              <b>Santuario Riverbend</b><br>
-              <small>18 Oct • Sarah</small>
-            </div>
-          </div>
-          <div class="score-progress">
-  <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
-    <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
-    <circle class="mini-ring-fill" cx="35" cy="35" r="28"
-      style="stroke-dashoffset: calc(176 * (1 - 0.87))"/>
-  </svg>
-  <div class="mini-score-text">8.7</div>
-</div>
-        </div>
-
+    <div class="logo">
+      <div>
+        <h2>Cunicultura</h2>
       </div>
     </div>
 
-    <div class="insight">
-      <h3>Insight biológico</h3>
-      <p>
-        Los niveles de hidratación han bajado un 4%. Se recomienda revisión.
-      </p>
+    <nav class="menu">
 
-      
-      <div class="metric">
-  <div class="metric-header">
+      <a class="active" routerLink="/dashboard">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
 
-    <small class="metric-title">
-      <span class="material-symbols-outlined" style="color:black;">
-  restaurant
-</span>
-    </small>
+      <a routerLink="/granjas">
+        <span class="material-symbols-outlined">home_work</span>
+        <span>Granjas</span>
+      </a>
 
-    <span class="metric-value" style="color:black;">94%</span>
-  </div>
+      <a routerLink="/resultados">
+        <span class="material-symbols-outlined">analytics</span>
+        <span>Resultados</span>
+      </a>
 
-  <div class="bar">
-    <div class="fill"
-      style="width:94%; background: linear-gradient(90deg, #4ade80, #22c55e);">
-    </div>
-  </div>
-</div>
+      <a routerLink="/configuracion">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Sistema</span>
+      </a>
 
-<div class="metric">
-  <div class="metric-header">
+      <a routerLink="/seleccion">
+        <span class="material-symbols-outlined">apps</span>
+        <span>Menú principal</span>
+      </a>
 
-    <small class="metric-title">
-      <span class="material-symbols-outlined" style="color:black;">
-  fullscreen
-</span>
-      Espacio
-    </small>
+    </nav>
 
-    <span class="metric-value" style="color:black;">82%</span>
-  </div>
-
-  <div class="bar">
-    <div class="fill"
-      style="width:82%; background: linear-gradient(90deg, #60a5fa, #3b82f6);">
-    </div>
-  </div>
-</div>
-
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <img src="https://i.pravatar.cc/100" alt="">
+        <div>
+          <strong>Administrador</strong>
+          <small>Panel principal</small>
+        </div>
+      </div>
     </div>
 
-  </div>
+  </aside>
+
+  <!-- CONTENIDO -->
+  <main class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+      <div>
+        <p class="welcome">Panel General</p>
+        <h1>Indicadores de Bienestar</h1>
+      </div>
+
+      <button class="btn">
+        <span class="material-symbols-outlined">add_circle</span>
+        Nueva Evaluación
+      </button>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- CARD PRINCIPAL -->
+      <div class="card-big">
+
+        <p class="card-label">Puntaje promedio</p>
+
+        <div class="score-circle">
+
+          <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
+
+            <defs>
+              <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#22c55e"/>
+                <stop offset="100%" stop-color="#16a34a"/>
+              </linearGradient>
+            </defs>
+
+            <circle
+              class="progress-ring-bg"
+              cx="90"
+              cy="90"
+              r="80"
+            />
+
+            <circle
+              class="progress-ring-fill"
+              cx="90"
+              cy="90"
+              r="80"
+              style="stroke-dashoffset: calc(502 * (1 - 0.84));"
+            />
+
+          </svg>
+
+          <div class="score-text">8.4</div>
+
+        </div>
+
+        <div class="trend">
+          <span class="material-symbols-outlined">trending_up</span>
+          +12% desde el mes pasado
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <div class="card-icon">
+          <span class="material-symbols-outlined">home_work</span>
+        </div>
+
+        <div class="value">24</div>
+
+        <p>Granjas activas</p>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <div class="card-icon">
+          <span class="material-symbols-outlined">fact_check</span>
+        </div>
+
+        <div class="value">07</div>
+
+        <p>Evaluaciones pendientes</p>
+
+      </div>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+      <!-- LISTA -->
+      <div>
+
+        <h2>Evaluaciones recientes</h2>
+
+        <div class="list">
+
+          <!-- ITEM -->
+          <div class="item">
+
+            <div class="item-content">
+
+              <img
+                src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?q=80&w=400"
+                class="item-img"
+              >
+
+              <div class="item-info">
+                <b>Finca Meadowbrook</b>
+                <small>24 Oct • Dr. Aris</small>
+              </div>
+
+            </div>
+
+            <div class="score-progress">
+
+              <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
+
+                <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
+
+                <circle
+                  class="mini-ring-fill"
+                  cx="35"
+                  cy="35"
+                  r="28"
+                  style="stroke-dashoffset: calc(176 * (1 - 0.92))"
+                />
+
+              </svg>
+
+              <div class="mini-score-text">9.2</div>
+
+            </div>
+
+          </div>
+
+          <!-- ITEM -->
+          <div class="item">
+
+            <div class="item-content">
+
+              <img
+                src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=400"
+                class="item-img"
+              >
+
+              <div class="item-info">
+                <b>Granja Green Valley</b>
+                <small>21 Oct • Dr. Aris</small>
+              </div>
+
+            </div>
+
+            <div class="score-progress">
+
+              <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
+
+                <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
+
+                <circle
+                  class="mini-ring-fill"
+                  cx="35"
+                  cy="35"
+                  r="28"
+                  style="stroke-dashoffset: calc(176 * (1 - 0.68))"
+                />
+
+              </svg>
+
+              <div class="mini-score-text">6.8</div>
+
+            </div>
+
+          </div>
+
+          <!-- ITEM -->
+          <div class="item">
+
+            <div class="item-content">
+
+              <img
+                src="https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=400"
+                class="item-img"
+              >
+
+              <div class="item-info">
+                <b>Santuario Riverbend</b>
+                <small>18 Oct • Sarah</small>
+              </div>
+
+            </div>
+
+            <div class="score-progress">
+
+              <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
+
+                <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
+
+                <circle
+                  class="mini-ring-fill"
+                  cx="35"
+                  cy="35"
+                  r="28"
+                  style="stroke-dashoffset: calc(176 * (1 - 0.87))"
+                />
+
+              </svg>
+
+              <div class="mini-score-text">8.7</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- INSIGHT -->
+      <div class="insight">
+
+        <h3>Insight biológico</h3>
+
+        <p>
+          Los niveles de hidratación han bajado un 4%.
+          Se recomienda una revisión preventiva en las granjas activas.
+        </p>
+
+        <!-- METRIC -->
+        <div class="metric">
+
+          <div class="metric-header">
+
+            <small class="metric-title">
+              <span class="material-symbols-outlined">restaurant</span>
+              Alimentación
+            </small>
+
+            <span class="metric-value">94%</span>
+
+          </div>
+
+          <div class="bar">
+            <div class="fill" style="width:94%"></div>
+          </div>
+
+        </div>
+
+        <!-- METRIC -->
+        <div class="metric">
+
+          <div class="metric-header">
+
+            <small class="metric-title">
+              <span class="material-symbols-outlined">fullscreen</span>
+              Espacio
+            </small>
+
+            <span class="metric-value">82%</span>
+
+          </div>
+
+          <div class="bar">
+            <div class="fill blue" style="width:82%"></div>
+          </div>
+
+        </div>
+
+        <!-- METRIC -->
+        <div class="metric">
+
+          <div class="metric-header">
+
+            <small class="metric-title">
+              <span class="material-symbols-outlined">water_drop</span>
+              Hidratación
+            </small>
+
+            <span class="metric-value">71%</span>
+
+          </div>
+
+          <div class="bar">
+            <div class="fill orange" style="width:71%"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
 
 </div>
