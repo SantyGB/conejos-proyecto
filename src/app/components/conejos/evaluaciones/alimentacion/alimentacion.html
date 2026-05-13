@@ -1,30 +1,20 @@
 <div class="layout">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-
-    <div class="logo">
-
-      <span
-        class="material-symbols-outlined logo-icon">
-      </span>
-
-      <h2>Cunicultura</h2>
-
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-brand">
+      <span class="material-symbols-outlined nav-logo-icon">cruelty_free</span>
+      <span class="nav-title">Cunicultura</span>
     </div>
-
-    <a
-      routerLink="/evaluaciones"
-      class="back-btn">
-
-      <span class="material-symbols-outlined">
-        arrow_back
-      </span>
-
+    <div class="nav-center">
+      <span class="nav-breadcrumb">Evaluaciones</span>
+      <span class="material-symbols-outlined nav-sep">chevron_right</span>
+      <span class="nav-breadcrumb active">Alimentación y Agua</span>
+    </div>
+    <a routerLink="/evaluaciones" class="back-btn">
+      <span class="material-symbols-outlined">arrow_back</span>
       Regresar
-
     </a>
-
   </div>
 
   <!-- MAIN -->
@@ -32,36 +22,11 @@
 
     <!-- HEADER -->
     <div class="header">
-
-      <h1>Alimentación y Agua</h1>
-
-      <p>
-        Evaluación del manejo alimenticio
-        de los conejos
-      </p>
-
-      <div class="finca-bar">
-
-        <select>
-
-          <option>Seleccionar finca</option>
-
-          <option>Finca El Paraíso</option>
-
-          <option>Granja Los Conejos</option>
-
-          <option>Finca San José</option>
-
-        </select>
-
-        <button class="btn-small">
-
-          + Nueva finca
-
-        </button>
-
+      <div class="header-left">
+        <span class="header-tag">Módulo de Evaluación</span>
+        <h1>Alimentación y Agua</h1>
+        <p>Evaluación del manejo alimenticio de los conejos</p>
       </div>
-
     </div>
 
     <!-- GRID -->
@@ -69,281 +34,242 @@
 
       <!-- COMEDEROS -->
       <div class="card">
-
-        <h3>Comederos</h3>
-
-        <div class="options">
-
-          <div
-            class="option"
-
-            [class.active]="opcionesSeleccionadas['comederos'] === 'Todos limpios'"
-
-            (click)="seleccionar('comederos','Todos limpios')">
-
-            Todos limpios
-
+        <div class="card-header-row">
+          <div class="card-icon-wrap blue">
+            <span class="material-symbols-outlined">restaurant</span>
           </div>
-
-          <div
-            class="option"
-
-            [class.active]="opcionesSeleccionadas['comederos'] === 'Mayoría limpios'"
-
-            (click)="seleccionar('comederos','Mayoría limpios')">
-
-            Mayoría limpios
-
+          <div>
+            <h3>Comederos</h3>
+            <small>Estado de limpieza</small>
           </div>
-
-          <div
-            class="option"
-
-            [class.active]="opcionesSeleccionadas['comederos'] === 'Regular'"
-
-            (click)="seleccionar('comederos','Regular')">
-
-            Regular
-
-          </div>
-
-          <div
-            class="option"
-
-            [class.active]="opcionesSeleccionadas['comederos'] === 'Deficiente'"
-
-            (click)="seleccionar('comederos','Deficiente')">
-
-            Deficiente
-
-          </div>
-
         </div>
-
+        <div class="options">
+          <div class="option"
+            [class.active]="opcionesSeleccionadas['comederos'] === 'Todos limpios'"
+            (click)="seleccionar('comederos','Todos limpios')">
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Todos limpios</span>
+            <span class="opt-check material-symbols-outlined">check</span>
+          </div>
+          <div class="option"
+            [class.active]="opcionesSeleccionadas['comederos'] === 'Mayoría limpios'"
+            (click)="seleccionar('comederos','Mayoría limpios')">
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Mayoría limpios</span>
+            <span class="opt-check material-symbols-outlined">check</span>
+          </div>
+          <div class="option"
+            [class.active]="opcionesSeleccionadas['comederos'] === 'Regular'"
+            (click)="seleccionar('comederos','Regular')">
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Regular</span>
+            <span class="opt-check material-symbols-outlined">check</span>
+          </div>
+          <div class="option warn"
+            [class.active]="opcionesSeleccionadas['comederos'] === 'Deficiente'"
+            (click)="seleccionar('comederos','Deficiente')">
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Deficiente</span>
+            <span class="opt-check material-symbols-outlined">check</span>
+          </div>
+        </div>
       </div>
 
       <!-- BEBEDEROS -->
       <div class="card">
-
-        <h3>Bebederos</h3>
-
+        <div class="card-header-row">
+          <div class="card-icon-wrap teal">
+            <span class="material-symbols-outlined">water</span>
+          </div>
+          <div>
+            <h3>Bebederos</h3>
+            <small>Estado de funcionamiento</small>
+          </div>
+        </div>
         <div class="options">
-
-          <div
-            class="option"
-
+          <div class="option"
             [class.active]="opcionesSeleccionadas['bebederos'] === 'Todos bien'"
-
             (click)="seleccionar('bebederos','Todos bien')">
-
-            Todos bien
-
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Todos bien</span>
+            <span class="opt-check material-symbols-outlined">check</span>
           </div>
-
-          <div
-            class="option"
-
+          <div class="option"
             [class.active]="opcionesSeleccionadas['bebederos'] === 'Mayoría bien'"
-
             (click)="seleccionar('bebederos','Mayoría bien')">
-
-            Mayoría bien
-
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Mayoría bien</span>
+            <span class="opt-check material-symbols-outlined">check</span>
           </div>
-
-          <div
-            class="option"
-
+          <div class="option"
             [class.active]="opcionesSeleccionadas['bebederos'] === 'Regular'"
-
             (click)="seleccionar('bebederos','Regular')">
-
-            Regular
-
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Regular</span>
+            <span class="opt-check material-symbols-outlined">check</span>
           </div>
-
-          <div
-            class="option"
-
+          <div class="option warn"
             [class.active]="opcionesSeleccionadas['bebederos'] === 'Deficiente'"
-
             (click)="seleccionar('bebederos','Deficiente')">
-
-            Deficiente
-
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Deficiente</span>
+            <span class="opt-check material-symbols-outlined">check</span>
           </div>
-
         </div>
-
       </div>
 
-      <!-- ACCESO -->
+      <!-- ACCESO AL AGUA -->
       <div class="card">
-
-        <h3>Acceso al agua</h3>
-
+        <div class="card-header-row">
+          <div class="card-icon-wrap indigo">
+            <span class="material-symbols-outlined">water_drop</span>
+          </div>
+          <div>
+            <h3>Acceso al agua</h3>
+            <small>Disponibilidad general</small>
+          </div>
+        </div>
         <div class="options">
-
-          <div
-            class="option"
-
+          <div class="option"
             [class.active]="opcionesSeleccionadas['agua'] === 'Todos acceden'"
-
             (click)="seleccionar('agua','Todos acceden')">
-
-            Todos acceden
-
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Todos acceden</span>
+            <span class="opt-check material-symbols-outlined">check</span>
           </div>
-
-          <div
-            class="option"
-
+          <div class="option"
             [class.active]="opcionesSeleccionadas['agua'] === 'Casi todos'"
-
             (click)="seleccionar('agua','Casi todos')">
-
-            Casi todos
-
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Casi todos</span>
+            <span class="opt-check material-symbols-outlined">check</span>
           </div>
-
-          <div
-            class="option"
-
+          <div class="option"
             [class.active]="opcionesSeleccionadas['agua'] === 'Algunos'"
-
             (click)="seleccionar('agua','Algunos')">
-
-            Algunos
-
+            <span class="opt-indicator"></span>
+            <span class="opt-text">Algunos</span>
+            <span class="opt-check material-symbols-outlined">check</span>
           </div>
-
-          <div
-            class="option"
-
+          <div class="option warn"
             [class.active]="opcionesSeleccionadas['agua'] === 'No tienen'"
-
             (click)="seleccionar('agua','No tienen')">
-
-            No tienen
-
+            <span class="opt-indicator"></span>
+            <span class="opt-text">No tienen</span>
+            <span class="opt-check material-symbols-outlined">check</span>
           </div>
-
         </div>
-
       </div>
 
-      <!-- TIPO -->
+      <!-- TIPO DE ALIMENTO -->
       <div class="card">
-
-        <h3>Tipo de alimento</h3>
-
-        <div class="checkbox-grid">
-
-          <label>
-            <input type="checkbox">
-            Balanceado ICA
-          </label>
-
-          <label>
-            <input type="checkbox">
-            Dieta casera
-          </label>
-
-          <label>
-            <input type="checkbox">
-            Forraje
-          </label>
-
+        <div class="card-header-row">
+          <div class="card-icon-wrap amber">
+            <span class="material-symbols-outlined">grass</span>
+          </div>
+          <div>
+            <h3>Tipo de alimento</h3>
+            <small>Selecciona los que aplican</small>
+          </div>
         </div>
-
+        <div class="checkbox-grid">
+          <label class="check-item">
+            <input type="checkbox">
+            <span class="check-box">
+              <span class="material-symbols-outlined">check</span>
+            </span>
+            <div class="check-label">
+              <strong>Balanceado ICA</strong>
+              <small>Concentrado certificado</small>
+            </div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox">
+            <span class="check-box">
+              <span class="material-symbols-outlined">check</span>
+            </span>
+            <div class="check-label">
+              <strong>Dieta casera</strong>
+              <small>Preparación propia</small>
+            </div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox">
+            <span class="check-box">
+              <span class="material-symbols-outlined">check</span>
+            </span>
+            <div class="check-label">
+              <strong>Forraje</strong>
+              <small>Pasto o heno natural</small>
+            </div>
+          </label>
+        </div>
       </div>
 
       <!-- ALMACENAMIENTO -->
-      <div class="card">
-
-        <h3>Almacenamiento</h3>
-
-        <div class="options">
-
-          <div
-            class="option"
-
-            [class.active]="opcionesSeleccionadas['almacenamiento'] === 'Adecuado'"
-
-            (click)="seleccionar('almacenamiento','Adecuado')">
-
-            Adecuado
-
+      <div class="card card-wide">
+        <div class="card-header-row">
+          <div class="card-icon-wrap green">
+            <span class="material-symbols-outlined">warehouse</span>
           </div>
-
-          <div
-            class="option"
-
-            [class.active]="opcionesSeleccionadas['almacenamiento'] === 'No adecuado'"
-
-            (click)="seleccionar('almacenamiento','No adecuado')">
-
-            No adecuado
-
+          <div>
+            <h3>Almacenamiento del alimento</h3>
+            <small>Condiciones de conservación</small>
           </div>
-
         </div>
-
+        <div class="options options-row">
+          <div class="option option-lg"
+            [class.active]="opcionesSeleccionadas['almacenamiento'] === 'Adecuado'"
+            (click)="seleccionar('almacenamiento','Adecuado')">
+            <span class="material-symbols-outlined opt-icon-lg">check_circle</span>
+            <span class="opt-text">Adecuado</span>
+            <span class="opt-check material-symbols-outlined">check</span>
+          </div>
+          <div class="option option-lg warn"
+            [class.active]="opcionesSeleccionadas['almacenamiento'] === 'No adecuado'"
+            (click)="seleccionar('almacenamiento','No adecuado')">
+            <span class="material-symbols-outlined opt-icon-lg">cancel</span>
+            <span class="opt-text">No adecuado</span>
+            <span class="opt-check material-symbols-outlined">check</span>
+          </div>
+        </div>
       </div>
 
     </div>
 
     <!-- EXTRA -->
     <div class="extra">
-
-      <textarea
-        placeholder="Observaciones del técnico...">
-
-      </textarea>
-
+      <div class="obs-wrap">
+        <label class="obs-label">
+          <span class="material-symbols-outlined">edit_note</span>
+          Observaciones del técnico
+        </label>
+        <textarea placeholder="Describe aquí cualquier observación relevante sobre el manejo de alimentación y agua..."></textarea>
+      </div>
       <label class="upload-box">
-
-  <input
-    type="file"
-    accept="image/*"
-    multiple
-    hidden>
-
-  <span class="material-symbols-outlined upload-icon">
-    upload
-  </span>
-
-  <div class="upload-text">
-
-    <strong>Subir fotos</strong>
-
-    <small>
-      JPG, PNG o WEBP
-    </small>
-
-  </div>
-
-</label>
-
+        <input type="file" accept="image/*" multiple hidden>
+        <span class="material-symbols-outlined upload-icon">cloud_upload</span>
+        <div class="upload-text">
+          <strong>Subir evidencias fotográficas</strong>
+          <small>JPG, PNG o WEBP · Máx. 10 MB</small>
+        </div>
+      </label>
     </div>
 
-    <!-- BOTONES -->
+    <!-- ACCIONES -->
     <div class="actions">
-
       <button class="btn secondary">
-
+        <span class="material-symbols-outlined">arrow_back_ios</span>
         Anterior
-
       </button>
-
-      <button class="btn primary">
-
-        Guardar y continuar
-
-      </button>
-
+      <div class="actions-right">
+        <button class="btn ghost">Guardar borrador</button>
+        <button class="btn primary">
+          Guardar y continuar
+          <span class="material-symbols-outlined">arrow_forward_ios</span>
+        </button>
+      </div>
     </div>
 
   </div>
-
 </div>
