@@ -1,113 +1,188 @@
-<div class="sidebar">
-  
+<aside class="sidebar">
   <div class="logo">
-    <span class="material-symbols-outlined" style="font-size:30px;"></span>
-    <h2>Cunicultura</h2>
+    <div>
+      <h2>Cunicultura</h2>
+    </div>
   </div>
 
-  <div class="menu">
+  <nav class="menu">
     <a class="active" routerLink="/evaluaciones">
-      <span class="material-symbols-outlined"></span>
-      Evaluaciones
+      <span class="material-symbols-outlined">assignment</span>
+      <span>Evaluaciones</span>
     </a>
-
     <a routerLink="/seleccion">
-      <span class="material-symbols-outlined"></span>
-      menú principal
+      <span class="material-symbols-outlined">apps</span>
+      <span>Menú principal</span>
     </a>
+  </nav>
 
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <img src="https://i.pravatar.cc/100" alt="">
+      <div>
+        <strong>Administrador</strong>
+        <small>Panel principal</small>
+      </div>
+    </div>
   </div>
-</div>
+</aside>
 
 <div class="container">
 
   <div class="header">
-    <h1>Evaluación de la finca</h1>
-    <p>Selecciona la finca y completa cada sección</p>
+    <div class="header-text">
+      <span class="header-tag">Panel de evaluación</span>
+      <h1>Evaluación de la finca</h1>
+      <p>Selecciona la finca y completa cada sección para obtener el diagnóstico</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat">
+        <span class="stat-number">1/9</span>
+        <span class="stat-label">Secciones completadas</span>
+      </div>
+      <div class="stat-progress">
+        <div class="progress-bar"><div class="progress-fill" style="width: 11%"></div></div>
+        <span>11% completado</span>
+      </div>
+    </div>
   </div>
 
   <!-- SELECTOR FINCA -->
   <div class="selector-finca">
-    <label>Elegir finca:</label>
-
-    <select>
-      <option>Seleccionar finca</option>
-      <option>Finca El Paraíso</option>
-      <option>Granja Conejos</option>
-      <option>Finca La Esperanza</option>
-    </select>
-
-    <button (click)="iniciar()">Iniciar evaluación</button>
+    <span class="material-symbols-outlined selector-icon">agriculture</span>
+    <div class="selector-inner">
+      <label>Finca a evaluar</label>
+      <select>
+        <option>Seleccionar finca</option>
+        <option>Finca El Paraíso</option>
+        <option>Granja Conejos</option>
+        <option>Finca La Esperanza</option>
+      </select>
+    </div>
+    <button (click)="iniciar()">
+      <span class="material-symbols-outlined">play_arrow</span>
+      Iniciar evaluación
+    </button>
   </div>
 
   <!-- GRID -->
+  <div class="section-title">
+    <span class="material-symbols-outlined">grid_view</span>
+    Secciones de la evaluación
+  </div>
+
   <div class="grid">
 
-    <div class="card">
-      <h3>Registro de la finca</h3>
-      <p>Datos básicos del predio</p>
-      <span class="estado completo">Completo</span>
-      <a routerLink="/evaluaciones/registro" class="btn">Abrir</a>
+    <div class="card card-complete">
+      <div class="card-icon"><span class="material-symbols-outlined">home_work</span></div>
+      <div class="card-body">
+        <h3>Registro de la finca</h3>
+        <p>Datos básicos del predio</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado completo">✓ Completo</span>
+        <a routerLink="/evaluaciones/registro" class="btn">Abrir</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Datos de los conejos</h3>
-      <p>Información general</p>
-      <span class="estado pendiente">Pendiente</span>
-      <a routerLink="/evaluaciones/conejos" class="btn">Abrir</a>
+      <div class="card-icon"><span class="material-symbols-outlined">cruelty_free</span></div>
+      <div class="card-body">
+        <h3>Datos de los conejos</h3>
+        <p>Información general</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado pendiente">⏳ Pendiente</span>
+        <a routerLink="/evaluaciones/conejos" class="btn">Abrir</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Alimentación</h3>
-      <p>Comida y agua</p>
-      <span class="estado pendiente">Pendiente</span>
-      <a routerLink="/evaluaciones/alimentacion" class="btn">Abrir</a>
+      <div class="card-icon"><span class="material-symbols-outlined">eco</span></div>
+      <div class="card-body">
+        <h3>Alimentación</h3>
+        <p>Comida y agua</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado pendiente">⏳ Pendiente</span>
+        <a routerLink="/evaluaciones/alimentacion" class="btn">Abrir</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Instalaciones</h3>
-      <p>Condiciones del espacio</p>
-      <span class="estado pendiente">Pendiente</span>
-      <a routerLink="/evaluaciones/instalaciones" class="btn">Abrir</a>
+      <div class="card-icon"><span class="material-symbols-outlined">warehouse</span></div>
+      <div class="card-body">
+        <h3>Instalaciones</h3>
+        <p>Condiciones del espacio</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado pendiente">⏳ Pendiente</span>
+        <a routerLink="/evaluaciones/instalaciones" class="btn">Abrir</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Observación</h3>
-      <p>Comportamiento de conejos</p>
-      <span class="estado pendiente">Pendiente</span>
-      <a routerLink="/evaluaciones/observacion" class="btn">Abrir</a>
+      <div class="card-icon"><span class="material-symbols-outlined">visibility</span></div>
+      <div class="card-body">
+        <h3>Observación</h3>
+        <p>Comportamiento de conejos</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado pendiente">⏳ Pendiente</span>
+        <a routerLink="/evaluaciones/observacion" class="btn">Abrir</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Salud</h3>
-      <p>Estado sanitario</p>
-      <span class="estado pendiente">Pendiente</span>
-      <a routerLink="/evaluaciones/salud" class="btn">Abrir</a>
+      <div class="card-icon"><span class="material-symbols-outlined">health_and_safety</span></div>
+      <div class="card-body">
+        <h3>Salud</h3>
+        <p>Estado sanitario</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado pendiente">⏳ Pendiente</span>
+        <a routerLink="/evaluaciones/salud" class="btn">Abrir</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Gestión</h3>
-      <p>Administración del predio</p>
-      <span class="estado pendiente">Pendiente</span>
-      <a routerLink="/evaluaciones/gestion" class="btn">Abrir</a>
+      <div class="card-icon"><span class="material-symbols-outlined">manage_accounts</span></div>
+      <div class="card-body">
+        <h3>Gestión</h3>
+        <p>Administración del predio</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado pendiente">⏳ Pendiente</span>
+        <a routerLink="/evaluaciones/gestion" class="btn">Abrir</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Capacitación</h3>
-      <p>Protocolos y formación</p>
-      <span class="estado pendiente">Pendiente</span>
-      <a routerLink="/evaluaciones/capacitacion" class="btn">Abrir</a>
+      <div class="card-icon"><span class="material-symbols-outlined">school</span></div>
+      <div class="card-body">
+        <h3>Capacitación</h3>
+        <p>Protocolos y formación</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado pendiente">⏳ Pendiente</span>
+        <a routerLink="/evaluaciones/capacitacion" class="btn">Abrir</a>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>Bienestar Animal</h3>
-      <p>Diagnóstico final</p>
-      <span class="estado pendiente">Pendiente</span>
-      <a routerLink="/evaluaciones/evaluacion-final" class="btn">Ver</a>
+    <div class="card card-final">
+      <div class="card-icon"><span class="material-symbols-outlined">star</span></div>
+      <div class="card-body">
+        <h3>Bienestar Animal</h3>
+        <p>Diagnóstico final</p>
+      </div>
+      <div class="card-footer">
+        <span class="estado pendiente">⏳ Pendiente</span>
+        <a routerLink="/evaluaciones/evaluacion-final" class="btn btn-final">Ver</a>
+      </div>
     </div>
 
   </div>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
 </div>

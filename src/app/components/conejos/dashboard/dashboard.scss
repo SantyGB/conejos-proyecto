@@ -6,13 +6,20 @@
 
 /* ===== VARIABLES ===== */
 :root {
-  --primary: #012d1d;
-  --primary-light: #1b4332;
-  --secondary: #40916c;
-  --bg: #f4f7f6;
+  --primary: #0f172a;
+
+  --primary-light: #1e293b;
+
+  --secondary: #3b82f6;
+
+  --bg: #f1f5f9;
+
   --surface: #ffffff;
-  --text: #111827;
-  --text-soft: #6b7280;
+
+  --text: #0f172a;
+
+  --text-soft: #64748b;
+
   --radius: 18px;
 }
 
@@ -37,7 +44,7 @@ body {
 .sidebar {
   width: 100%;
   height: 90px;
-  background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+  background: #007bff !important; 
   color: white;
 
   display: flex;
@@ -94,7 +101,6 @@ body {
   color: white;
   text-decoration: none;
 
-  transition: 0.3s ease;
   font-size: 14px;
   font-weight: 500;
 }
@@ -170,7 +176,7 @@ body {
 
 /* BUTTON */
 .btn {
-  background: linear-gradient(135deg, #14532d, #22c55e);
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
   color: white;
   border: none;
   padding: 15px 22px;
@@ -187,6 +193,8 @@ body {
 
 .btn:hover {
   transform: translateY(-2px);
+
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2);
 }
 
 /* GRID */
@@ -255,7 +263,7 @@ body {
   justify-content: center;
   gap: 5px;
 
-  color: #16a34a;
+  color: #2563eb;
   font-weight: 600;
 }
 
@@ -271,6 +279,8 @@ body {
 
 .card:hover {
   transform: translateY(-5px);
+
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.12);
 }
 
 .card-icon {
@@ -279,7 +289,8 @@ body {
 
 .card-icon .material-symbols-outlined {
   font-size: 38px;
-  color: var(--primary);
+
+  color: #2563eb;
 }
 
 .value {
@@ -310,12 +321,16 @@ body {
   background: white;
   border-radius: var(--radius);
   padding: 18px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  transition: 0.3s ease;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
 }
 
 .item-content {
@@ -359,7 +374,7 @@ body {
 
 .mini-ring-fill {
   fill: none;
-  stroke: #22c55e;
+  stroke: #3b82f6;
   stroke-width: 6;
   stroke-linecap: round;
   stroke-dasharray: 176;
@@ -379,7 +394,7 @@ body {
 
 /* INSIGHT */
 .insight {
-  background: linear-gradient(180deg, #ffffff, #f0fdf4);
+  background: linear-gradient(180deg, #ffffff, #eff6ff);
   padding: 25px;
   border-radius: var(--radius);
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
@@ -422,7 +437,7 @@ body {
 .fill {
   height: 100%;
   border-radius: 20px;
-  background: linear-gradient(90deg, #22c55e, #16a34a);
+  background: linear-gradient(90deg, #60a5fa, #2563eb);
 }
 
 .fill.blue {

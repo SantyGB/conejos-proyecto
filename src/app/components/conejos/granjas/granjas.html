@@ -1,161 +1,386 @@
-  <div class="layout">
+<aside class="sidebar">
+  <div class="logo">
+    <div><h2>Cunicultura</h2></div>
+  </div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
+  <nav class="menu">
+ 
+    <a class="active" routerLink="/granjas">
+      <span class="material-symbols-outlined">home_work</span>
+      <span>Granjas</span>
+    </a>
+    <a routerLink="/resultados">
+      <span class="material-symbols-outlined">analytics</span>
+      <span>Resultados</span>
+    </a>
+    <a routerLink="/configuracion">
+      <span class="material-symbols-outlined">settings</span>
+      <span>Sistema</span>
+    </a>
+    <a routerLink="/seleccion">
+      <span class="material-symbols-outlined">apps</span>
+      <span>Menú principal</span>
+    </a>
+  </nav>
 
-    <div class="logo">
-      <span class="material-symbols-outlined logo-icon"></span>
-      <h2>Cunicultura</h2>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <img src="https://i.pravatar.cc/100" alt="">
+      <div>
+        <strong>Administrador</strong>
+        <small>Panel principal</small>
+      </div>
     </div>
+  </div>
+</aside>
 
-    <div class="menu">
+<div class="main">
 
-      <a routerLink="/dashboard">
-        <span class="material-symbols-outlined"></span>
-        Dashboard
-      </a>
-
-      <a class="active" routerLink="/granjas">
-        <span class="material-symbols-outlined"></span>
-        Granjas
-      </a>
-
-      <a routerLink="/resultados">
-        <span class="material-symbols-outlined"></span>
-        Resultados
-      </a>
-
-      <a routerLink="/configuracion">
-        <span class="material-symbols-outlined"></span>
-        Sistema
-      </a>
-
-      <a routerLink="/seleccion">
-        <span class="material-symbols-outlined"></span>
-        menú principal
-      </a>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-text">
+      <span class="header-tag">Gestión de fincas</span>
+      <h1>Granjas</h1>
+      <p>Producción, salud y población de conejos en todas las fincas</p>
+    </div>
+    <div class="header-actions">
+      <div class="search-box">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" placeholder="Buscar granjas...">
+      </div>
+      <button class="btn-add">
+        <span class="material-symbols-outlined">add</span>
+        Agregar granja
+      </button>
     </div>
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
-
-    <!-- HEADER -->
-    <div class="header">
-
+  <!-- KPIs GLOBALES -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-icon"><span class="material-symbols-outlined">home_work</span></div>
       <div>
-        <h1>Granjas</h1>
-        <p>
-          Gestión de producción, salud y población de conejos.
-        </p>
+        <span class="kpi-value">4</span>
+        <span class="kpi-label">Granjas activas</span>
       </div>
-
-      <div class="search">
-
-        <input
-          type="text"
-          placeholder="Buscar granjas..."
-        >
-
-        <button class="btn">
-          + Agregar
-        </button>
-
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon"><span class="material-symbols-outlined">cruelty_free</span></div>
+      <div>
+        <span class="kpi-value">1.903</span>
+        <span class="kpi-label">Conejos en total</span>
       </div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon kpi-green"><span class="material-symbols-outlined">trending_up</span></div>
+      <div>
+        <span class="kpi-value">+12%</span>
+        <span class="kpi-label">Producción este mes</span>
+      </div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon kpi-green"><span class="material-symbols-outlined">health_and_safety</span></div>
+      <div>
+        <span class="kpi-value">97%</span>
+        <span class="kpi-label">Salud promedio</span>
+      </div>
+    </div>
+  </div>
 
+  <!-- GRANJA PRINCIPAL -->
+  <div class="section-title">
+    <span class="material-symbols-outlined">star</span>
+    Granja destacada
+  </div>
+
+  <div class="featured-grid">
+
+    <div class="featured-card">
+      <div class="featured-image-wrap">
+        <img src="https://picsum.photos/seed/farm1/800/400" alt="Granja Principal" class="featured-img">
+        <div class="featured-overlay">
+          <span class="nivel-badge nivel-alto">
+            <span class="material-symbols-outlined">verified</span>
+            Nivel Alto
+          </span>
+        </div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-header">
+          <div>
+            <h2>Granja Principal</h2>
+            <p>Especializada en producción intensiva de conejos para carne</p>
+          </div>
+          <div class="featured-score">
+            <span class="score-num">9.8</span>
+            <span class="score-label">/ 10</span>
+          </div>
+        </div>
+        <div class="featured-stats">
+          <div class="fstat">
+            <span class="material-symbols-outlined">cruelty_free</span>
+            <div>
+              <strong>1.248</strong>
+              <small>Población</small>
+            </div>
+          </div>
+          <div class="fstat">
+            <span class="material-symbols-outlined">trending_up</span>
+            <div>
+              <strong>+12%</strong>
+              <small>Producción</small>
+            </div>
+          </div>
+          <div class="fstat fstat-green">
+            <span class="material-symbols-outlined">health_and_safety</span>
+            <div>
+              <strong>98%</strong>
+              <small>Salud</small>
+            </div>
+          </div>
+          <div class="fstat">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <div>
+              <strong>8 años</strong>
+              <small>Antigüedad</small>
+            </div>
+          </div>
+        </div>
+        <div class="featured-footer">
+          <div class="nivel-bar-wrap">
+            <div class="nivel-bar-labels">
+              <span>Nivel general</span>
+              <span>98%</span>
+            </div>
+            <div class="nivel-bar-track">
+              <div class="nivel-bar-fill" style="width:98%"></div>
+            </div>
+          </div>
+          <div class="featured-actions">
+            <a routerLink="/evaluaciones" class="btn-eval">
+              <span class="material-symbols-outlined">assignment</span>
+              Evaluar
+            </a>
+            <a routerLink="/resultados" class="btn-ver">Ver resultados</a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- GRID -->
-    <div class="grid">
-
-      <!-- CARD PRINCIPAL -->
-      <div class="card-big">
-
-        <h2>Granja Principal</h2>
-
-        <p>
-          Especializada en producción intensiva.
-        </p>
-
-        <div class="stats">
-
-          <div class="stat">
-            <small>Población</small>
-            <h3>1248</h3>
-          </div>
-
-          <div class="stat">
-            <small>Producción</small>
-            <h3>+12%</h3>
-          </div>
-
-          <div class="stat">
-            <small>Salud</small>
-            <h3>98%</h3>
-          </div>
-
+    <div class="insight-card">
+      <div class="insight-header">
+        <span class="material-symbols-outlined">psychology</span>
+        Insight IA
+      </div>
+      <div class="insight-main">
+        <span class="material-symbols-outlined insight-icon-big">trending_up</span>
+        <p>La población aumentó un <strong>18%</strong> este mes. Se recomienda ampliar el área de jaulas en el galpón 3 antes de la próxima temporada.</p>
+      </div>
+      <div class="insight-divider"></div>
+      <div class="insight-alerts">
+        <div class="i-alert i-green">
+          <span class="material-symbols-outlined">check_circle</span>
+          <span>Vacunación al día</span>
         </div>
-
-        <img
-          class="img"
-          src="https://picsum.photos/600/300"
-          alt="granja"
-        >
-
+        <div class="i-alert i-yellow">
+          <span class="material-symbols-outlined">warning</span>
+          <span>Revisar ventilación galpón 2</span>
+        </div>
+        <div class="i-alert i-blue">
+          <span class="material-symbols-outlined">info</span>
+          <span>Próxima evaluación: 20 may</span>
+        </div>
       </div>
-
-      <!-- INSIGHT -->
-      <div class="insight">
-
-        <h3>Insight</h3>
-
-        <p>
-          Aumentó la población este mes. Expandir área.
-        </p>
-
+      <div class="insight-divider"></div>
+      <div class="insight-niveles">
+        <div class="i-nivel-row">
+          <span>Bienestar</span>
+          <div class="i-bar-track"><div class="i-bar-fill" style="width:95%"></div></div>
+          <span class="i-nivel-val">9.5</span>
+        </div>
+        <div class="i-nivel-row">
+          <span>Sanidad</span>
+          <div class="i-bar-track"><div class="i-bar-fill i-bar-blue" style="width:88%"></div></div>
+          <span class="i-nivel-val">8.8</span>
+        </div>
+        <div class="i-nivel-row">
+          <span>Gestión</span>
+          <div class="i-bar-track"><div class="i-bar-fill i-bar-purple" style="width:92%"></div></div>
+          <span class="i-nivel-val">9.2</span>
+        </div>
       </div>
-
     </div>
 
-    <!-- LISTA -->
-    <div class="list-grid">
+  </div>
 
-      <div class="card">
+  <!-- OTRAS GRANJAS -->
+  <div class="section-title">
+    <span class="material-symbols-outlined">home_work</span>
+    Todas las granjas
+  </div>
 
-        <h3>Granja Norte</h3>
+  <div class="farms-grid">
 
-        <div class="mini-grid">
-          <div class="mini">42</div>
-          <div class="mini">215</div>
-          <div class="mini">186</div>
-        </div>
-
+    <!-- GRANJA NORTE -->
+    <div class="farm-card">
+      <div class="farm-img-wrap">
+        <img src="https://picsum.photos/seed/farm2/400/200" alt="Granja Norte" class="farm-img">
+        <span class="nivel-badge nivel-medio farm-badge">Nivel Medio</span>
       </div>
-
-      <div class="card">
-
-        <h3>Granja Sur</h3>
-
-        <div class="mini-grid">
-          <div class="mini">12</div>
-          <div class="mini">58</div>
-          <div class="mini">44</div>
+      <div class="farm-body">
+        <div class="farm-title-row">
+          <h3>Granja Norte</h3>
+          <span class="farm-score score-yellow">7.4</span>
         </div>
-
-      </div>
-
-      <div class="card">
-
-        <h3>Granja Oeste</h3>
-
-        <div class="mini-grid">
-          <div class="mini">88</div>
-          <div class="mini">412</div>
-          <div class="mini">390</div>
+        <p class="farm-desc">Producción mixta. Conejos de carne y reproductores.</p>
+        <div class="farm-metrics">
+          <div class="metric">
+            <span class="material-symbols-outlined">cruelty_free</span>
+            <div>
+              <strong>215</strong>
+              <small>Conejos</small>
+            </div>
+          </div>
+          <div class="metric">
+            <span class="material-symbols-outlined">egg</span>
+            <div>
+              <strong>42</strong>
+              <small>Gazapos</small>
+            </div>
+          </div>
+          <div class="metric">
+            <span class="material-symbols-outlined">health_and_safety</span>
+            <div>
+              <strong>93%</strong>
+              <small>Salud</small>
+            </div>
+          </div>
         </div>
-
+        <div class="farm-nivel-bar">
+          <div class="farm-nivel-labels">
+            <span>Nivel general</span>
+            <span>74%</span>
+          </div>
+          <div class="farm-bar-track">
+            <div class="farm-bar-fill bar-yellow" style="width:74%"></div>
+          </div>
+        </div>
+        <div class="farm-actions">
+          <a routerLink="/evaluaciones" class="btn-eval-sm">
+            <span class="material-symbols-outlined">assignment</span>
+            Evaluar
+          </a>
+          <a routerLink="/resultados" class="btn-ver-sm">Ver más</a>
+        </div>
       </div>
+    </div>
 
+    <!-- GRANJA SUR -->
+    <div class="farm-card">
+      <div class="farm-img-wrap">
+        <img src="https://picsum.photos/seed/farm3/400/200" alt="Granja Sur" class="farm-img">
+        <span class="nivel-badge nivel-bajo farm-badge">Nivel Bajo</span>
+      </div>
+      <div class="farm-body">
+        <div class="farm-title-row">
+          <h3>Granja Sur</h3>
+          <span class="farm-score score-red">4.8</span>
+        </div>
+        <p class="farm-desc">Granja nueva en proceso de certificación y mejora.</p>
+        <div class="farm-metrics">
+          <div class="metric">
+            <span class="material-symbols-outlined">cruelty_free</span>
+            <div>
+              <strong>58</strong>
+              <small>Conejos</small>
+            </div>
+          </div>
+          <div class="metric">
+            <span class="material-symbols-outlined">egg</span>
+            <div>
+              <strong>12</strong>
+              <small>Gazapos</small>
+            </div>
+          </div>
+          <div class="metric">
+            <span class="material-symbols-outlined">health_and_safety</span>
+            <div>
+              <strong>78%</strong>
+              <small>Salud</small>
+            </div>
+          </div>
+        </div>
+        <div class="farm-nivel-bar">
+          <div class="farm-nivel-labels">
+            <span>Nivel general</span>
+            <span>48%</span>
+          </div>
+          <div class="farm-bar-track">
+            <div class="farm-bar-fill bar-red" style="width:48%"></div>
+          </div>
+        </div>
+        <div class="farm-actions">
+          <a routerLink="/evaluaciones" class="btn-eval-sm">
+            <span class="material-symbols-outlined">assignment</span>
+            Evaluar
+          </a>
+          <a routerLink="/resultados" class="btn-ver-sm">Ver más</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRANJA OESTE -->
+    <div class="farm-card">
+      <div class="farm-img-wrap">
+        <img src="https://picsum.photos/seed/farm4/400/200" alt="Granja Oeste" class="farm-img">
+        <span class="nivel-badge nivel-alto farm-badge">Nivel Alto</span>
+      </div>
+      <div class="farm-body">
+        <div class="farm-title-row">
+          <h3>Granja Oeste</h3>
+          <span class="farm-score score-green">8.9</span>
+        </div>
+        <p class="farm-desc">Alta eficiencia reproductiva. Referente regional en manejo.</p>
+        <div class="farm-metrics">
+          <div class="metric">
+            <span class="material-symbols-outlined">cruelty_free</span>
+            <div>
+              <strong>412</strong>
+              <small>Conejos</small>
+            </div>
+          </div>
+          <div class="metric">
+            <span class="material-symbols-outlined">egg</span>
+            <div>
+              <strong>88</strong>
+              <small>Gazapos</small>
+            </div>
+          </div>
+          <div class="metric">
+            <span class="material-symbols-outlined">health_and_safety</span>
+            <div>
+              <strong>97%</strong>
+              <small>Salud</small>
+            </div>
+          </div>
+        </div>
+        <div class="farm-nivel-bar">
+          <div class="farm-nivel-labels">
+            <span>Nivel general</span>
+            <span>89%</span>
+          </div>
+          <div class="farm-bar-track">
+            <div class="farm-bar-fill bar-green" style="width:89%"></div>
+          </div>
+        </div>
+        <div class="farm-actions">
+          <a routerLink="/evaluaciones" class="btn-eval-sm">
+            <span class="material-symbols-outlined">assignment</span>
+            Evaluar
+          </a>
+          <a routerLink="/resultados" class="btn-ver-sm">Ver más</a>
+        </div>
+      </div>
     </div>
 
   </div>

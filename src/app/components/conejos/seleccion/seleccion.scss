@@ -1,84 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap');
+
 :host {
   display: block;
   width: 100%;
   min-height: 100vh;
 }
 
+// ─── Page ───────────────────────────────────────────────────────────────────
+
 .selector-page {
+  position: relative;
   min-height: 100vh;
   background:
-    linear-gradient(rgba(0,0,0,0.55),
-    rgba(0,0,0,0.55)),
-    url('https://images.unsplash.com/photo-1535241749838-299277b6305f?q=80&w=2070');
-
-  background-size: cover;
-  background-position: center;
-
+    url('https://images.unsplash.com/photo-1535241749838-299277b6305f?q=80&w=2070')
+    center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Jost', sans-serif;
+  overflow: hidden;
 }
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(5, 20, 10, 0.82) 0%,
+    rgba(10, 35, 18, 0.75) 50%,
+    rgba(20, 50, 25, 0.70) 100%
+  );
+  z-index: 0;
+}
+
+// Grain texture overlay for premium feel
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px;
+}
+
+// ─── Container ──────────────────────────────────────────────────────────────
 
 .selector-container {
-  text-align: center;
-  color: white;
+  position: relative;
+  z-index: 2;
   width: 100%;
-  max-width: 1200px;
-  padding: 40px;
+  max-width: 960px;
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.selector-container h1 {
-  font-size: 58px;
-  margin-bottom: 10px;
+// ─── Brand Badge ─────────────────────────────────────────────────────────────
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  padding: 7px 18px 7px 12px;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  .material-symbols-outlined {
+    font-size: 17px;
+    color: #7ec87e;
+  }
 }
 
-.selector-container p {
-  font-size: 18px;
-  opacity: 0.9;
-  margin-bottom: 50px;
+// ─── Hero Text ───────────────────────────────────────────────────────────────
+
+.hero-text {
+  text-align: center;
+  margin-bottom: 52px;
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 78px);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 0.03em;
+    margin: 0;
+  }
 }
+
+// ─── Cards ───────────────────────────────────────────────────────────────────
 
 .cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 48px;
 }
 
 .option-card {
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255,255,255,0.2);
-
-  border-radius: 28px;
-
-  padding: 40px;
-
+  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 36px 32px 28px;
   cursor: pointer;
-
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   transition:
-    transform 0.3s ease,
-    background 0.3s ease;
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.35s ease;
+
+  // Shine effect on hover
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(126, 200, 126, 0.0) 0%,
+      rgba(126, 200, 126, 0.08) 50%,
+      rgba(126, 200, 126, 0.0) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: inherit;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(126, 200, 126, 0.35);
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(126, 200, 126, 0.15) inset;
+
+    &::before { opacity: 1; }
+
+    .icon-wrap { background: rgba(126, 200, 126, 0.2); }
+    .icon-wrap .material-symbols-outlined { color: #a8e6a8; }
+
+    .card-footer .arrow {
+      transform: translateX(4px);
+      color: #7ec87e;
+    }
+  }
 }
 
-.option-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255,255,255,0.18);
+// Card number badge
+.card-number {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.05em;
 }
 
-.icon {
-  font-size: 70px;
-  margin-bottom: 20px;
+// Icon container
+.icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+
+  .material-symbols-outlined {
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.3s ease;
+  }
 }
 
-.option-card h2 {
-  margin-bottom: 15px;
-  font-size: 28px;
+// Card body
+.card-body {
+  flex: 1;
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 10px;
+    line-height: 1.15;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.58);
+    margin: 0;
+  }
 }
 
-.option-card p {
-  font-size: 15px;
-  line-height: 1.6;
+// Card footer
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  span:first-child {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .arrow {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.3);
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.3s ease;
+  }
+}
+
+// ─── Footer note ─────────────────────────────────────────────────────────────
+
+.footer-note {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+// ─── Animation ───────────────────────────────────────────────────────────────
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+@media (max-width: 640px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .selector-container {
+    padding: 36px 20px;
+  }
 }

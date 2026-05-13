@@ -1,50 +1,57 @@
 <div class="selector-page">
 
-  <div class="overlay"></div>
+  <div class="bg-overlay"></div>
+  <div class="grain"></div>
 
   <div class="selector-container">
 
-    <h1>Bienvenido</h1>
+    <div class="brand-badge">
+      <span class="material-symbols-outlined">eco</span>
+      <span>Cunicultura</span>
+    </div>
 
-    <p>
-      Selecciona el módulo al que deseas ingresar
-    </p>
+    <div class="hero-text">
+      <h1>Bienvenido</h1>
+      <p>Selecciona el módulo al que deseas ingresar</p>
+    </div>
 
     <div class="cards">
 
       <!-- DASHBOARD -->
-      <div class="option-card" routerLink="/dashboard">
-
-        <span class="material-symbols-outlined icon">
-          dashboard
-        </span>
-
-        <h2>Panel Administrativo</h2>
-
-        <p>
-          Accede al dashboard, resultados,
-          granjas y configuración del sistema.
-        </p>
-
+      <div class="option-card" routerLink="/granjas">
+        <div class="card-number">01</div>
+        <div class="icon-wrap">
+          <span class="material-symbols-outlined">dashboard</span>
+        </div>
+        <div class="card-body">
+          <h2>Panel Administrativo</h2>
+          <p>Accede al dashboard, resultados, granjas y configuración del sistema.</p>
+        </div>
+        <div class="card-footer">
+          <span>Ingresar</span>
+          <span class="material-symbols-outlined arrow">arrow_forward</span>
+        </div>
       </div>
 
       <!-- EVALUACIONES -->
       <div class="option-card" routerLink="/evaluaciones">
-
-        <span class="material-symbols-outlined icon">
-          assignment
-        </span>
-
-        <h2>Evaluaciones</h2>
-
-        <p>
-          Registrar fincas, realizar evaluaciones
-          y gestionar bienestar animal.
-        </p>
-
+        <div class="card-number">02</div>
+        <div class="icon-wrap">
+          <span class="material-symbols-outlined">assignment</span>
+        </div>
+        <div class="card-body">
+          <h2>Evaluaciones</h2>
+          <p>Registrar fincas, realizar evaluaciones y gestionar bienestar animal.</p>
+        </div>
+        <div class="card-footer">
+          <span>Ingresar</span>
+          <span class="material-symbols-outlined arrow">arrow_forward</span>
+        </div>
       </div>
 
     </div>
+
+    <p class="footer-note">Cunicultura · Sistema de Gestión de Bienestar Animal</p>
 
   </div>
 

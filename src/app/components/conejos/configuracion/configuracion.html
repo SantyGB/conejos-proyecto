@@ -1,172 +1,379 @@
-<div class="layout">
-
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-
-    <div class="logo">
-      <span class="material-symbols-outlined logo-icon"></span>
-      <h2>Cunicultura</h2>
+<aside class="sidebar">
+  <div class="logo">
+    <div><h2>Cunicultura</h2></div>
+  </div>
+  <nav class="menu">
+    <a routerLink="/granjas">
+      <span class="material-symbols-outlined">home_work</span>
+      <span>Granjas</span>
+    </a>
+    <a routerLink="/resultados">
+      <span class="material-symbols-outlined">analytics</span>
+      <span>Resultados</span>
+    </a>
+    <a class="active" routerLink="/configuracion">
+      <span class="material-symbols-outlined">settings</span>
+      <span>Sistema</span>
+    </a>
+    <a routerLink="/seleccion">
+      <span class="material-symbols-outlined">apps</span>
+      <span>Menú principal</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <img src="https://i.pravatar.cc/100" alt="">
+      <div>
+        <strong>Administrador</strong>
+        <small>Panel principal</small>
+      </div>
     </div>
+  </div>
+</aside>
 
-    <div class="menu">
+<div class="main">
 
-      <a routerLink="/dashboard">
-        <span class="material-symbols-outlined"></span>
-        Dashboard
-      </a>
-
-      <a routerLink="/granjas">
-        <span class="material-symbols-outlined"></span>
-        Granjas
-      </a>
-
-      <a routerLink="/resultados">
-        <span class="material-symbols-outlined"></span>
-        Resultados
-      </a>
-
-      <a class="active" routerLink="/configuracion">
-        <span class="material-symbols-outlined"></span>
-        Sistema
-      </a>
-      
-      <a routerLink="/seleccion">
-        <span class="material-symbols-outlined"></span>
-        menú principal
-      </a>
-
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-text">
+      <span class="header-tag">Administración del sistema</span>
+      <h1>Configuración</h1>
+      <p>Gestiona especies, criterios e indicadores de evaluación</p>
     </div>
-
+    <div class="header-actions">
+      <button class="btn-outline">
+        <span class="material-symbols-outlined">download</span>
+        Exportar
+      </button>
+      <button class="btn-primary-action">
+        <span class="material-symbols-outlined">add</span>
+        Nueva especie
+      </button>
+    </div>
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
-
-    <!-- HEADER -->
-    <div class="header">ñ
-
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-icon"><span class="material-symbols-outlined">category</span></div>
       <div>
-        <p>Gestión del sistema</p>
-        <h1>Configuración</h1>
+        <span class="kpi-value">2</span>
+        <span class="kpi-label">Especies activas</span>
       </div>
-
-      <div class="header-buttons">
-
-        <button class="btn btn-light">
-          Exportar
-        </button>
-
-        <button class="btn btn-primary">
-          + Nueva especie
-        </button>
-
-      </div>
-
     </div>
-
-    <!-- GRID -->
-    <div class="grid">
-
-      <!-- LEFT -->
+    <div class="kpi">
+      <div class="kpi-icon kpi-blue"><span class="material-symbols-outlined">checklist</span></div>
       <div>
-
-        <!-- ESPECIES -->
-        <div class="card">
-
-          <h3>Especies</h3>
-
-          <div class="list">
-
-            <a class="active">
-              Conejo
-            </a>
-
-            <a>
-              Cuy
-            </a>
-
-          </div>
-
-        </div>
-
-        <!-- TOTAL -->
-        <div class="card mt">
-
-          <h3>Total indicadores</h3>
-
-          <h1>124</h1>
-
-        </div>
-
+        <span class="kpi-value">124</span>
+        <span class="kpi-label">Indicadores totales</span>
       </div>
-
-      <!-- RIGHT -->
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon kpi-green"><span class="material-symbols-outlined">folder_special</span></div>
       <div>
+        <span class="kpi-value">9</span>
+        <span class="kpi-label">Criterios de evaluación</span>
+      </div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-icon kpi-yellow"><span class="material-symbols-outlined">verified</span></div>
+      <div>
+        <span class="kpi-value">v2.4</span>
+        <span class="kpi-label">Versión del sistema</span>
+      </div>
+    </div>
+  </div>
 
-        <!-- CRITERIOS -->
-        <div class="card">
+  <!-- CUERPO PRINCIPAL -->
+  <div class="body-grid">
 
-          <h2>Criterios</h2>
+    <!-- COLUMNA IZQUIERDA -->
+    <div class="left-col">
 
-          <div class="item">
-
-            <div>
-              <b>Recursos</b><br>
-              <small>Ambiente y alimentación</small>
+      <!-- ESPECIES -->
+      <div class="section-title">
+        <span class="material-symbols-outlined">cruelty_free</span>
+        Especies
+      </div>
+      <div class="card">
+        <div class="species-list">
+          <div class="species-item active">
+            <div class="species-icon">
+              <span class="material-symbols-outlined">cruelty_free</span>
             </div>
-
-            <span>12</span>
-
+            <div class="species-info">
+              <strong>Conejo</strong>
+              <small>96 indicadores · 9 criterios</small>
+            </div>
+            <span class="species-badge active-badge">Activa</span>
           </div>
-
+          <div class="species-item">
+            <div class="species-icon species-cuy">
+              <span class="material-symbols-outlined">pets</span>
+            </div>
+            <div class="species-info">
+              <strong>Cuy</strong>
+              <small>28 indicadores · 6 criterios</small>
+            </div>
+            <span class="species-badge draft-badge">Borrador</span>
+          </div>
         </div>
+        <button class="btn-add-species">
+          <span class="material-symbols-outlined">add_circle</span>
+          Agregar especie
+        </button>
+      </div>
 
-        <!-- FORM -->
-        <div class="card mt-lg">
-
-          <h2>Nuevo indicador</h2>
-
-          <div class="form-group">
-
-            <label>Nombre</label>
-
-            <input
-              type="text"
-              placeholder="Ej: Alimentación"
-            >
-
-          </div>
-
-          <div class="form-group">
-
-            <label>Peso</label>
-
-            <input
-              type="range"
-              class="range"
-            >
-
-          </div>
-
-          <div class="actions">
-
-            <button class="btn btn-light">
-              Reset
-            </button>
-
-            <button class="btn btn-primary">
-              Crear
-            </button>
-
-          </div>
-
+      <!-- RESUMEN DE PESOS -->
+      <div class="section-title" style="margin-top:24px">
+        <span class="material-symbols-outlined">pie_chart</span>
+        Distribución de pesos
+      </div>
+      <div class="card">
+        <div class="peso-row">
+          <span class="peso-label">Registro de la finca</span>
+          <div class="peso-bar-track"><div class="peso-bar-fill" style="width:80%"></div></div>
+          <span class="peso-val">80%</span>
         </div>
-
+        <div class="peso-row">
+          <span class="peso-label">Alimentación</span>
+          <div class="peso-bar-track"><div class="peso-bar-fill bar-blue" style="width:65%"></div></div>
+          <span class="peso-val">65%</span>
+        </div>
+        <div class="peso-row">
+          <span class="peso-label">Instalaciones</span>
+          <div class="peso-bar-track"><div class="peso-bar-fill bar-green" style="width:90%"></div></div>
+          <span class="peso-val">90%</span>
+        </div>
+        <div class="peso-row">
+          <span class="peso-label">Salud</span>
+          <div class="peso-bar-track"><div class="peso-bar-fill bar-yellow" style="width:75%"></div></div>
+          <span class="peso-val">75%</span>
+        </div>
+        <div class="peso-row">
+          <span class="peso-label">Bienestar Animal</span>
+          <div class="peso-bar-track"><div class="peso-bar-fill bar-purple" style="width:85%"></div></div>
+          <span class="peso-val">85%</span>
+        </div>
       </div>
 
     </div>
 
+    <!-- COLUMNA CENTRAL/DERECHA -->
+    <div class="right-col">
+
+      <!-- CRITERIOS -->
+      <div class="section-title">
+        <span class="material-symbols-outlined">folder_special</span>
+        Criterios de evaluación — Conejo
+      </div>
+      <div class="card">
+        <div class="criteria-grid">
+
+          <div class="criteria-item">
+            <div class="criteria-left">
+              <div class="criteria-icon"><span class="material-symbols-outlined">home_work</span></div>
+              <div>
+                <strong>Registro de la finca</strong>
+                <small>Datos básicos del predio</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">14</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+          <div class="criteria-item">
+            <div class="criteria-left">
+              <div class="criteria-icon"><span class="material-symbols-outlined">cruelty_free</span></div>
+              <div>
+                <strong>Datos de los conejos</strong>
+                <small>Información general de la población</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">10</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+          <div class="criteria-item">
+            <div class="criteria-left">
+              <div class="criteria-icon"><span class="material-symbols-outlined">eco</span></div>
+              <div>
+                <strong>Alimentación</strong>
+                <small>Comida, agua y suplementos</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">12</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+          <div class="criteria-item">
+            <div class="criteria-left">
+              <div class="criteria-icon"><span class="material-symbols-outlined">warehouse</span></div>
+              <div>
+                <strong>Instalaciones</strong>
+                <small>Condiciones del espacio</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">15</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+          <div class="criteria-item">
+            <div class="criteria-left">
+              <div class="criteria-icon"><span class="material-symbols-outlined">visibility</span></div>
+              <div>
+                <strong>Observación</strong>
+                <small>Comportamiento animal</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">11</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+          <div class="criteria-item">
+            <div class="criteria-left">
+              <div class="criteria-icon"><span class="material-symbols-outlined">health_and_safety</span></div>
+              <div>
+                <strong>Salud</strong>
+                <small>Estado sanitario</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">13</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+          <div class="criteria-item">
+            <div class="criteria-left">
+              <div class="criteria-icon"><span class="material-symbols-outlined">manage_accounts</span></div>
+              <div>
+                <strong>Gestión</strong>
+                <small>Administración del predio</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">9</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+          <div class="criteria-item">
+            <div class="criteria-left">
+              <div class="criteria-icon"><span class="material-symbols-outlined">school</span></div>
+              <div>
+                <strong>Capacitación</strong>
+                <small>Formación y protocolos</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">8</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+          <div class="criteria-item criteria-final">
+            <div class="criteria-left">
+              <div class="criteria-icon criteria-icon-gold"><span class="material-symbols-outlined">star</span></div>
+              <div>
+                <strong>Bienestar Animal</strong>
+                <small>Diagnóstico final integrado</small>
+              </div>
+            </div>
+            <div class="criteria-right">
+              <span class="criteria-count">4</span>
+              <span class="criteria-label">indicadores</span>
+              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- NUEVO INDICADOR -->
+      <div class="section-title" style="margin-top:24px">
+        <span class="material-symbols-outlined">add_circle</span>
+        Nuevo indicador
+      </div>
+      <div class="card">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre del indicador</label>
+            <input type="text" placeholder="Ej: Temperatura del galpón">
+          </div>
+          <div class="form-group">
+            <label>Criterio asociado</label>
+            <select>
+              <option>Seleccionar criterio</option>
+              <option>Registro de la finca</option>
+              <option>Alimentación</option>
+              <option>Instalaciones</option>
+              <option>Salud</option>
+              <option>Bienestar Animal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tipo de respuesta</label>
+            <select>
+              <option>Seleccionar tipo</option>
+              <option>Sí / No</option>
+              <option>Escala 1-5</option>
+              <option>Numérico</option>
+              <option>Texto libre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Especie</label>
+            <select>
+              <option>Conejo</option>
+              <option>Cuy</option>
+            </select>
+          </div>
+          <div class="form-group form-full">
+            <label>Descripción / instrucción</label>
+            <textarea placeholder="Describe qué debe observar el evaluador..."></textarea>
+          </div>
+          <div class="form-group form-full">
+            <label>Peso del indicador: <strong>50%</strong></label>
+            <input type="range" class="range-styled" min="0" max="100" value="50">
+            <div class="range-labels">
+              <span>0%</span>
+              <span>50%</span>
+              <span>100%</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-reset">
+            <span class="material-symbols-outlined">restart_alt</span>
+            Limpiar
+          </button>
+          <button class="btn-save">
+            <span class="material-symbols-outlined">save</span>
+            Crear indicador
+          </button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  
 </div>
