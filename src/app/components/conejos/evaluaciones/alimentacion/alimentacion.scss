@@ -11,14 +11,11 @@
   --primary-dark:  #1d4ed8;
   --primary-light: #dbeafe;
   --bg:            #f1f5f9;
-  --surface:       #ffffff;
   --border:        #e2e8f0;
   --text:          #0f172a;
   --text-soft:     #64748b;
   --red:           #dc2626;
 }
-
-// ─── Base ─────────────────────────────────────────────────────────────────────
 
 .layout {
   display: flex;
@@ -41,14 +38,13 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.3);
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
   gap: 10px;
-
   .nav-logo-icon { font-size: 26px; }
   .nav-title { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
 }
@@ -57,13 +53,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-
-  .nav-breadcrumb {
+  .nav-crumb {
     font-size: 13px;
     color: rgba(255,255,255,0.6);
     &.active { color: white; font-weight: 600; }
   }
-
   .nav-sep { font-size: 18px; color: rgba(255,255,255,0.3); }
 }
 
@@ -79,9 +73,7 @@
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
-  transition: all 0.2s;
-
-  .material-symbols-outlined { font-size: 18px; }
+  transition: background 0.2s;
   &:hover { background: rgba(255,255,255,0.22); }
 }
 
@@ -122,11 +114,7 @@
     letter-spacing: -0.4px;
   }
 
-  p {
-    margin: 0;
-    color: var(--text-soft);
-    font-size: 14px;
-  }
+  p { margin: 0; color: var(--text-soft); font-size: 14px; }
 }
 
 // ─── Grid ─────────────────────────────────────────────────────────────────────
@@ -147,7 +135,6 @@
   border: 1px solid var(--border);
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   transition: box-shadow 0.2s;
-
   &:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
   &.card-wide { grid-column: span 3; }
 }
@@ -159,18 +146,11 @@
   margin-bottom: 16px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--border);
-
-  h3 {
-    margin: 0 0 2px;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-  }
-
+  h3 { margin: 0 0 2px; font-size: 15px; font-weight: 700; color: var(--text); }
   small { font-size: 12px; color: var(--text-soft); }
 }
 
-.card-icon-wrap {
+.icon-wrap {
   width: 42px;
   height: 42px;
   border-radius: 11px;
@@ -178,9 +158,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-
-  .material-symbols-outlined { font-size: 22px; }
-
+  font-size: 22px;
   &.blue   { background: #dbeafe; color: #2563eb; }
   &.teal   { background: #ccfbf1; color: #0d9488; }
   &.indigo { background: #e0e7ff; color: #4f46e5; }
@@ -190,186 +168,160 @@
 
 // ─── Options ──────────────────────────────────────────────────────────────────
 
-.options {
-  display: grid;
-  gap: 8px;
-}
-
-.options-row {
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
+.options { display: grid; gap: 8px; }
+.options-row { grid-template-columns: 1fr 1fr; gap: 12px; }
 
 .option {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 11px 14px;
-  background: #f8faff;
+  gap: 12px;
+  padding: 12px 16px;
+  background: white;
   border: 1.5px solid var(--border);
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
+  transition: all 0.18s ease;
   user-select: none;
+  min-height: 46px;
 
-  // Bolita indicadora izquierda
-  .opt-indicator {
-    width: 10px;
-    height: 10px;
+  // Bolita radio izquierda — puro CSS, sin iconos
+  &::before {
+    content: '';
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     border: 2px solid #cbd5e1;
     flex-shrink: 0;
-    transition: all 0.2s;
+    transition: all 0.18s;
+    background: white;
+    box-sizing: border-box;
   }
 
-  // Texto siempre visible
-  .opt-text {
+  // Texto — siempre visible, nunca toca iconos
+  span {
     flex: 1;
     font-size: 13px;
     font-weight: 500;
     color: var(--text);
-    transition: color 0.2s;
-  }
-
-  // Check derecho — oculto por defecto
-  .opt-check {
-    font-size: 16px;
-    color: white;
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all 0.2s ease;
+    transition: color 0.18s;
   }
 
   &:hover {
     border-color: var(--primary);
     background: #eff6ff;
-    .opt-indicator { border-color: var(--primary); }
-    .opt-text { color: var(--primary); }
+    &::before { border-color: var(--primary); }
+    span { color: var(--primary); }
   }
 
-  // ── ESTADO ACTIVO ──────────────────────────────────
-  &.active {
+  // ── SELECCIONADO: bolita rellena + fondo azul ──
+  &.selected {
     background: var(--primary);
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 4px 14px rgba(37,99,235,0.28);
 
-    .opt-indicator {
-      background: white;
+    &::before {
       border-color: white;
+      background: white;
+      box-shadow: inset 0 0 0 3px var(--primary);
     }
 
-    .opt-text {
-      color: white;
-      font-weight: 600;
-    }
-
-    .opt-check {
-      opacity: 1;
-      transform: scale(1);
-    }
+    span { color: white; font-weight: 600; }
   }
 
-  // ── VARIANTE WARN ──────────────────────────────────
-  &.warn {
-    &:hover {
-      border-color: var(--red);
-      background: #fff1f2;
-      .opt-indicator { border-color: var(--red); }
-      .opt-text { color: var(--red); }
-    }
-
-    &.active {
-      background: var(--red);
-      border-color: var(--red);
-      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
-
-      .opt-indicator { background: white; border-color: white; }
-      .opt-text { color: white; font-weight: 600; }
-      .opt-check { opacity: 1; transform: scale(1); }
-    }
+  // ── WARN hover ──
+  &.warn:hover {
+    border-color: var(--red);
+    background: #fff1f2;
+    &::before { border-color: var(--red); }
+    span { color: var(--red); }
   }
 
-  // ── VARIANTE GRANDE (almacenamiento) ───────────────
+  // ── WARN seleccionado ──
+  &.warn.selected {
+    background: var(--red);
+    border-color: var(--red);
+    box-shadow: 0 4px 14px rgba(220,38,38,0.28);
+
+    &::before {
+      border-color: white;
+      background: white;
+      box-shadow: inset 0 0 0 3px var(--red);
+    }
+
+    span { color: white; font-weight: 600; }
+  }
+
+  // ── GRANDE (almacenamiento) ──
   &.option-lg {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 22px 16px;
-    gap: 8px;
+    padding: 28px 16px;
+    gap: 10px;
     text-align: center;
 
-    .opt-indicator { display: none; }
+    &::before { display: none; }
 
-    .opt-icon-lg {
-      font-size: 30px;
+    .opt-icon {
+      font-size: 32px;
       color: #94a3b8;
-      transition: color 0.2s;
+      transition: color 0.18s;
+      display: block;
     }
 
-    .opt-text {
+    span {
       text-align: center;
       font-size: 14px;
       font-weight: 600;
     }
 
-    .opt-check {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-
-    &.active .opt-icon-lg { color: white; }
-
-    &.warn .opt-icon-lg { color: #94a3b8; }
-    &.warn.active .opt-icon-lg { color: white; }
+    &.selected .opt-icon { color: white; }
+    &.warn:hover .opt-icon { color: var(--red); }
+    &.warn.selected .opt-icon { color: white; }
   }
 }
 
-.opt-icon-lg {
-  font-size: 30px;
-  transition: color 0.2s;
-}
+// ─── Checkboxes — puro CSS, sin iconos ───────────────────────────────────────
 
-// ─── Checkboxes ───────────────────────────────────────────────────────────────
-
-.checkbox-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+.check-grid { display: flex; flex-direction: column; gap: 8px; }
 
 .check-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 14px;
-  background: #f8faff;
+  padding: 12px 16px;
+  background: white;
   border: 1.5px solid var(--border);
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.18s;
+  user-select: none;
 
-  input[type="checkbox"] { display: none; }
-
+  // Cuadrado checkbox — puro CSS con checkmark SVG
   .check-box {
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
     border: 2px solid #cbd5e1;
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
+    transition: all 0.18s;
     background: white;
+    box-sizing: border-box;
+    position: relative;
 
-    .material-symbols-outlined {
-      font-size: 15px;
-      color: white;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.2s;
+    // Checkmark con CSS puro
+    &::after {
+      content: '';
+      position: absolute;
+      display: none;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 9px;
+      border: 2px solid white;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
     }
   }
 
@@ -381,21 +333,21 @@
   &:hover {
     border-color: var(--primary);
     background: #eff6ff;
+    .check-box { border-color: var(--primary); }
   }
 
-  input:checked ~ .check-box {
-    background: var(--primary);
-    border-color: var(--primary);
-
-    .material-symbols-outlined {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  &:has(input:checked) {
+  // ── MARCADO ──
+  &.checked {
     border-color: var(--primary);
     background: #eff6ff;
+
+    .check-box {
+      background: var(--primary);
+      border-color: var(--primary);
+      &::after { display: block; }
+    }
+
+    .check-label strong { color: var(--primary); }
   }
 }
 
@@ -408,11 +360,7 @@
   margin-bottom: 20px;
 }
 
-.obs-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+.obs-wrap { display: flex; flex-direction: column; gap: 8px; }
 
 .obs-label {
   display: flex;
@@ -423,8 +371,8 @@
   color: var(--text-soft);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-
-  .material-symbols-outlined { font-size: 17px; color: var(--primary); }
+  font-size: 22px;
+  color: var(--primary);
 }
 
 textarea {
@@ -441,7 +389,6 @@ textarea {
   resize: vertical;
   outline: none;
   transition: border-color 0.2s;
-
   &::placeholder { color: #94a3b8; }
   &:focus {
     border-color: var(--primary);
@@ -462,23 +409,21 @@ textarea {
   cursor: pointer;
   transition: all 0.25s;
   text-align: center;
-
+  font-size: 36px;
+  color: var(--primary);
   &:hover { border-color: var(--primary); background: #eff6ff; }
 }
-
-.upload-icon { font-size: 36px; color: var(--primary); }
 
 .upload-text {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
-
   strong { font-size: 14px; color: var(--text); font-weight: 600; }
   small  { font-size: 12px; color: var(--text-soft); }
 }
 
-// ─── Actions ─────────────────────────────────────────────────────────────────
+// ─── Actions ──────────────────────────────────────────────────────────────────
 
 .actions {
   display: flex;
@@ -500,8 +445,6 @@ textarea {
   font-family: inherit;
   transition: all 0.2s;
   border: none;
-
-  .material-symbols-outlined { font-size: 16px; }
 
   &.secondary {
     background: white;

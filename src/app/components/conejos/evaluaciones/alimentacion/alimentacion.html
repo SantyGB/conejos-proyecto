@@ -1,15 +1,14 @@
 <div class="layout">
 
-  <!-- NAVBAR -->
   <div class="navbar">
     <div class="nav-brand">
       <span class="material-symbols-outlined nav-logo-icon">cruelty_free</span>
       <span class="nav-title">Cunicultura</span>
     </div>
     <div class="nav-center">
-      <span class="nav-breadcrumb">Evaluaciones</span>
+      <span class="nav-crumb">Evaluaciones</span>
       <span class="material-symbols-outlined nav-sep">chevron_right</span>
-      <span class="nav-breadcrumb active">Alimentación y Agua</span>
+      <span class="nav-crumb active">Alimentación y Agua</span>
     </div>
     <a routerLink="/evaluaciones" class="back-btn">
       <span class="material-symbols-outlined">arrow_back</span>
@@ -17,25 +16,20 @@
     </a>
   </div>
 
-  <!-- MAIN -->
   <div class="main">
 
-    <!-- HEADER -->
     <div class="header">
-      <div class="header-left">
-        <span class="header-tag">Módulo de Evaluación</span>
-        <h1>Alimentación y Agua</h1>
-        <p>Evaluación del manejo alimenticio de los conejos</p>
-      </div>
+      <span class="header-tag">Módulo de Evaluación</span>
+      <h1>Alimentación y Agua</h1>
+      <p>Evaluación del manejo alimenticio de los conejos</p>
     </div>
 
-    <!-- GRID -->
     <div class="grid">
 
       <!-- COMEDEROS -->
       <div class="card">
         <div class="card-header-row">
-          <div class="card-icon-wrap blue">
+          <div class="icon-wrap blue">
             <span class="material-symbols-outlined">restaurant</span>
           </div>
           <div>
@@ -45,32 +39,24 @@
         </div>
         <div class="options">
           <div class="option"
-            [class.active]="opcionesSeleccionadas['comederos'] === 'Todos limpios'"
+            [class.selected]="opcionesSeleccionadas['comederos'] === 'Todos limpios'"
             (click)="seleccionar('comederos','Todos limpios')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Todos limpios</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Todos limpios</span>
           </div>
           <div class="option"
-            [class.active]="opcionesSeleccionadas['comederos'] === 'Mayoría limpios'"
-            (click)="seleccionar('comederos','Mayoría limpios')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Mayoría limpios</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            [class.selected]="opcionesSeleccionadas['comederos'] === 'Mayoria limpios'"
+            (click)="seleccionar('comederos','Mayoria limpios')">
+            <span>Mayoría limpios</span>
           </div>
           <div class="option"
-            [class.active]="opcionesSeleccionadas['comederos'] === 'Regular'"
+            [class.selected]="opcionesSeleccionadas['comederos'] === 'Regular'"
             (click)="seleccionar('comederos','Regular')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Regular</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Regular</span>
           </div>
           <div class="option warn"
-            [class.active]="opcionesSeleccionadas['comederos'] === 'Deficiente'"
+            [class.selected]="opcionesSeleccionadas['comederos'] === 'Deficiente'"
             (click)="seleccionar('comederos','Deficiente')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Deficiente</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Deficiente</span>
           </div>
         </div>
       </div>
@@ -78,7 +64,7 @@
       <!-- BEBEDEROS -->
       <div class="card">
         <div class="card-header-row">
-          <div class="card-icon-wrap teal">
+          <div class="icon-wrap teal">
             <span class="material-symbols-outlined">water</span>
           </div>
           <div>
@@ -88,32 +74,24 @@
         </div>
         <div class="options">
           <div class="option"
-            [class.active]="opcionesSeleccionadas['bebederos'] === 'Todos bien'"
+            [class.selected]="opcionesSeleccionadas['bebederos'] === 'Todos bien'"
             (click)="seleccionar('bebederos','Todos bien')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Todos bien</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Todos bien</span>
           </div>
           <div class="option"
-            [class.active]="opcionesSeleccionadas['bebederos'] === 'Mayoría bien'"
-            (click)="seleccionar('bebederos','Mayoría bien')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Mayoría bien</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            [class.selected]="opcionesSeleccionadas['bebederos'] === 'Mayoria bien'"
+            (click)="seleccionar('bebederos','Mayoria bien')">
+            <span>Mayoría bien</span>
           </div>
           <div class="option"
-            [class.active]="opcionesSeleccionadas['bebederos'] === 'Regular'"
+            [class.selected]="opcionesSeleccionadas['bebederos'] === 'Regular'"
             (click)="seleccionar('bebederos','Regular')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Regular</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Regular</span>
           </div>
           <div class="option warn"
-            [class.active]="opcionesSeleccionadas['bebederos'] === 'Deficiente'"
+            [class.selected]="opcionesSeleccionadas['bebederos'] === 'Deficiente'"
             (click)="seleccionar('bebederos','Deficiente')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Deficiente</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Deficiente</span>
           </div>
         </div>
       </div>
@@ -121,7 +99,7 @@
       <!-- ACCESO AL AGUA -->
       <div class="card">
         <div class="card-header-row">
-          <div class="card-icon-wrap indigo">
+          <div class="icon-wrap indigo">
             <span class="material-symbols-outlined">water_drop</span>
           </div>
           <div>
@@ -131,32 +109,24 @@
         </div>
         <div class="options">
           <div class="option"
-            [class.active]="opcionesSeleccionadas['agua'] === 'Todos acceden'"
+            [class.selected]="opcionesSeleccionadas['agua'] === 'Todos acceden'"
             (click)="seleccionar('agua','Todos acceden')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Todos acceden</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Todos acceden</span>
           </div>
           <div class="option"
-            [class.active]="opcionesSeleccionadas['agua'] === 'Casi todos'"
+            [class.selected]="opcionesSeleccionadas['agua'] === 'Casi todos'"
             (click)="seleccionar('agua','Casi todos')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Casi todos</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Casi todos</span>
           </div>
           <div class="option"
-            [class.active]="opcionesSeleccionadas['agua'] === 'Algunos'"
+            [class.selected]="opcionesSeleccionadas['agua'] === 'Algunos'"
             (click)="seleccionar('agua','Algunos')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">Algunos</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>Algunos</span>
           </div>
           <div class="option warn"
-            [class.active]="opcionesSeleccionadas['agua'] === 'No tienen'"
+            [class.selected]="opcionesSeleccionadas['agua'] === 'No tienen'"
             (click)="seleccionar('agua','No tienen')">
-            <span class="opt-indicator"></span>
-            <span class="opt-text">No tienen</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span>No tienen</span>
           </div>
         </div>
       </div>
@@ -164,7 +134,7 @@
       <!-- TIPO DE ALIMENTO -->
       <div class="card">
         <div class="card-header-row">
-          <div class="card-icon-wrap amber">
+          <div class="icon-wrap amber">
             <span class="material-symbols-outlined">grass</span>
           </div>
           <div>
@@ -172,44 +142,41 @@
             <small>Selecciona los que aplican</small>
           </div>
         </div>
-        <div class="checkbox-grid">
-          <label class="check-item">
-            <input type="checkbox">
-            <span class="check-box">
-              <span class="material-symbols-outlined">check</span>
-            </span>
+        <div class="check-grid">
+          <div class="check-item"
+            [class.checked]="tiposAlimento.has('balanceado')"
+            (click)="toggleAlimento('balanceado')">
+            <div class="check-box"></div>
             <div class="check-label">
               <strong>Balanceado ICA</strong>
               <small>Concentrado certificado</small>
             </div>
-          </label>
-          <label class="check-item">
-            <input type="checkbox">
-            <span class="check-box">
-              <span class="material-symbols-outlined">check</span>
-            </span>
+          </div>
+          <div class="check-item"
+            [class.checked]="tiposAlimento.has('casera')"
+            (click)="toggleAlimento('casera')">
+            <div class="check-box"></div>
             <div class="check-label">
               <strong>Dieta casera</strong>
               <small>Preparación propia</small>
             </div>
-          </label>
-          <label class="check-item">
-            <input type="checkbox">
-            <span class="check-box">
-              <span class="material-symbols-outlined">check</span>
-            </span>
+          </div>
+          <div class="check-item"
+            [class.checked]="tiposAlimento.has('forraje')"
+            (click)="toggleAlimento('forraje')">
+            <div class="check-box"></div>
             <div class="check-label">
               <strong>Forraje</strong>
               <small>Pasto o heno natural</small>
             </div>
-          </label>
+          </div>
         </div>
       </div>
 
       <!-- ALMACENAMIENTO -->
       <div class="card card-wide">
         <div class="card-header-row">
-          <div class="card-icon-wrap green">
+          <div class="icon-wrap green">
             <span class="material-symbols-outlined">warehouse</span>
           </div>
           <div>
@@ -219,18 +186,16 @@
         </div>
         <div class="options options-row">
           <div class="option option-lg"
-            [class.active]="opcionesSeleccionadas['almacenamiento'] === 'Adecuado'"
+            [class.selected]="opcionesSeleccionadas['almacenamiento'] === 'Adecuado'"
             (click)="seleccionar('almacenamiento','Adecuado')">
-            <span class="material-symbols-outlined opt-icon-lg">check_circle</span>
-            <span class="opt-text">Adecuado</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span class="material-symbols-outlined opt-icon">check_circle</span>
+            <span>Adecuado</span>
           </div>
           <div class="option option-lg warn"
-            [class.active]="opcionesSeleccionadas['almacenamiento'] === 'No adecuado'"
+            [class.selected]="opcionesSeleccionadas['almacenamiento'] === 'No adecuado'"
             (click)="seleccionar('almacenamiento','No adecuado')">
-            <span class="material-symbols-outlined opt-icon-lg">cancel</span>
-            <span class="opt-text">No adecuado</span>
-            <span class="opt-check material-symbols-outlined">check</span>
+            <span class="material-symbols-outlined opt-icon">cancel</span>
+            <span>No adecuado</span>
           </div>
         </div>
       </div>
@@ -248,7 +213,7 @@
       </div>
       <label class="upload-box">
         <input type="file" accept="image/*" multiple hidden>
-        <span class="material-symbols-outlined upload-icon">cloud_upload</span>
+        <span class="material-symbols-outlined">cloud_upload</span>
         <div class="upload-text">
           <strong>Subir evidencias fotográficas</strong>
           <small>JPG, PNG o WEBP · Máx. 10 MB</small>

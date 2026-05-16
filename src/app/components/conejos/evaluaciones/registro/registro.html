@@ -1,223 +1,200 @@
 <div class="layout">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-
-    <div class="logo">
-
-      <span class="material-symbols-outlined logo-icon">
-      </span>
-
-      <h2>Cunicultura</h2>
-
+  <!-- NAVBAR TOP (igual al panel) -->
+  <div class="navbar">
+    <div class="nav-brand">
+      <span class="material-symbols-outlined nav-logo-icon">cruelty_free</span>
+      <span class="nav-title">Cunicultura</span>
     </div>
-
-    <!-- BOTÓN REGRESAR -->
-    <a
-      routerLink="/evaluaciones"
-      class="back-btn">
-
-      <span class="material-symbols-outlined">
-        arrow_back
-      </span>
-
+    <div class="nav-center">
+      <span class="nav-crumb">Evaluaciones</span>
+      <span class="material-symbols-outlined nav-sep">chevron_right</span>
+      <span class="nav-crumb active">Registro de la finca</span>
+    </div>
+    <a routerLink="/evaluaciones" class="back-btn">
+      <span class="material-symbols-outlined">arrow_back</span>
       Regresar
-
     </a>
-
   </div>
 
-  <!-- MAIN -->
   <div class="main">
 
     <!-- HEADER -->
     <div class="header">
-
-      <h1>Registro de la Finca</h1>
-
-      <p>
-        Ingresa los datos básicos de la finca
-        y del productor
-      </p>
-
+      <div class="header-left">
+        <span class="header-tag">Paso previo · Sin puntuación</span>
+        <h1>Registro de la finca</h1>
+        <p>Ingresa los datos básicos del predio, del productor y el tamaño de muestra</p>
+      </div>
+      <div class="header-icon">
+        <span class="material-symbols-outlined">home_work</span>
+      </div>
     </div>
 
     <!-- FORMULARIO -->
-    <div class="form-grid">
+    <div class="form-card">
 
-      <div class="input-group">
+      <div class="form-section-title">
+        <span class="material-symbols-outlined">info</span>
+        Datos del predio
+      </div>
 
-        <label>Nombre de la finca</label>
+      <div class="form-grid">
 
-        <input
-          type="text"
-          placeholder="Ej: Finca El Paraíso">
+        <div class="input-group">
+          <label>Nombre de la finca</label>
+          <input
+            type="text"
+            [(ngModel)]="form.nombreFinca"
+            placeholder="Ej: Finca El Paraíso">
+        </div>
+
+        <div class="input-group">
+          <label>Nombre del propietario</label>
+          <input
+            type="text"
+            [(ngModel)]="form.propietario"
+            placeholder="Ej: Juan Pérez">
+        </div>
+
+        <div class="input-group">
+          <label>Ubicación / Municipio</label>
+          <input
+            type="text"
+            [(ngModel)]="form.ubicacion"
+            placeholder="Ej: Bogotá - Ciudad Bolívar">
+        </div>
+
+        <div class="input-group">
+          <label>Teléfono</label>
+          <input
+            type="text"
+            [(ngModel)]="form.telefono"
+            placeholder="Ej: 3001234567">
+        </div>
+
+        <div class="input-group">
+          <label>Tipo de productor</label>
+          <select [(ngModel)]="form.tipoProductor" (change)="calcularMuestra()">
+            <option value="">Seleccionar</option>
+            <option value="pequeno">Pequeño (hasta 10 hembras)</option>
+            <option value="mediano">Mediano (11–100 hembras)</option>
+            <option value="intensivo">Intensivo (más de 100 hembras)</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Total de conejos en el predio</label>
+          <input
+            type="number"
+            [(ngModel)]="form.totalConejos"
+            (input)="calcularMuestra()"
+            placeholder="Ej: 120"
+            min="0">
+        </div>
+
+        <div class="input-group">
+          <label>Número de empleados</label>
+          <input
+            type="number"
+            [(ngModel)]="form.empleados"
+            placeholder="Ej: 3"
+            min="0">
+        </div>
+
+        <div class="input-group">
+          <label>Fecha de visita</label>
+          <input
+            type="date"
+            [(ngModel)]="form.fechaVisita">
+        </div>
+
+        <div class="input-group full">
+          <label>Técnico evaluador</label>
+          <input
+            type="text"
+            [(ngModel)]="form.tecnico"
+            placeholder="Ej: Carlos Gómez">
+        </div>
 
       </div>
 
-      <div class="input-group">
-
-        <label>Nombre del propietario</label>
-
-        <input
-          type="text"
-          placeholder="Ej: Juan Pérez">
-
-      </div>
-
-      <div class="input-group">
-
-        <label>Ubicación / Municipio</label>
-
-        <input
-          type="text"
-          placeholder="Ej: Bogotá - Ciudad Bolívar">
-
-      </div>
-
-      <div class="input-group">
-
-        <label>Teléfono</label>
-
-        <input
-          type="text"
-          placeholder="Ej: 3001234567">
-
-      </div>
-
-      <div class="input-group">
-
-        <label>Tipo de productor</label>
-
-        <select>
-
-          <option>Seleccionar</option>
-          <option>Pequeño</option>
-          <option>Mediano</option>
-          <option>Intensivo</option>
-
-        </select>
-
-      </div>
-
-      <div class="input-group">
-
-        <label>Total de conejos</label>
-
-        <input
-          type="number"
-          placeholder="Ej: 120">
-
-      </div>
-
-      <div class="input-group">
-
-        <label>Número de empleados</label>
-
-        <input
-          type="number"
-          placeholder="Ej: 3">
-
-      </div>
-
-      <div class="input-group">
-
-        <label>Fecha de visita</label>
-
-        <input type="date">
-
-      </div>
-
-      <div class="input-group full">
-
-        <label>Técnico evaluador</label>
-
-        <input
-          type="text"
-          placeholder="Ej: Carlos Gómez">
-
+      <!-- CÁLCULO TAMAÑO DE MUESTRA -->
+      <div class="muestra-box" *ngIf="muestraCalculada > 0">
+        <span class="material-symbols-outlined muestra-icon">calculate</span>
+        <div class="muestra-info">
+          <span class="muestra-label">Tamaño de muestra mínimo (ICA)</span>
+          <span class="muestra-valor">{{ muestraCalculada }} conejos a evaluar</span>
+        </div>
+        <div class="muestra-regla">{{ muestraRegla }}</div>
       </div>
 
     </div>
 
-    <!-- BOTONES -->
+    <!-- ACCIONES -->
     <div class="actions">
-
-      <button class="btn secondary">
-        Anterior
+      <button class="btn secondary" routerLink="/evaluaciones">
+        <span class="material-symbols-outlined">arrow_back_ios</span>
+        Volver al panel
       </button>
-
-      <button class="btn">
+      <button
+        class="btn primary"
+        [disabled]="!formularioValido()"
+        (click)="guardar()">
         Guardar y continuar
+        <span class="material-symbols-outlined">arrow_forward_ios</span>
       </button>
-
     </div>
 
-    <!-- LISTADO -->
+    <!-- TABLA FINCAS REGISTRADAS -->
     <div class="listado">
 
-      <h2>Fincas registradas</h2>
+      <div class="listado-header">
+        <h2>Fincas registradas</h2>
+        <span class="listado-count">{{ fincas.length }} finca(s)</span>
+      </div>
 
-      <div class="table">
+      <div class="table-wrap">
 
-        <!-- HEADER -->
-        <div class="row header">
-
+        <div class="table-head">
           <div>Nombre de la finca</div>
-
-          <div>Fecha de registro</div>
-
+          <div>Propietario</div>
+          <div>Tipo</div>
+          <div>Fecha</div>
           <div>Acción</div>
-
         </div>
 
-        <!-- ITEM -->
-        <div class="row">
-
-          <div>Finca El Paraíso</div>
-
-          <div>12/03/2026</div>
-
+        <div class="table-row" *ngFor="let f of fincas">
+          <div class="row-name">
+            <span class="material-symbols-outlined row-icon">home_work</span>
+            {{ f.nombreFinca }}
+          </div>
+          <div>{{ f.propietario }}</div>
           <div>
-            <button class="btn-ver">
+            <span class="tipo-chip" [ngClass]="f.tipoProductor">
+              {{ getTipoLabel(f.tipoProductor) }}
+            </span>
+          </div>
+          <div class="row-fecha">{{ f.fechaVisita }}</div>
+          <div class="row-actions">
+            <button class="btn-ver" (click)="verFinca(f)">
+              <span class="material-symbols-outlined">visibility</span>
               Ver
             </button>
+            <button class="btn-evaluar" (click)="evaluarFinca(f)">
+              <span class="material-symbols-outlined">assignment</span>
+              Evaluar
+            </button>
           </div>
-
         </div>
 
-        <div class="row">
-
-          <div>Granja Los Conejos</div>
-
-          <div>10/03/2026</div>
-
-          <div>
-            <button class="btn-ver">
-              Ver
-            </button>
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div>Finca San José</div>
-
-          <div>05/03/2026</div>
-
-          <div>
-            <button class="btn-ver">
-              Ver
-            </button>
-          </div>
-
+        <div class="table-empty" *ngIf="fincas.length === 0">
+          <span class="material-symbols-outlined">inbox</span>
+          <p>Aún no hay fincas registradas</p>
         </div>
 
       </div>
-
     </div>
 
   </div>
-
 </div>
