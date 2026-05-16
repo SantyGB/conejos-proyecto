@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { SupabaseService } from '../../../services/supabase.service';
 import { FincaService } from '../../../services/finca.service';
+
 @Component({
   selector: 'app-evaluaciones',
   templateUrl: './evaluaciones.html',
@@ -34,6 +34,28 @@ export class EvaluacionesComponent {
   async ngOnInit() {
 
     await this.cargarFincas();
+
+    // recuperar finca guardada
+    const fincaGuardada =
+      localStorage.getItem('finca_id');
+
+    if (fincaGuardada) {
+
+      const finca = this.fincas.find(
+        f => f.id == fincaGuardada
+      );
+
+      if (finca) {
+
+        this.fincaSeleccionada = finca;
+
+        this.fincaService.setFinca(finca);
+
+        await this.cargarEvaluaciones();
+
+      }
+
+    }
 
   }
 
@@ -65,7 +87,21 @@ export class EvaluacionesComponent {
 
     }
 
-    this.fincaService.setFinca(this.fincaSeleccionada);
+    // guardar finca globalmente
+    this.fincaService.setFinca(
+      this.fincaSeleccionada
+    );
+
+    // guardar en localStorage
+    localStorage.setItem(
+      'finca_id',
+      this.fincaSeleccionada.id
+    );
+
+    localStorage.setItem(
+      'finca_nombre',
+      this.fincaSeleccionada.nombre_finca
+    );
 
     await this.cargarEvaluaciones();
 
@@ -79,7 +115,10 @@ export class EvaluacionesComponent {
       await this.supabaseService.supabase
       .from('evaluaciones')
       .select('*')
-      .eq('finca_id', this.fincaSeleccionada.id);
+      .eq(
+        'finca_id',
+        this.fincaSeleccionada.id
+      );
 
     console.log(data);
     console.log(error);
@@ -95,7 +134,8 @@ export class EvaluacionesComponent {
 
   estaCompleta(tipo: string): boolean {
 
-    return this.evaluacionesCompletadas.includes(tipo);
+    return this.evaluacionesCompletadas
+      .includes(tipo);
 
   }
 

@@ -1,131 +1,207 @@
 <div class="layout">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-
-    <div class="logo">
-
-      <span
-        class="material-symbols-outlined logo-icon">
-      </span>
-
-      <h2>Cunicultura</h2>
-
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-brand">
+      <span class="material-symbols-outlined nav-logo-icon">cruelty_free</span>
+      <span class="nav-title">Cunicultura</span>
     </div>
-
-    <!-- REGRESAR -->
-    <a
-      routerLink="/evaluaciones"
-      class="back-btn">
-
-      <span class="material-symbols-outlined">
-        arrow_back
-      </span>
-
+    <div class="nav-center">
+      <span class="nav-crumb">Evaluaciones</span>
+      <span class="material-symbols-outlined nav-sep">chevron_right</span>
+      <span class="nav-crumb active">Datos de los Conejos</span>
+    </div>
+    <a routerLink="/evaluaciones" class="back-btn">
+      <span class="material-symbols-outlined">arrow_back</span>
       Regresar
-
     </a>
-
   </div>
 
-  <!-- MAIN -->
   <div class="main">
 
     <!-- HEADER -->
     <div class="header">
-
-      <h1>Datos de los Conejos</h1>
-
-      <p>
-        Selecciona los grupos y completa
-        la información básica
-      </p>
-
+      <div class="header-left">
+        <span class="header-tag">Sección 1 · Información general</span>
+        <h1>Datos de los Conejos</h1>
+        <p>Selecciona los grupos presentes y completa la información básica del predio</p>
+      </div>
+      <div class="header-icon">
+        <span class="material-symbols-outlined">pets</span>
+      </div>
     </div>
 
-    <!-- GRID -->
-    <div class="grid">
+    <!-- CARD 1: INFO BÁSICA -->
+    <div class="form-card">
 
-      <!-- GRUPOS -->
-      <div class="card">
+      <div class="form-section-title">
+        <span class="material-symbols-outlined">info</span>
+        Información básica
+      </div>
 
-        <h3>Grupos de conejos</h3>
+      <div class="form-grid">
 
-        <div class="options-grid">
+        <div class="input-group">
+          <label>Total de conejos en el predio</label>
+          <input
+            type="number"
+            [(ngModel)]="totalConejos"
+            (ngModelChange)="calcularMuestra()"
+            placeholder="Ej: 150"
+            min="0">
+        </div>
 
-          <div
-            *ngFor="let grupo of grupos"
-
-            class="option"
-
-            [class.active]="estaActivo(grupo)"
-
-            (click)="toggleGrupo(grupo)">
-
-            {{ grupo }}
-
-          </div>
-
+        <div class="input-group">
+          <label>Jaulas o galpones</label>
+          <input
+            type="number"
+            [(ngModel)]="cantidadJaulas"
+            placeholder="Ej: 20"
+            min="0">
         </div>
 
       </div>
 
-      <!-- TOTAL -->
-      <div class="card">
-
-        <h3>Total de conejos</h3>
-
-        <input
-          type="number"
-
-          [(ngModel)]="totalConejos"
-
-          placeholder="Ej: 150">
-
+      <!-- GRUPOS -->
+      <div class="form-section-title" style="margin-top: 24px;">
+        <span class="material-symbols-outlined">category</span>
+        Grupos de conejos presentes
       </div>
 
-      <!-- JAULAS -->
-      <div class="card">
-
-        <h3>Jaulas o galpones</h3>
-
-       <input
-  type="number"
-  [(ngModel)]="cantidadJaulas"
-  placeholder="Ej: 20">
-
+      <div class="grupos-grid">
+        <div
+          *ngFor="let grupo of grupos"
+          class="grupo-option"
+          [class.active]="estaActivo(grupo)"
+          (click)="toggleGrupo(grupo)">
+          <span class="material-symbols-outlined grupo-icon">
+            {{ iconoGrupo(grupo) }}
+          </span>
+          <span class="grupo-label">{{ grupo }}</span>
+          <span class="check-icon material-symbols-outlined" *ngIf="estaActivo(grupo)">
+            check_circle
+          </span>
+        </div>
       </div>
 
       <!-- MUESTRA -->
-      <div class="card">
-
-        <h3>Tamaño de muestra</h3>
-
-        <div class="result">
-
-          {{ muestra }}
-
+      <div class="muestra-box" *ngIf="muestraNumero > 0">
+        <span class="material-symbols-outlined muestra-icon">calculate</span>
+        <div class="muestra-info">
+          <span class="muestra-label">Tamaño de muestra mínimo (ICA)</span>
+          <span class="muestra-valor">{{ muestraNumero }} conejos a evaluar</span>
         </div>
-
+        <div class="muestra-regla">{{ notaMuestra }}</div>
       </div>
 
     </div>
 
-    <!-- BOTONES -->
-    <div class="actions">
+    <!-- CARD 2: PREGUNTAS -->
+    <div class="form-card">
 
-      <button class="btn secondary">
+      <div class="form-section-title">
+        <span class="material-symbols-outlined">quiz</span>
+        Preguntas de evaluación
+      </div>
 
-        Anterior
+      <!-- P1 -->
+      <div class="pregunta-block">
+        <p class="pregunta-texto">
+          <span class="pregunta-num">1</span>
+          ¿El sistema productivo de la finca a cuál categoría corresponde?
+        </p>
+        <div class="opciones-col">
+          <div
+            *ngFor="let op of opcionesProductor"
+            class="opcion-item"
+            [class.selected]="respuestas['sistema_productivo'] === op.valor"
+            (click)="seleccionar('sistema_productivo', op.valor, op.puntos)">
+            <span class="radio-dot">
+              {{ respuestas['sistema_productivo'] === op.valor ? '●' : '○' }}
+            </span>
+            <div class="opcion-info">
+              <strong>{{ op.label }}</strong>
+              <small>{{ op.descripcion }}</small>
+            </div>
+            <span class="puntos-tag">{{ op.puntos }} pts</span>
+          </div>
+        </div>
+      </div>
 
-      </button>
+      <!-- P2 -->
+      <div class="pregunta-block">
+        <p class="pregunta-texto">
+          <span class="pregunta-num">2</span>
+          ¿Los grupos de conejos están correctamente identificados y separados por etapa productiva?
+        </p>
+        <div class="opciones-col">
+          <div
+            *ngFor="let op of opcionesSiNo"
+            class="opcion-item"
+            [class.selected]="respuestas['grupos_identificados'] === op.valor"
+            (click)="seleccionar('grupos_identificados', op.valor, op.puntos)">
+            <span class="radio-dot">
+              {{ respuestas['grupos_identificados'] === op.valor ? '●' : '○' }}
+            </span>
+            <div class="opcion-info">
+              <strong>{{ op.label }}</strong>
+              <small>{{ op.descripcion }}</small>
+            </div>
+            <span class="puntos-tag">{{ op.puntos }} pts</span>
+          </div>
+        </div>
+      </div>
 
-      <button class="btn primary" (click)="guardar()">
-  Guardar y continuar
-</button>
+      <!-- P3 -->
+      <div class="pregunta-block">
+        <p class="pregunta-texto">
+          <span class="pregunta-num">3</span>
+          ¿La distribución de animales en jaulas es proporcional a los grupos etarios presentes?
+        </p>
+        <div class="opciones-col">
+          <div
+            *ngFor="let op of opcionesSiNo"
+            class="opcion-item"
+            [class.selected]="respuestas['distribucion_jaulas'] === op.valor"
+            (click)="seleccionar('distribucion_jaulas', op.valor, op.puntos)">
+            <span class="radio-dot">
+              {{ respuestas['distribucion_jaulas'] === op.valor ? '●' : '○' }}
+            </span>
+            <div class="opcion-info">
+              <strong>{{ op.label }}</strong>
+              <small>{{ op.descripcion }}</small>
+            </div>
+            <span class="puntos-tag">{{ op.puntos }} pts</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESUMEN PUNTAJE -->
+      <div class="muestra-box puntaje-box" *ngIf="puntajeTotal > 0">
+        <span class="material-symbols-outlined muestra-icon">emoji_events</span>
+        <div class="muestra-info">
+          <span class="muestra-label">Puntaje de esta sección</span>
+          <span class="muestra-valor">{{ puntajeTotal }} / 300 pts</span>
+        </div>
+        <div class="muestra-regla">{{ porcentajePuntaje | number:'1.0-0' }}%</div>
+      </div>
 
     </div>
 
-  </div>
+    <!-- ACCIONES -->
+    <div class="actions">
+      <button class="btn secondary" routerLink="/evaluaciones">
+        <span class="material-symbols-outlined">arrow_back_ios</span>
+        Volver al panel
+      </button>
+      <button
+        class="btn primary"
+        [disabled]="!formularioValido()"
+        (click)="guardar()">
+        Guardar y continuar
+        <span class="material-symbols-outlined">arrow_forward_ios</span>
+      </button>
+    </div>
 
+  </div>
 </div>
