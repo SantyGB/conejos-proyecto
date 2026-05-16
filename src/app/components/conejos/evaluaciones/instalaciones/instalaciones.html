@@ -54,7 +54,7 @@
             class="option"
             *ngFor="let item of estadoJaulas"
             [class.active]="item.active"
-            (click)="seleccionar(estadoJaulas, item)"
+            (click)="seleccionar(estadoJaulas, item, 'estado_jaulas')"
           >
             {{ item.nombre }}
           </div>
@@ -70,7 +70,7 @@
             class="option"
             *ngFor="let item of suciedad"
             [class.active]="item.active"
-            (click)="seleccionar(suciedad, item)"
+            (click)="seleccionar(suciedad, item, 'suciedad')"
           >
             {{ item.nombre }}
           </div>
@@ -86,7 +86,7 @@
             class="option"
             *ngFor="let item of reposaPatas"
             [class.active]="item.active"
-            (click)="seleccionar(reposaPatas, item)"
+            (click)="seleccionar(reposaPatas, item, 'reposa_patas')"
           >
             {{ item.nombre }}
           </div>
@@ -102,7 +102,7 @@
             class="option"
             *ngFor="let item of nidales"
             [class.active]="item.active"
-            (click)="seleccionar(nidales, item)"
+            (click)="seleccionar(nidales, item, 'nidales')"
           >
             {{ item.nombre }}
           </div>
@@ -118,7 +118,7 @@
             class="option"
             *ngFor="let item of espacio"
             [class.active]="item.active"
-            (click)="seleccionar(espacio, item)"
+            (click)="seleccionar(espacio, item, 'espacio')"
           >
             {{ item.nombre }}
           </div>
@@ -134,7 +134,7 @@
             class="option"
             *ngFor="let item of altura"
             [class.active]="item.active"
-            (click)="seleccionar(altura, item)"
+            (click)="seleccionar(altura, item, 'altura')"
           >
             {{ item.nombre }}
           </div>
@@ -150,7 +150,7 @@
             class="option"
             *ngFor="let item of iluminacion"
             [class.active]="item.active"
-            (click)="seleccionar(iluminacion, item)"
+            (click)="seleccionar(iluminacion, item, 'iluminacion')"
           >
             {{ item.nombre }}
           </div>
@@ -166,7 +166,7 @@
             class="option"
             *ngFor="let item of ventilacion"
             [class.active]="item.active"
-            (click)="seleccionar(ventilacion, item)"
+            (click)="seleccionar(ventilacion, item, 'ventilacion')"
           >
             {{ item.nombre }}
           </div>
@@ -182,7 +182,7 @@
             class="option"
             *ngFor="let item of proteccion"
             [class.active]="item.active"
-            (click)="seleccionar(proteccion, item)"
+            (click)="seleccionar(proteccion, item, 'proteccion')"
           >
             {{ item.nombre }}
           </div>
@@ -195,8 +195,9 @@
     <div class="extra">
 
       <textarea
-        placeholder="Observaciones del técnico..."
-      ></textarea>
+[(ngModel)]="observaciones"
+placeholder="Observaciones del técnico...">
+</textarea>
 
       <!-- SUBIR FOTO -->
       <label class="upload-box">
@@ -229,9 +230,13 @@
         Anterior
       </button>
 
-      <button class="btn primary">
-        Guardar y continuar
-      </button>
+      <button
+class="btn primary"
+(click)="guardar()">
+
+  Guardar y continuar
+
+</button>
 
     </div>
 

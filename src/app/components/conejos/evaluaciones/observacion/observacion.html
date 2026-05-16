@@ -60,7 +60,7 @@
             class="option"
             *ngFor="let item of comportamientos"
             [class.active]="item.active"
-            (click)="seleccionar(comportamientos, item)"
+            (click)="seleccionar(comportamientos, item, 'comportamientos')"
           >
             {{ item.nombre }}
           </div>
@@ -82,7 +82,7 @@
             class="option"
             *ngFor="let item of estirados"
             [class.active]="item.active"
-            (click)="seleccionar(estirados, item)"
+            (click)="seleccionar(estirados, item, 'estirados')"
           >
             {{ item.nombre }}
           </div>
@@ -104,7 +104,7 @@
             class="option"
             *ngFor="let item of estres"
             [class.active]="item.active"
-            (click)="seleccionar(estres, item)"
+            (click)="seleccionar(estres, item, 'estres')"
           >
             {{ item.nombre }}
           </div>
@@ -126,7 +126,7 @@
             class="option"
             *ngFor="let item of torsion"
             [class.active]="item.active"
-            (click)="seleccionar(torsion, item)"
+            (click)="seleccionar(torsion, item, 'torsion')"
           >
             {{ item.nombre }}
           </div>
@@ -148,7 +148,7 @@
             class="option"
             *ngFor="let item of mojados"
             [class.active]="item.active"
-            (click)="seleccionar(mojados, item)"
+            (click)="seleccionar(mojados, item, 'mojados')"
           >
             {{ item.nombre }}
           </div>
@@ -170,7 +170,7 @@
             class="option"
             *ngFor="let item of sucios"
             [class.active]="item.active"
-            (click)="seleccionar(sucios, item)"
+            (click)="seleccionar(sucios, item, 'sucios')"
           >
             {{ item.nombre }}
           </div>
@@ -194,15 +194,17 @@
 
       </button>
 
-      <button class="btn">
+      <button
+class="btn"
+(click)="guardar()">
 
-        Guardar y continuar
+  Guardar y continuar
 
-        <span class="material-symbols-outlined">
-          arrow_forward
-        </span>
+  <span class="material-symbols-outlined">
+    arrow_forward
+  </span>
 
-      </button>
+</button>
 
     </div>
 

@@ -52,12 +52,21 @@
     <span class="material-symbols-outlined selector-icon">agriculture</span>
     <div class="selector-inner">
       <label>Finca a evaluar</label>
-      <select>
-        <option>Seleccionar finca</option>
-        <option>Finca El Paraíso</option>
-        <option>Granja Conejos</option>
-        <option>Finca La Esperanza</option>
-      </select>
+      <select [(ngModel)]="fincaSeleccionada">
+
+  <option [ngValue]="null">
+    Seleccionar finca
+  </option>
+
+  <option
+    *ngFor="let finca of fincas"
+    [ngValue]="finca">
+
+    {{ finca.nombre_finca }}
+
+  </option>
+
+</select>
     </div>
     <button (click)="iniciar()">
       <span class="material-symbols-outlined">play_arrow</span>
@@ -92,7 +101,16 @@
         <p>Información general</p>
       </div>
       <div class="card-footer">
-        <span class="estado pendiente">⏳ Pendiente</span>
+        <span
+  class="estado"
+  [class.completo]="estaCompleta('conejos')"
+  [class.pendiente]="!estaCompleta('conejos')">
+
+  {{ estaCompleta('conejos')
+      ? '✓ Completo'
+      : '⏳ Pendiente' }}
+
+</span>
         <a routerLink="/evaluaciones/conejos" class="btn">Abrir</a>
       </div>
     </div>

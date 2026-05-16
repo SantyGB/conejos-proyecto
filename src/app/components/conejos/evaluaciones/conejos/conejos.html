@@ -89,10 +89,10 @@
 
         <h3>Jaulas o galpones</h3>
 
-        <input
-          type="number"
-
-          placeholder="Ej: 20">
+       <input
+  type="number"
+  [(ngModel)]="cantidadJaulas"
+  placeholder="Ej: 20">
 
       </div>
 
@@ -120,11 +120,9 @@
 
       </button>
 
-      <button class="btn primary">
-
-        Guardar y continuar
-
-      </button>
+      <button class="btn primary" (click)="guardar()">
+  Guardar y continuar
+</button>
 
     </div>
 

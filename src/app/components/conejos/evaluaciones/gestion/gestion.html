@@ -63,17 +63,17 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_gazapos')">
             Baja
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_gazapos')">
             Media
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_gazapos')">
             Alta
           </div>
 
@@ -89,17 +89,17 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_engorde')">
             Baja
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_engorde' )">
             Media
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_engorde')">
             Alta
           </div>
 
@@ -115,17 +115,17 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_reproductores')">
             Baja
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_reproductores')">
             Media
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'mortalidad_reproductores')">
             Alta
           </div>
 
@@ -141,22 +141,22 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'manejo_predio')">
             Completo
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'manejo_predio')">
             Parcial
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'manejo_predio')">
             Básico
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'manejo_predio')">
             No tiene
           </div>
 
@@ -172,22 +172,22 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'plan_sanitario')">
             Completo
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'plan_sanitario')">
             Parcial
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'plan_sanitario')">
             Básico
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'plan_sanitario')">
             No tiene
           </div>
 
@@ -203,12 +203,12 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'medicamentos_legales')">
             Sí cumple
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'medicamentos_legales')">
             No cumple
           </div>
 
@@ -224,12 +224,12 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'medicamentos_vencidos')">
             No hay
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'medicamentos_vencidos')">
             Sí hay
           </div>
 
@@ -245,17 +245,17 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'tratamientos_veterinarios')">
             Siempre
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'tratamientos_veterinarios')">
             A veces
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'tratamientos_veterinarios')">
             Nunca
           </div>
 
@@ -271,17 +271,17 @@
         <div class="options">
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'registros_veterinarios')">
             Completos
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'registros_veterinarios')">
             Parciales
           </div>
 
           <div class="option"
-          (click)="seleccionar($event)">
+          (click)="seleccionar($event, 'registros_veterinarios')">
             No tienen
           </div>
 
@@ -295,8 +295,9 @@
     <div class="extra">
 
       <textarea
-      placeholder="Observaciones del técnico...">
-      </textarea>
+[(ngModel)]="observaciones"
+placeholder="Observaciones del técnico...">
+</textarea>
 
       <!-- SUBIR -->
       <div class="upload-container">
@@ -354,11 +355,13 @@
 
       </button>
 
-      <button class="btn primary">
+      <button
+class="btn primary"
+(click)="guardar()">
 
-        Guardar y finalizar
+  Guardar y finalizar
 
-      </button>
+</button>
 
     </div>
 

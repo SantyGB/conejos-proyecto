@@ -35,12 +35,18 @@
 
     <div>
       <label>Cantidad de animales</label>
-      <input type="number" placeholder="Ej: 120">
+      <input
+  type="number"
+  [(ngModel)]="cantidadAnimales"
+  placeholder="Ej: 120">
     </div>
 
     <div>
       <label>Evaluador</label>
-      <input type="text" placeholder="Nombre del evaluador">
+      <input
+  type="text"
+  [(ngModel)]="evaluador"
+  placeholder="Nombre del evaluador">
     </div>
 
   </div>
@@ -50,14 +56,18 @@
 
     <h3>Condición física</h3>
 
-    <div class="options" (click)="seleccionarOpcion($event)">
+    <div class="options"
+(click)="seleccionarOpcion($event, 'condicion')">
       <div class="option">Malo</div>
       <div class="option">Regular</div>
       <div class="option">Bueno</div>
       <div class="option">Excelente</div>
     </div>
 
-    <textarea placeholder="Observaciones físicas..."></textarea>
+    <textarea
+[(ngModel)]="observacionFisica"
+placeholder="Observaciones físicas...">
+</textarea>
 
   </div>
 
@@ -66,14 +76,18 @@
 
     <h3>Comportamiento</h3>
 
-    <div class="options" (click)="seleccionarOpcion($event)">
+    <div class="options"
+(click)="seleccionarOpcion($event, 'comportamiento')">
       <div class="option">Agresivo</div>
       <div class="option">Nervioso</div>
       <div class="option">Neutro</div>
       <div class="option">Activo</div>
     </div>
 
-    <textarea placeholder="Observaciones de comportamiento..."></textarea>
+    <textarea
+[(ngModel)]="observacionComportamiento"
+placeholder="Observaciones de comportamiento...">
+</textarea>
 
   </div>
 
@@ -82,7 +96,8 @@
 
     <h3>Resultado final</h3>
 
-    <div class="options" (click)="seleccionarOpcion($event)">
+    <div class="options"
+(click)="seleccionarOpcion($event, 'resultado')">
       <div class="option">Bajo</div>
       <div class="option">Medio</div>
       <div class="option">Alto</div>
@@ -123,7 +138,10 @@
 
     <h3>Observación general</h3>
 
-    <textarea placeholder="Escribe observaciones generales..."></textarea>
+    <textarea
+[(ngModel)]="observacionGeneral"
+placeholder="Escribe observaciones generales...">
+</textarea>
 
   </div>
 

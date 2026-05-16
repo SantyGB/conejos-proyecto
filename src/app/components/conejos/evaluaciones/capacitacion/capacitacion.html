@@ -54,19 +54,19 @@
 
       <div class="options">
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'personal_capacitado')">
           Todos certificados
         </div>
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'personal_capacitado')">
           Más de la mitad certificados
         </div>
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'personal_capacitado')">
           Más de la mitad sin certificado
         </div>
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'personal_capacitado')">
           Muy pocos capacitados
         </div>
 
@@ -81,11 +81,11 @@
 
       <div class="options">
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'protocolo_sacrificio')">
           Existe y se aplica
         </div>
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'protocolo_sacrificio')">
           No existe
         </div>
 
@@ -100,11 +100,11 @@
 
       <div class="options">
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'protocolo_eutanasia')">
           Completo y firmado
         </div>
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'protocolo_eutanasia')">
           Incompleto o no existe
         </div>
 
@@ -119,19 +119,19 @@
 
       <div class="options">
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'plan_contingencia')">
           Completo e implementado
         </div>
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'plan_contingencia')">
           Solo escrito
         </div>
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'plan_contingencia')">
           Solo lo conocen
         </div>
 
-        <div class="option" (click)="seleccionar($event)">
+        <div class="option" (click)="seleccionar($event, 'plan_contingencia')">
           No existe
         </div>
 
@@ -145,6 +145,7 @@
   <div class="extra">
 
     <textarea
+      
       placeholder="Observaciones generales del técnico..."
     ></textarea>
 
