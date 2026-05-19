@@ -1,345 +1,535 @@
-<div class="layout">
+<!-- SIDEBAR HORIZONTAL -->
+<aside class="sidebar">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
+  <div class="logo">
+    <h2>Cunicultura</h2>
+  </div>
 
-    <div class="logo">
-      <span class="material-symbols-outlined"></span>
-      <h2>Cunicultura</h2>
-    </div>
+  <nav class="menu">
 
-    <a routerLink="/evaluaciones" class="back-btn">
-      <span class="material-symbols-outlined">arrow_back</span>
-      Regresar
+    <a routerLink="/evaluaciones" class="active">
+      <span class="material-symbols-outlined">favorite</span>
+      <span>Salud</span>
     </a>
+
+    <a routerLink="/seleccion">
+      <span class="material-symbols-outlined">grid_view</span>
+      <span>Menú principal</span>
+    </a>
+
+  </nav>
+
+  <div class="sidebar-footer">
+
+    <div class="user-card">
+      <img src="https://i.pravatar.cc/100" alt="">
+      <div>
+        <strong>Administrador</strong>
+        <small>Panel principal</small>
+      </div>
+    </div>
 
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
+</aside>
 
-    <div class="header">
+<!-- CONTENIDO -->
+<div class="container">
 
-      <div>
-        <h1>Salud de los Conejos</h1>
-        <p>Revisión general del estado de salud</p>
+    <!-- FINCA BANNER -->
+  <div class="finca-banner" *ngIf="fincaNombre">
+    <div class="finca-banner-left">
+      <div class="finca-icon-wrap">
+        <span class="material-symbols-outlined">home_work</span>
+      </div>
+      <div class="finca-info">
+        <span class="finca-label">Evaluando predio</span>
+        <strong class="finca-nombre">{{ fincaNombre }}</strong>
+      </div>
+    </div>
+    <div class="finca-badge">
+      <span class="badge-dot"></span>
+      Evaluación en curso
+    </div>
+  </div>
+  
+  <!-- HEADER -->
+  <div class="header">
+
+    <div class="header-text">
+      <span class="header-tag">
+        Panel de evaluación
+      </span>
+
+      <h1>Salud de los Conejos</h1>
+
+      <p>
+        Evaluación sanitaria y bienestar animal
+      </p>
+    </div>
+
+    <div class="header-stats">
+
+      <div class="stat">
+        <span class="stat-number">
+          {{ getRespondidas() }}/11
+        </span>
+
+        <span class="stat-label">
+          Preguntas respondidas
+        </span>
+      </div>
+
+      <div class="stat-progress">
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            [style.width]="progreso + '%'">
+          </div>
+        </div>
+
+        <span>{{ progreso }}% completado</span>
+
       </div>
 
     </div>
 
-    <div class="grid">
+  </div>
 
-      <!-- CARD -->
-      <div class="card">
-        <h3>Problemas respiratorios</h3>
+  <!-- TITULO -->
+  <div class="section-title">
+    <span class="material-symbols-outlined">
+      health_and_safety
+    </span>
 
-        <div class="options">
+    Evaluación sanitaria
+  </div>
 
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muy pocos
-          </div>
+  <!-- GRID -->
+  <div class="grid">
 
-          <div class="option"
-          (click)="seleccionar($event)">
-            Algunos
-          </div>
+    <!-- TORSION -->
+    <div class="card" [class.answered]="estaCompleta('torsion')">
 
-          <div class="option"
-          (click)="seleccionar($event)">
-            Varios
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muchos
-          </div>
-
-        </div>
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          accessibility_new
+        </span>
       </div>
 
-      <!-- CARD -->
-      <div class="card">
-        <h3>Ojos con secreción</h3>
+      <div class="card-body">
 
-        <div class="options">
+        <h3>
+          P30. Torsión del cuello
+        </h3>
 
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muy pocos
-          </div>
+        <p class="hint">
+          Moderada: puede comer y beber. Severa: no puede comer ni beber.
+        </p>
 
-          <div class="option"
-          (click)="seleccionar($event)">
-            Algunos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Varios
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muchos
-          </div>
-
-        </div>
       </div>
 
-      <!-- CARD -->
-      <div class="card">
-        <h3>Condición corporal</h3>
+      <div class="options">
 
-        <div class="options">
+        <div
+          class="option"
+          *ngFor="let item of torsion"
+          [class.active]="item.active"
+          (click)="seleccionar(torsion, item, 'torsion')">
 
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muy buena
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Buena
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Regular
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Mala
-          </div>
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
 
         </div>
-      </div>
 
-      <!-- CARD -->
-      <div class="card">
-        <h3>Lesiones en el cuerpo</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muy pocas
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Algunas
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Varias
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muchas
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Problemas digestivos</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Ninguno
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Pocos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Algunos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muchos
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Problemas en patas</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Leve
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Moderado
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Alto
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muy alto
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Diarrea</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muy poca
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Poca
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Regular
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Mucha
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Mastitis en hembras</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Ninguna
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Pocas
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Algunas
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muchas
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Problemas de piel</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muy pocos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Pocos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Algunos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muchos
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Conejos aislados</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Ninguno
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Pocos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Algunos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event)">
-            Muchos
-          </div>
-
-        </div>
       </div>
 
     </div>
 
-    <div class="actions">
+    <!-- SUCIEDAD -->
+    <div class="card" [class.answered]="estaCompleta('suciedad')">
 
-      <button
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          cleaning_services
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P31-32. Suciedad
+        </h3>
+
+        <p class="hint">
+          Moderado: 10–30% del cuerpo sucio. Severo: más del 30%.
+        </p>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of suciedad"
+          [class.active]="item.active"
+          (click)="seleccionar(suciedad, item, 'suciedad')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RESPIRATORIO -->
+    <div class="card" [class.answered]="estaCompleta('respiratorio')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          air
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P33. Sintomatología respiratoria
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of respiratorio"
+          [class.active]="item.active"
+          (click)="seleccionar(respiratorio, item, 'respiratorio')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- OJOS -->
+    <div class="card" [class.answered]="estaCompleta('ojos')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          visibility
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P34. Secreción ocular
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of ojos"
+          [class.active]="item.active"
+          (click)="seleccionar(ojos, item, 'ojos')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CONDICION -->
+    <div class="card" [class.answered]="estaCompleta('condicion')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          fitness_center
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P35. Condición corporal
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of condicion"
+          [class.active]="item.active"
+          (click)="seleccionar(condicion, item, 'condicion')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- LESIONES -->
+    <div class="card" [class.answered]="estaCompleta('lesiones')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          healing
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P36. Lesiones en el cuerpo
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of lesiones"
+          [class.active]="item.active"
+          (click)="seleccionar(lesiones, item, 'lesiones')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ENTEROPATIA -->
+    <div class="card" [class.answered]="estaCompleta('enteropatia')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          coronavirus
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P37. Enteropatía
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of enteropatia"
+          [class.active]="item.active"
+          (click)="seleccionar(enteropatia, item, 'enteropatia')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PODODERMATITIS -->
+    <div class="card" [class.answered]="estaCompleta('pododermatitis')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          pets
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P38. Pododermatitis
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of pododermatitis"
+          [class.active]="item.active"
+          (click)="seleccionar(pododermatitis, item, 'pododermatitis')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- DIARREA -->
+    <div class="card" [class.answered]="estaCompleta('diarrea')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          sick
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P39. Diarrea
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of diarrea"
+          [class.active]="item.active"
+          (click)="seleccionar(diarrea, item, 'diarrea')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MASTITIS -->
+    <div class="card" [class.answered]="estaCompleta('mastitis')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          emergency
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P40. Mastitis
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of mastitis"
+          [class.active]="item.active"
+          (click)="seleccionar(mastitis, item, 'mastitis')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PIEL -->
+    <div class="card" [class.answered]="estaCompleta('piel')">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          dermatology
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          P41. Dermatitis o sarna
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of piel"
+          [class.active]="item.active"
+          (click)="seleccionar(piel, item, 'piel')">
+
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+
+    <button
       routerLink="/evaluaciones/observacion"
-      class="btn secondary">
+      class="btn btn-secondary">
 
-        Anterior
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
 
-      </button>
+      Anterior
 
-      <button
-  class="btn primary"
-  (click)="guardarSalud()">
+    </button>
 
-  Guardar y continuar
+    <div class="score-badge">
 
-</button>
+      <span class="material-symbols-outlined">
+        monitoring
+      </span>
+
+      Puntaje:
+      <strong>{{ puntajeTotal }}</strong>
 
     </div>
+
+    <button
+      class="btn btn-primary"
+      (click)="guardarSalud()">
+
+      Guardar y continuar
+
+      <span class="material-symbols-outlined">
+        arrow_forward
+      </span>
+
+    </button>
 
   </div>
 

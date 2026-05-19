@@ -37,12 +37,19 @@
     </div>
     <div class="header-stats">
       <div class="stat">
-        <span class="stat-number">1/9</span>
+        <span class="stat-number">
+  {{ seccionesCompletadas }}/{{ totalSecciones }}
+</span>
         <span class="stat-label">Secciones completadas</span>
       </div>
       <div class="stat-progress">
-        <div class="progress-bar"><div class="progress-fill" style="width: 11%"></div></div>
-        <span>11% completado</span>
+        <div class="progress-bar"><div
+  class="progress-fill"
+  [style.width.%]="porcentajeCompletado">
+</div></div>
+        <span>
+  {{ porcentajeCompletado }}% completado
+</span>
       </div>
     </div>
   </div>
@@ -122,7 +129,16 @@
         <p>Comida y agua</p>
       </div>
       <div class="card-footer">
-        <span class="estado pendiente">⏳ Pendiente</span>
+       <span
+  class="estado"
+  [class.completo]="estaCompleta('alimentacion')"
+  [class.pendiente]="!estaCompleta('alimentacion')">
+
+  {{ estaCompleta('alimentacion')
+      ? '✓ Completo'
+      : '⏳ Pendiente' }}
+
+</span>
         <a routerLink="/evaluaciones/alimentacion" class="btn">Abrir</a>
       </div>
     </div>
@@ -134,7 +150,16 @@
         <p>Condiciones del espacio</p>
       </div>
       <div class="card-footer">
-        <span class="estado pendiente">⏳ Pendiente</span>
+        <span
+  class="estado"
+  [class.completo]="estaCompleta('instalaciones')"
+  [class.pendiente]="!estaCompleta('instalaciones')">
+
+  {{ estaCompleta('instalaciones')
+      ? '✓ Completo'
+      : '⏳ Pendiente' }}
+
+</span>
         <a routerLink="/evaluaciones/instalaciones" class="btn">Abrir</a>
       </div>
     </div>
@@ -146,7 +171,16 @@
         <p>Comportamiento de conejos</p>
       </div>
       <div class="card-footer">
-        <span class="estado pendiente">⏳ Pendiente</span>
+        <span
+  class="estado"
+  [class.completo]="estaCompleta('observacion')"
+  [class.pendiente]="!estaCompleta('observacion')">
+
+  {{ estaCompleta('observacion')
+      ? '✓ Completo'
+      : '⏳ Pendiente' }}
+
+</span>
         <a routerLink="/evaluaciones/observacion" class="btn">Abrir</a>
       </div>
     </div>
@@ -158,7 +192,16 @@
         <p>Estado sanitario</p>
       </div>
       <div class="card-footer">
-        <span class="estado pendiente">⏳ Pendiente</span>
+        <span
+  class="estado"
+  [class.completo]="estaCompleta('salud')"
+  [class.pendiente]="!estaCompleta('salud')">
+
+  {{ estaCompleta('salud')
+      ? '✓ Completo'
+      : '⏳ Pendiente' }}
+
+</span>
         <a routerLink="/evaluaciones/salud" class="btn">Abrir</a>
       </div>
     </div>
@@ -170,7 +213,16 @@
         <p>Administración del predio</p>
       </div>
       <div class="card-footer">
-        <span class="estado pendiente">⏳ Pendiente</span>
+        <span
+  class="estado"
+  [class.completo]="estaCompleta('gestion')"
+  [class.pendiente]="!estaCompleta('gestion')">
+
+  {{ estaCompleta('gestion')
+      ? '✓ Completo'
+      : '⏳ Pendiente' }}
+
+</span>
         <a routerLink="/evaluaciones/gestion" class="btn">Abrir</a>
       </div>
     </div>
@@ -182,22 +234,52 @@
         <p>Protocolos y formación</p>
       </div>
       <div class="card-footer">
-        <span class="estado pendiente">⏳ Pendiente</span>
+        <span
+  class="estado"
+  [class.completo]="estaCompleta('capacitacion')"
+  [class.pendiente]="!estaCompleta('capacitacion')">
+
+  {{ estaCompleta('capacitacion')
+      ? '✓ Completo'
+      : '⏳ Pendiente' }}
+
+</span>
         <a routerLink="/evaluaciones/capacitacion" class="btn">Abrir</a>
       </div>
     </div>
 
     <div class="card card-final">
-      <div class="card-icon"><span class="material-symbols-outlined">star</span></div>
-      <div class="card-body">
-        <h3>Bienestar Animal</h3>
-        <p>Diagnóstico final</p>
-      </div>
-      <div class="card-footer">
-        <span class="estado pendiente">⏳ Pendiente</span>
-        <a routerLink="/evaluaciones/evaluacion-final" class="btn btn-final">Ver</a>
-      </div>
-    </div>
+  <div class="card-icon">
+    <span class="material-symbols-outlined">star</span>
+  </div>
+
+  <div class="card-body">
+    <h3>Bienestar Animal</h3>
+    <p>Diagnóstico final</p>
+  </div>
+
+  <div class="card-footer">
+
+    <span class="estado pendiente">
+
+      {{
+        seccionesCompletadas >= 7
+          ? '✓ Disponible'
+          : '⏳ Completa las evaluaciones'
+      }}
+
+    </span>
+
+    <a
+      routerLink="/evaluaciones/evaluacion-final"
+      class="btn btn-final">
+
+      Ver
+
+    </a>
+
+  </div>
+</div>
 
   </div>
 

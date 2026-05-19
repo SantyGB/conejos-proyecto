@@ -195,9 +195,9 @@ export class ConejosComponent implements OnInit {
 
     if (error) { console.error(error); alert('Error: ' + error.message); return; }
 
-    await this.supabaseService.supabase
-      .from('evaluaciones')
-      .insert([{
+   await this.supabaseService.supabase
+  .from('evaluaciones')
+  .upsert([{
         finca_id:   fincaId,
         tipo:       'conejos',
         puntaje:    this.puntajeTotal,

@@ -480,3 +480,95 @@
   .navbar         { padding: 0 16px; }
   .nav-center     { display: none; }
 }
+// ═══════════ FINCA BANNER ═══════════
+.finca-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+  border-radius: 18px;
+  padding: 16px 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 24px rgba(29,78,216,0.28);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+}
+
+.finca-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 1;
+}
+
+.finca-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  span { font-size: 22px; color: white; }
+}
+
+.finca-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1;
+}
+
+.finca-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.finca-nombre {
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+}
+
+.finca-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  z-index: 1;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 2px rgba(74,222,128,0.3);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(74,222,128,0.3); }
+  50%       { box-shadow: 0 0 0 5px rgba(74,222,128,0.15); }
+}

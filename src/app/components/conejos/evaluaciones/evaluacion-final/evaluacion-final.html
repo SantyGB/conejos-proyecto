@@ -1,153 +1,217 @@
-<div class="sidebar">
+<div class="page">
 
-  <div class="logo">
-    <span class="material-symbols-outlined"></span>
-    <h2>Cunicultura</h2>
-  </div>
+  <!-- HEADER -->
+  <header class="topbar">
 
-  <a routerLink="/evaluaciones" class="back-btn">
-    <span class="material-symbols-outlined">arrow_back</span>
-    Regresar
-  </a>
-
-</div>
-
-<div class="main">
-
-  <div class="header">
-    <span class="subtitle">Nueva evaluación</span>
-    <div class="title">Registro de Bienestar Animal</div>
-  </div>
-
-  <!-- FINCA -->
-  <div class="section">
-    <h3>Seleccionar finca</h3>
-
-    <select>
-      <option>Granja Norte</option>
-      <option>Granja Sur</option>
-      <option>Granja Oeste</option>
-    </select>
-  </div>
-
-  <!-- DATOS -->
-  <div class="section grid">
-
-    <div>
-      <label>Cantidad de animales</label>
-      <input
-  type="number"
-  [(ngModel)]="cantidadAnimales"
-  placeholder="Ej: 120">
+    <div class="brand">
+      <span class="material-symbols-outlined">pets</span>
+      <h2>Cunicultura</h2>
     </div>
 
-    <div>
-      <label>Evaluador</label>
-      <input
-  type="text"
-  [(ngModel)]="evaluador"
-  placeholder="Nombre del evaluador">
+    <nav>
+      <a routerLink="/evaluaciones">
+        <span class="material-symbols-outlined">dashboard</span>
+        Evaluaciones
+      </a>
+      <a routerLink="/seleccion">
+        <span class="material-symbols-outlined">apps</span>
+        Menú principal
+      </a>
+    </nav>
+
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-text">
+        <span class="tag">Resultado automático ICA</span>
+        <h1>Evaluación <span class="hero-accent">Final</span></h1>
+        <p>Diagnóstico consolidado de bienestar animal según las evaluaciones realizadas.</p>
+      </div>
+
+      <div class="badge" [ngClass]="colorClasificacion">
+        <div class="badge-icon">
+          <span class="material-symbols-outlined badge-mat-icon">verified</span>
+        </div>
+        <div class="badge-text">{{ clasificacionFinal }}</div>
+      </div>
+
+    </section>
+
+    <!-- FINCA + PROGRESO (fila) -->
+    <div class="top-row">
+
+      <!-- FINCA -->
+      <section class="card finca-card">
+        <div class="card-label">Finca evaluada</div>
+        <div class="finca-box">
+          <div class="finca-info">
+            <span class="label">Nombre de la finca</span>
+            <h2>{{ nombreFinca }}</h2>
+          </div>
+          <div class="score-final">
+            <span class="score-final-num">{{ resultadoTotal }}</span>
+            <span class="score-final-pct">%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRESO -->
+      <section class="card progress-card">
+        <div class="card-label">Progreso general</div>
+        <div class="progress-top">
+          <span>{{ evaluacionesCompletadas }} de {{ totalEvaluaciones }} evaluaciones</span>
+          <strong>{{ porcentajeProgreso }}%</strong>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="porcentajeProgreso"></div>
+        </div>
+        <div class="progress-dots">
+          <div
+            class="dot"
+            *ngFor="let i of [1,2,3,4,5,6]; let idx = index"
+            [class.dot-done]="idx < evaluacionesCompletadas">
+          </div>
+        </div>
+      </section>
+
     </div>
 
-  </div>
+    <!-- PUNTAJES MBR / MBA / MBG -->
+    <section class="cards-grid">
 
-  <!-- CONDICIÓN -->
-  <div class="section">
+      <div class="score-card">
+        <div class="score-card-top">
+          <span class="score-tag mbr-tag">MBR</span>
+          <span class="material-symbols-outlined score-icon">restaurant</span>
+        </div>
+        <div class="score-label">Medidas Buen Recurso</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-fill" [style.width.%]="puntajeMBR"></div>
+        </div>
+        <div class="score-number">{{ puntajeMBR }}<span>%</span></div>
+      </div>
 
-    <h3>Condición física</h3>
+      <div class="score-card score-card--highlight">
+        <div class="score-card-top">
+          <span class="score-tag mba-tag">MBA</span>
+          <span class="material-symbols-outlined score-icon">pets</span>
+        </div>
+        <div class="score-label">Medidas Buen Animal</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-fill" [style.width.%]="puntajeMBA"></div>
+        </div>
+        <div class="score-number">{{ puntajeMBA }}<span>%</span></div>
+        <div class="weight-chip">Peso: 60%</div>
+      </div>
 
-    <div class="options"
-(click)="seleccionarOpcion($event, 'condicion')">
-      <div class="option">Malo</div>
-      <div class="option">Regular</div>
-      <div class="option">Bueno</div>
-      <div class="option">Excelente</div>
-    </div>
+      <div class="score-card">
+        <div class="score-card-top">
+          <span class="score-tag mbg-tag">MBG</span>
+          <span class="material-symbols-outlined score-icon">settings</span>
+        </div>
+        <div class="score-label">Medidas Buen Gestión</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-fill" [style.width.%]="puntajeMBG"></div>
+        </div>
+        <div class="score-number">{{ puntajeMBG }}<span>%</span></div>
+      </div>
 
-    <textarea
-[(ngModel)]="observacionFisica"
-placeholder="Observaciones físicas...">
-</textarea>
+    </section>
 
-  </div>
+    <!-- RESULTADO FINAL -->
+    <section class="card resultado-card">
 
-  <!-- COMPORTAMIENTO -->
-  <div class="section">
+      <div class="resultado-left">
+        <div class="resultado-ring" [ngClass]="colorClasificacion + '-ring'">
+          <span class="resultado-num">{{ resultadoTotal }}</span>
+          <span class="resultado-pct">%</span>
+        </div>
+      </div>
 
-    <h3>Comportamiento</h3>
+      <div class="resultado-right">
+        <div class="card-label">Resultado ICA</div>
+        <h2 class="resultado-titulo">{{ clasificacionFinal }}</h2>
+        <p class="resultado-msg">{{ mensajeFinal }}</p>
+        <div class="ica-formula-inline">
+          <span>({{ puntajeMBR }} × 0.30)</span>
+          <span class="op">+</span>
+          <span>({{ puntajeMBA }} × 0.60)</span>
+          <span class="op">+</span>
+          <span>({{ puntajeMBG }} × 0.10)</span>
+          <span class="op">=</span>
+          <strong>{{ resultadoTotal }}%</strong>
+        </div>
+      </div>
 
-    <div class="options"
-(click)="seleccionarOpcion($event, 'comportamiento')">
-      <div class="option">Agresivo</div>
-      <div class="option">Nervioso</div>
-      <div class="option">Neutro</div>
-      <div class="option">Activo</div>
-    </div>
+    </section>
 
-    <textarea
-[(ngModel)]="observacionComportamiento"
-placeholder="Observaciones de comportamiento...">
-</textarea>
+    <!-- RESUMEN -->
+    <section class="card">
 
-  </div>
+      <div class="card-header">
+        <h3>Resumen de evaluaciones</h3>
+        <span class="card-header-sub">6 dimensiones evaluadas</span>
+      </div>
 
-  <!-- RESULTADO -->
-  <div class="section">
+      <div class="resumen-grid">
+        <div class="mini-card" *ngFor="let item of resumenes">
+          <div class="mini-score" [ngClass]="getColor(item.puntaje)">
+            {{ item.puntaje }}%
+          </div>
+          <div class="mini-info">
+            <h4>{{ item.titulo }}</h4>
+            <p>{{ item.descripcion }}</p>
+          </div>
+          <div class="mini-bar-wrap">
+            <div class="mini-bar-fill" [ngClass]="getColor(item.puntaje)" [style.width.%]="item.puntaje"></div>
+          </div>
+        </div>
+      </div>
 
-    <h3>Resultado final</h3>
+    </section>
 
-    <div class="options"
-(click)="seleccionarOpcion($event, 'resultado')">
-      <div class="option">Bajo</div>
-      <div class="option">Medio</div>
-      <div class="option">Alto</div>
-    </div>
+    <!-- FORMULA -->
+    <section class="card formula-card">
 
-  </div>
+      <div class="card-header">
+        <h3>Cálculo ICA</h3>
+      </div>
 
-  <!-- FOTO -->
-  <div class="section">
+      <div class="formula">
+        <div class="formula-row formula-template">
+          <span>Resultado Final</span>
+          <span class="op">=</span>
+          <span class="formula-part mbr-col">(MBR × 0.30)</span>
+          <span class="op">+</span>
+          <span class="formula-part mba-col">(MBA × 0.60)</span>
+          <span class="op">+</span>
+          <span class="formula-part mbg-col">(MBG × 0.10)</span>
+        </div>
+        <div class="formula-divider"></div>
+        <div class="formula-row formula-values">
+          <span>{{ resultadoTotal }}%</span>
+          <span class="op">=</span>
+          <span class="formula-part mbr-col">({{ puntajeMBR }} × 0.30)</span>
+          <span class="op">+</span>
+          <span class="formula-part mba-col">({{ puntajeMBA }} × 0.60)</span>
+          <span class="op">+</span>
+          <span class="formula-part mbg-col">({{ puntajeMBG }} × 0.10)</span>
+        </div>
+      </div>
 
-    <h3>Foto del estado del animal</h3>
+    </section>
 
-    <label class="upload">
+    <!-- BOTON -->
+    <button class="btn-finalizar" (click)="finalizar()">
+      <span class="material-symbols-outlined">check_circle</span>
+      Finalizar evaluación
+    </button>
 
-      <input
-        type="file"
-        hidden
-        accept="image/*"
-        (change)="subirImagen($event)"
-      >
-
-      <span class="material-symbols-outlined">
-        cloud_upload
-      </span>
-
-      <p>Haz clic para subir imagen</p>
-
-    </label>
-
-    <div class="preview" *ngIf="imagenSeleccionada">
-      <img [src]="imagenSeleccionada">
-    </div>
-
-  </div>
-
-  <!-- OBSERVACIÓN -->
-  <div class="section">
-
-    <h3>Observación general</h3>
-
-    <textarea
-[(ngModel)]="observacionGeneral"
-placeholder="Escribe observaciones generales...">
-</textarea>
-
-  </div>
-
-  <!-- BOTÓN -->
-  <button class="btn" (click)="guardarEvaluacion()">
-    Guardar Evaluación
-  </button>
+  </main>
 
 </div>

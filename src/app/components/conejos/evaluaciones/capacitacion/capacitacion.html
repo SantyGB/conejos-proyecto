@@ -1,138 +1,232 @@
 <div class="sidebar">
 
   <div class="logo">
+
     <span class="material-symbols-outlined logo-icon">
+      school
     </span>
 
     <h3>Cunicultura</h3>
+
   </div>
 
-  <a routerLink="/evaluaciones" class="back-btn">
+  <a
+    routerLink="/evaluaciones"
+    class="back-btn">
+
     <span class="material-symbols-outlined">
       arrow_back
     </span>
 
     Regresar
+
   </a>
 
 </div>
 
 <div class="main">
 
-  <div class="header">
-    <h1>Capacitación y protocolos</h1>
+  <!-- FINCA -->
+  <div
+    class="finca-banner"
+    *ngIf="fincaNombre">
 
-    <p>
-      Evaluación del conocimiento del personal y manejo técnico
-    </p>
-  </div>
+    <div class="finca-banner-left">
 
-  <!-- SELECT FINCA -->
-  <div class="finca-bar">
+      <div class="finca-icon-wrap">
 
-    <div class="finca-select">
+        <span class="material-symbols-outlined">
+          home_work
+        </span>
 
-      <label>Elegir finca para el registro</label>
+      </div>
 
-      <select>
-        <option>Seleccionar finca</option>
-        <option>Finca El Paraíso</option>
-        <option>Granja Los Conejos</option>
-      </select>
+      <div class="finca-info">
+
+        <span class="finca-label">
+          Evaluando predio
+        </span>
+
+        <strong class="finca-nombre">
+          {{ fincaNombre }}
+        </strong>
+
+      </div>
 
     </div>
+
+    <div class="finca-badge">
+
+      <span class="badge-dot"></span>
+
+      Evaluación en curso
+
+    </div>
+
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+
+    <h1>
+      Capacitación y protocolos
+    </h1>
+
+    <p>
+      Evaluación del conocimiento del personal y protocolos de bienestar animal
+    </p>
+
+  </div>
+
+  <!-- CANTIDAD -->
+  <div class="info-card">
+
+    <h3>
+      P49. ¿Cuántas personas están relacionadas con el proceso de producción?
+    </h3>
+
+    <p class="descripcion">
+      Dato informativo para la evaluación.
+    </p>
+
+    <input
+      type="number"
+      min="0"
+      [(ngModel)]="cantidadPersonal"
+      placeholder="Ingrese la cantidad de personas"
+    >
 
   </div>
 
   <!-- GRID -->
   <div class="grid">
 
-    <!-- CARD -->
+    <!-- CONOCIMIENTO -->
     <div class="card">
 
-      <h3>Personal capacitado</h3>
+      <h3>
+        P49 - P52. Conocimiento y capacitación en bienestar animal
+      </h3>
+
+      <p class="descripcion">
+        Evaluar conocimiento, experticia y certificación del personal.
+      </p>
 
       <div class="options">
 
-        <div class="option" (click)="seleccionar($event, 'personal_capacitado')">
-          Todos certificados
+        <div
+          class="option"
+          [class.active]="respuestas.conocimiento_bienestar === 'Todas las personas demuestran conocimiento y tienen certificación escrita'"
+          (click)="seleccionar('Todas las personas demuestran conocimiento y tienen certificación escrita', 'conocimiento_bienestar')">
+
+          Todas las personas demuestran conocimiento y tienen certificación escrita
+
         </div>
 
-        <div class="option" (click)="seleccionar($event, 'personal_capacitado')">
-          Más de la mitad certificados
+        <div
+          class="option"
+          [class.active]="respuestas.conocimiento_bienestar === 'Más del 50% con conocimiento y certificación'"
+          (click)="seleccionar('Más del 50% con conocimiento y certificación', 'conocimiento_bienestar')">
+
+          Más del 50% con conocimiento y certificación
+
         </div>
 
-        <div class="option" (click)="seleccionar($event, 'personal_capacitado')">
-          Más de la mitad sin certificado
+        <div
+          class="option"
+          [class.active]="respuestas.conocimiento_bienestar === '100% con conocimiento pero sin certificación'"
+          (click)="seleccionar('100% con conocimiento pero sin certificación', 'conocimiento_bienestar')">
+
+          100% con conocimiento pero sin certificación
+
         </div>
 
-        <div class="option" (click)="seleccionar($event, 'personal_capacitado')">
-          Muy pocos capacitados
+        <div
+          class="option"
+          [class.active]="respuestas.conocimiento_bienestar === 'Más del 50% con conocimiento pero sin certificación'"
+          (click)="seleccionar('Más del 50% con conocimiento pero sin certificación', 'conocimiento_bienestar')">
+
+          Más del 50% con conocimiento pero sin certificación
+
+        </div>
+
+        <div
+          class="option"
+          [class.active]="respuestas.conocimiento_bienestar === 'Menos del 50% con conocimiento y sin certificación'"
+          (click)="seleccionar('Menos del 50% con conocimiento y sin certificación', 'conocimiento_bienestar')">
+
+          Menos del 50% con conocimiento y sin certificación
+
         </div>
 
       </div>
 
     </div>
 
-    <!-- CARD -->
+    <!-- SACRIFICIO -->
     <div class="card">
 
-      <h3>Protocolo de sacrificio</h3>
+      <h3>
+        P53. Protocolo de sacrificio para consumo humano
+      </h3>
+
+      <p class="descripcion">
+        Métodos permitidos: golpe en cabeza, desnucado o shock eléctrico + desangrado.
+      </p>
 
       <div class="options">
 
-        <div class="option" (click)="seleccionar($event, 'protocolo_sacrificio')">
-          Existe y se aplica
+        <div
+          class="option"
+          [class.active]="respuestas.protocolo_sacrificio === 'Existe protocolo escrito, registros y evita dolor innecesario'"
+          (click)="seleccionar('Existe protocolo escrito, registros y evita dolor innecesario', 'protocolo_sacrificio')">
+
+          Existe protocolo escrito, registros y evita dolor innecesario
+
         </div>
 
-        <div class="option" (click)="seleccionar($event, 'protocolo_sacrificio')">
-          No existe
+        <div
+          class="option"
+          [class.active]="respuestas.protocolo_sacrificio === 'No existe protocolo ni registros'"
+          (click)="seleccionar('No existe protocolo ni registros', 'protocolo_sacrificio')">
+
+          No existe protocolo ni registros
+
         </div>
 
       </div>
 
     </div>
 
-    <!-- CARD -->
+    <!-- EUTANASIA -->
     <div class="card">
 
-      <h3>Protocolo de eutanasia</h3>
+      <h3>
+        P54. Protocolo de eutanasia o sacrificio humanitario
+      </h3>
+
+      <p class="descripcion">
+        Debe estar firmado por MV/MVZ y acorde al Título 7 OMSA.
+      </p>
 
       <div class="options">
 
-        <div class="option" (click)="seleccionar($event, 'protocolo_eutanasia')">
-          Completo y firmado
+        <div
+          class="option"
+          [class.active]="respuestas.protocolo_eutanasia === 'Existe protocolo firmado por MV/MVZ y acorde OMSA'"
+          (click)="seleccionar('Existe protocolo firmado por MV/MVZ y acorde OMSA', 'protocolo_eutanasia')">
+
+          Existe protocolo firmado por MV/MVZ y acorde OMSA
+
         </div>
 
-        <div class="option" (click)="seleccionar($event, 'protocolo_eutanasia')">
-          Incompleto o no existe
-        </div>
+        <div
+          class="option"
+          [class.active]="respuestas.protocolo_eutanasia === 'No existe evidencia documental o no cumple requisitos'"
+          (click)="seleccionar('No existe evidencia documental o no cumple requisitos', 'protocolo_eutanasia')">
 
-      </div>
+          No existe evidencia documental o no cumple requisitos
 
-    </div>
-
-    <!-- CARD -->
-    <div class="card">
-
-      <h3>Plan de contingencia</h3>
-
-      <div class="options">
-
-        <div class="option" (click)="seleccionar($event, 'plan_contingencia')">
-          Completo e implementado
-        </div>
-
-        <div class="option" (click)="seleccionar($event, 'plan_contingencia')">
-          Solo escrito
-        </div>
-
-        <div class="option" (click)="seleccionar($event, 'plan_contingencia')">
-          Solo lo conocen
-        </div>
-
-        <div class="option" (click)="seleccionar($event, 'plan_contingencia')">
-          No existe
         </div>
 
       </div>
@@ -145,21 +239,29 @@
   <div class="extra">
 
     <textarea
-      
-      placeholder="Observaciones generales del técnico..."
-    ></textarea>
+      [(ngModel)]="observaciones"
+      placeholder="Observaciones generales del técnico...">
+    </textarea>
 
   </div>
 
   <!-- BOTONES -->
   <div class="actions">
 
-    <button class="btn secondary">
+    <button
+      routerLink="/evaluaciones/gestion"
+      class="btn secondary">
+
       Anterior
+
     </button>
 
-    <button class="btn primary">
+    <button
+      class="btn primary"
+      (click)="guardar()">
+
       Finalizar evaluación
+
     </button>
 
   </div>

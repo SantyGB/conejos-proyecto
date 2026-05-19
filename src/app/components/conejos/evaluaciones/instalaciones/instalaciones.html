@@ -1,245 +1,321 @@
 <div class="layout">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-
-    <div class="logo">
-      <span class="material-symbols-outlined"></span>
-      <h2>Cunicultura</h2>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-brand">
+      <span class="material-symbols-outlined nav-logo-icon">cruelty_free</span>
+      <span class="nav-title">Cunicultura</span>
     </div>
-
+    <div class="nav-center">
+      <span class="nav-crumb">Evaluaciones</span>
+      <span class="material-symbols-outlined nav-sep">chevron_right</span>
+      <span class="nav-crumb active">Instalaciones</span>
+    </div>
     <a routerLink="/evaluaciones" class="back-btn">
       <span class="material-symbols-outlined">arrow_back</span>
       Regresar
     </a>
-
   </div>
 
-  <!-- MAIN -->
   <div class="main">
 
-    <div class="header">
-      <h1>Instalaciones</h1>
+  <!-- FINCA BANNER -->
+<div class="finca-banner" *ngIf="fincaNombre">
 
-      <p>
-        Revisión general de las condiciones de jaulas y galpones
-      </p>
+  <div class="finca-banner-left">
+
+    <div class="finca-icon-wrap">
+      <span class="material-symbols-outlined">
+        home_work
+      </span>
     </div>
 
-    <div class="finca-bar">
+    <div class="finca-info">
 
-      <div class="finca-select">
+      <span class="finca-label">
+        Evaluando predio
+      </span>
 
-        <label>Elegir finca para el registro</label>
-
-        <select>
-          <option>Seleccionar finca</option>
-          <option>Finca El Paraíso</option>
-          <option>Granja Los Conejos</option>
-          <option>Finca San José</option>
-        </select>
-
-      </div>
-
-    </div>
-
-    <div class="grid">
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Estado de jaulas</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of estadoJaulas"
-            [class.active]="item.active"
-            (click)="seleccionar(estadoJaulas, item, 'estado_jaulas')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Suciedad o residuos</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of suciedad"
-            [class.active]="item.active"
-            (click)="seleccionar(suciedad, item, 'suciedad')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Reposa patas</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of reposaPatas"
-            [class.active]="item.active"
-            (click)="seleccionar(reposaPatas, item, 'reposa_patas')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Nidales</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of nidales"
-            [class.active]="item.active"
-            (click)="seleccionar(nidales, item, 'nidales')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Espacio por conejo</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of espacio"
-            [class.active]="item.active"
-            (click)="seleccionar(espacio, item, 'espacio')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Altura de jaulas</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of altura"
-            [class.active]="item.active"
-            (click)="seleccionar(altura, item, 'altura')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Iluminación</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of iluminacion"
-            [class.active]="item.active"
-            (click)="seleccionar(iluminacion, item, 'iluminacion')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Ventilación</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of ventilacion"
-            [class.active]="item.active"
-            (click)="seleccionar(ventilacion, item, 'ventilacion')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-        <h3>Protección</h3>
-
-        <div class="options">
-          <div
-            class="option"
-            *ngFor="let item of proteccion"
-            [class.active]="item.active"
-            (click)="seleccionar(proteccion, item, 'proteccion')"
-          >
-            {{ item.nombre }}
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- EXTRA -->
-    <div class="extra">
-
-      <textarea
-[(ngModel)]="observaciones"
-placeholder="Observaciones del técnico...">
-</textarea>
-
-      <!-- SUBIR FOTO -->
-      <label class="upload-box">
-
-        <input
-          type="file"
-          multiple
-          hidden
-          (change)="subirFotos($event)"
-        >
-
-        <span class="material-symbols-outlined">
-          upload
-        </span>
-
-        <p>Subir fotos</p>
-
-        <small *ngIf="fotos.length > 0">
-          {{ fotos.length }} archivo(s)
-        </small>
-
-      </label>
-
-    </div>
-
-    <!-- BOTONES -->
-    <div class="actions">
-
-      <button class="btn secondary">
-        Anterior
-      </button>
-
-      <button
-class="btn primary"
-(click)="guardar()">
-
-  Guardar y continuar
-
-</button>
+      <strong class="finca-nombre">
+        {{ fincaNombre }}
+      </strong>
 
     </div>
 
   </div>
 
+  <div class="finca-badge">
+
+    <span class="badge-dot"></span>
+
+    Evaluación en curso
+
+  </div>
+
+</div>
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <span class="header-tag">Paso 1 · Evaluación de campo</span>
+        <h1>Instalaciones</h1>
+        <p>Revisión general de las condiciones de jaulas y galpones · 8 indicadores</p>
+      </div>
+      <div class="header-icon">
+        <span class="material-symbols-outlined">warehouse</span>
+      </div>
+    </div>
+
+   
+
+    <!-- BARRA DE PROGRESO -->
+    <div class="progreso-bar">
+      <div class="progreso-fill" [style.width]="progresoPorc + '%'"></div>
+    </div>
+    <div class="progreso-label">
+      {{ respondidas }} de {{ totalPreguntas }} indicadores evaluados
+      <span class="puntaje-chip" *ngIf="respondidas > 0">
+        Puntaje parcial: {{ puntajeParcial | number:'1.0-0' }} / 100
+      </span>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         CARDS DE INDICADORES
+    ══════════════════════════════════════════════════════ -->
+    <div class="cards-list">
+
+      <!-- P15-P17 Alojamiento -->
+      <div class="card" [class.card-done]="respuestas['alojamiento'].texto">
+        <div class="card-header">
+          <div class="card-badge">P15 · P16 · P17</div>
+          <span class="check-icon material-symbols-outlined" *ngIf="respuestas['alojamiento'].texto">check_circle</span>
+        </div>
+        <h3>¿Cuál es el estado general de mantenimiento de jaulas y galpones? ¿Las instalaciones son de fácil limpieza y desinfección? ¿Existe acumulación de residuos o elementos extraños?</h3>
+        <div class="hint">
+          <span class="material-symbols-outlined">info</span>
+          Estas tres preguntas se evalúan de forma conjunta con un único puntaje.
+        </div>
+        <div class="options">
+          <div class="option" *ngFor="let op of opcionesAlojamiento"
+               [class.active]="op.active"
+               (click)="seleccionar(opcionesAlojamiento, op, 'alojamiento')">
+            <div class="option-text">{{ op.nombre }}</div>
+            <div class="option-score" [ngClass]="getScoreClass(op.puntaje)">{{ op.puntaje }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P18 Reposa patas -->
+      <div class="card" [class.card-done]="respuestas['reposa_patas'].texto">
+        <div class="card-header">
+          <div class="card-badge">P18</div>
+          <span class="check-icon material-symbols-outlined" *ngIf="respuestas['reposa_patas'].texto">check_circle</span>
+        </div>
+        <h3>¿Las jaulas cuentan con reposa patas?</h3>
+        <div class="hint">
+          <span class="material-symbols-outlined">info</span>
+          Solo aplica en sistemas con jaulas.
+        </div>
+        <div class="options">
+          <div class="option" *ngFor="let op of opcionesReposaPatas"
+               [class.active]="op.active"
+               (click)="seleccionar(opcionesReposaPatas, op, 'reposa_patas')">
+            <div class="option-text">{{ op.nombre }}</div>
+            <div class="option-score" [ngClass]="getScoreClass(op.puntaje)">{{ op.puntaje }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P19 Nidales -->
+      <div class="card" [class.card-done]="respuestas['nidales'].texto">
+        <div class="card-header">
+          <div class="card-badge">P19</div>
+          <span class="check-icon material-symbols-outlined" *ngIf="respuestas['nidales'].texto">check_circle</span>
+        </div>
+        <h3>¿Los nidales cumplen con las características mínimas?</h3>
+        <div class="hint">
+          <span class="material-symbols-outlined">info</span>
+          Mín. 30×40×25 cm, desmontables, piso perforado, puerta superior/lateral, material de cama. Solo aplica en sistemas de cría.
+        </div>
+        <div class="options">
+          <div class="option" *ngFor="let op of opcionesNidales"
+               [class.active]="op.active"
+               (click)="seleccionar(opcionesNidales, op, 'nidales')">
+            <div class="option-text">{{ op.nombre }}</div>
+            <div class="option-score" [ngClass]="getScoreClass(op.puntaje)">{{ op.puntaje }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P20 Espacio -->
+      <div class="card" [class.card-done]="respuestas['espacio'].texto">
+        <div class="card-header">
+          <div class="card-badge">P20</div>
+          <span class="check-icon material-symbols-outlined" *ngIf="respuestas['espacio'].texto">check_circle</span>
+        </div>
+        <h3>¿Los animales disponen de suficiente espacio?</h3>
+        <div class="hint">
+          <span class="material-symbols-outlined">info</span>
+          Hembras cría: 4 500 cm². Levante/engorde: mín. 1 650 cm²/animal. Machos: mín. 3 500 cm². Altura: 40 cm.
+        </div>
+        <div class="options">
+          <div class="option" *ngFor="let op of opcionesEspacio"
+               [class.active]="op.active"
+               (click)="seleccionar(opcionesEspacio, op, 'espacio')">
+            <div class="option-text">{{ op.nombre }}</div>
+            <div class="option-score" [ngClass]="getScoreClass(op.puntaje)">{{ op.puntaje }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P21 Altura -->
+      <div class="card" [class.card-done]="respuestas['altura'].texto">
+        <div class="card-header">
+          <div class="card-badge">P21</div>
+          <span class="check-icon material-symbols-outlined" *ngIf="respuestas['altura'].texto">check_circle</span>
+        </div>
+        <h3>¿Las jaulas se encuentran a una altura mínima de 60 cm del suelo?</h3>
+        <div class="options">
+          <div class="option" *ngFor="let op of opcionesAltura"
+               [class.active]="op.active"
+               (click)="seleccionar(opcionesAltura, op, 'altura')">
+            <div class="option-text">{{ op.nombre }}</div>
+            <div class="option-score" [ngClass]="getScoreClass(op.puntaje)">{{ op.puntaje }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P22 Iluminación -->
+      <div class="card" [class.card-done]="respuestas['iluminacion'].texto">
+        <div class="card-header">
+          <div class="card-badge">P22</div>
+          <span class="check-icon material-symbols-outlined" *ngIf="respuestas['iluminacion'].texto">check_circle</span>
+        </div>
+        <h3>¿Las instalaciones disponen de iluminación apropiada mínimo 11 horas al día?</h3>
+        <div class="options">
+          <div class="option" *ngFor="let op of opcionesIluminacion"
+               [class.active]="op.active"
+               (click)="seleccionar(opcionesIluminacion, op, 'iluminacion')">
+            <div class="option-text">{{ op.nombre }}</div>
+            <div class="option-score" [ngClass]="getScoreClass(op.puntaje)">{{ op.puntaje }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P23 Ventilación -->
+      <div class="card" [class.card-done]="respuestas['ventilacion'].texto">
+        <div class="card-header">
+          <div class="card-badge">P23</div>
+          <span class="check-icon material-symbols-outlined" *ngIf="respuestas['ventilacion'].texto">check_circle</span>
+        </div>
+        <h3>¿Los galpones disponen de suficiente ventilación?</h3>
+        <div class="hint">
+          <span class="material-symbols-outlined">info</span>
+          Sin concentración de amoniaco, CO₂, orina u olores fecales. Amoniaco ideal &lt; 5 ppm.
+        </div>
+        <div class="options">
+          <div class="option" *ngFor="let op of opcionesVentilacion"
+               [class.active]="op.active"
+               (click)="seleccionar(opcionesVentilacion, op, 'ventilacion')">
+            <div class="option-text">{{ op.nombre }}</div>
+            <div class="option-score" [ngClass]="getScoreClass(op.puntaje)">{{ op.puntaje }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P24 Protección -->
+      <div class="card" [class.card-done]="respuestas['proteccion'].texto">
+        <div class="card-header">
+          <div class="card-badge">P24</div>
+          <span class="check-icon material-symbols-outlined" *ngIf="respuestas['proteccion'].texto">check_circle</span>
+        </div>
+        <h3>¿Las instalaciones protegen a los animales contra depredadores?</h3>
+        <div class="options">
+          <div class="option" *ngFor="let op of opcionesProteccion"
+               [class.active]="op.active"
+               (click)="seleccionar(opcionesProteccion, op, 'proteccion')">
+            <div class="option-text">{{ op.nombre }}</div>
+            <div class="option-score" [ngClass]="getScoreClass(op.puntaje)">{{ op.puntaje }}</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cards-list -->
+
+    <!-- OBSERVACIONES + FOTOS -->
+    <div class="extra-section">
+
+      <div class="obs-card">
+        <div class="obs-header">
+          <span class="material-symbols-outlined">edit_note</span>
+          Observaciones del técnico
+        </div>
+        <textarea
+          [(ngModel)]="observaciones"
+          placeholder="Anota aquí cualquier observación relevante sobre las instalaciones...">
+        </textarea>
+      </div>
+
+      <div class="upload-card"
+           [class.has-files]="fotosArchivos.length > 0"
+           (dragover)="onDragOver($event)"
+           (dragleave)="onDragLeave($event)"
+           (drop)="onDrop($event)"
+           [class.drag-over]="isDragging">
+        <div class="upload-inner" (click)="fotoInput.click()">
+          <div class="upload-icon-wrap">
+            <span class="material-symbols-outlined">add_photo_alternate</span>
+          </div>
+          <p class="upload-title">Subir fotos de instalaciones</p>
+          <p class="upload-sub">Arrastra o haz clic · JPG, PNG, WEBP · Máx. 5 MB c/u</p>
+          <div class="fotos-chips" *ngIf="fotosArchivos.length > 0">
+            <span class="foto-chip" *ngFor="let f of fotosArchivos; let i = index">
+              <span class="material-symbols-outlined">image</span>
+              {{ f.name }}
+              <button class="chip-del" (click)="eliminarFoto(i, $event)">
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </span>
+          </div>
+        </div>
+        <input #fotoInput type="file" accept="image/*" multiple hidden (change)="onFotosSelected($event)">
+      </div>
+
+    </div>
+
+    <!-- PUNTAJE RESUMEN (aparece al completar todo) -->
+    <div class="puntaje-resumen" *ngIf="respondidas === totalPreguntas">
+      <div class="puntaje-resumen-inner">
+        <span class="material-symbols-outlined puntaje-star">stars</span>
+        <div>
+          <div class="puntaje-resumen-label">Puntaje total — Instalaciones</div>
+          <div class="puntaje-resumen-valor">{{ puntajeParcial | number:'1.1-1' }} / 100</div>
+        </div>
+        <div class="puntaje-nivel" [ngClass]="nivelClase">{{ nivelTexto }}</div>
+      </div>
+    </div>
+
+    <!-- ACCIONES -->
+    <div class="actions">
+      <button class="btn secondary" routerLink="/evaluaciones">
+        <span class="material-symbols-outlined">arrow_back_ios</span>
+        Anterior
+      </button>
+      <div class="actions-right">
+        <span class="validacion-msg" *ngIf="!formularioValido() && intentoGuardar">
+          <span class="material-symbols-outlined">warning</span>
+          Selecciona una finca y responde todos los indicadores
+        </span>
+        <button class="btn primary"
+                [class.loading]="guardando"
+                [disabled]="guardando"
+                (click)="guardar()">
+          <span class="material-symbols-outlined spin" *ngIf="guardando">progress_activity</span>
+          <span class="material-symbols-outlined" *ngIf="!guardando">arrow_forward_ios</span>
+          {{ guardando ? 'Guardando...' : 'Guardar y continuar' }}
+        </button>
+      </div>
+    </div>
+
+  </div>
 </div>

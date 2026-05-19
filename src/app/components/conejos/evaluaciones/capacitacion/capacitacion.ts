@@ -1,160 +1,250 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 import { SupabaseService } from '../../../../services/supabase.service';
 
 @Component({
   selector: 'app-capacitacion',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule
+  ],
   templateUrl: './capacitacion.html',
   styleUrls: ['./capacitacion.scss']
 })
-export class CapacitacionComponent {
+export class CapacitacionComponent implements OnInit {
 
-  personalCapacitado: string = '';
-  protocoloSacrificio: string = '';
-  protocoloEutanasia: string = '';
-  planContingencia: string = '';
+  // ===== FINCA =====
+
+  fincaNombre: string = '';
+
+  // ===== ESTADO =====
+
+  cantidadPersonal: number = 0;
+
+  observaciones: string = '';
+
+  respuestas: any = {
+    conocimiento_bienestar: '',
+    protocolo_sacrificio: '',
+    protocolo_eutanasia: ''
+  };
 
   constructor(
-    private supabaseService: SupabaseService
+    private supabaseService: SupabaseService,
+    private router: Router
   ) {}
 
+  // ===== INIT =====
+
+  ngOnInit(): void {
+
+    const nombre =
+      localStorage.getItem('finca_nombre');
+
+    if (nombre) {
+
+      this.fincaNombre = nombre;
+
+    }
+
+  }
+
+  // ===== SELECCIONAR =====
+
   seleccionar(
-    event: Event,
+    valor: string,
     campo: string
-  ) {
+  ): void {
 
-    const opcion = event.target as HTMLElement;
+    this.respuestas[campo] = valor;
 
-    const grupo = opcion.parentElement;
-
-    if (grupo) {
-
-      grupo.querySelectorAll('.option').forEach(el => {
-        el.classList.remove('active');
-      });
-
-      opcion.classList.add('active');
-
-      const valor = opcion.innerText.trim();
-
-      switch(campo) {
-
-        case 'personal':
-          this.personalCapacitado = valor;
-          break;
-
-        case 'sacrificio':
-          this.protocoloSacrificio = valor;
-          break;
-
-        case 'eutanasia':
-          this.protocoloEutanasia = valor;
-          break;
-
-        case 'contingencia':
-          this.planContingencia = valor;
-          break;
-
-      }
-
-    }
+    console.log(
+      'Seleccionado:',
+      campo,
+      valor
+    );
 
   }
 
-  obtenerPuntosPersonal(valor: string): number {
+  // ===== PUNTAJES =====
 
-    switch(valor) {
+obtenerPuntajePersonal(): number {
 
-      case 'Todos certificados':
-        return 100;
+  switch (this.respuestas.conocimiento_bienestar) {
 
-      case 'Más de la mitad certificados':
-        return 70;
+    case 'Todas las personas demuestran conocimiento y tienen certificación escrita':
+      return 100;
 
-      case 'Más de la mitad sin certificado':
-        return 40;
+    case 'Más del 50% con conocimiento y certificación':
+      return 80;
 
-      case 'Muy pocos capacitados':
-        return 0;
+    case '100% con conocimiento pero sin certificación':
+      return 60;
 
-      default:
-        return 0;
+    case 'Más del 50% con conocimiento pero sin certificación':
+      return 40;
 
-    }
+    case 'Menos del 50% con conocimiento y sin certificación':
+      return 20;
+
+    default:
+      return 0;
+
+  }
+
+}
+
+obtenerPuntajeSacrificio(): number {
+
+  switch (this.respuestas.protocolo_sacrificio) {
+
+    case 'Existe protocolo escrito, registros y evita dolor innecesario':
+      return 100;
+
+    case 'No existe protocolo ni registros':
+      return 0;
+
+    default:
+      return 0;
 
   }
 
-  obtenerPuntosSiNo(valor: string): number {
+}
 
-    switch(valor) {
+obtenerPuntajeEutanasia(): number {
 
-      case 'Existe y se aplica':
-      case 'Completo y firmado':
-      case 'Completo e implementado':
-        return 100;
+  switch (this.respuestas.protocolo_eutanasia) {
 
-      case 'Solo escrito':
-        return 60;
+    case 'Existe protocolo firmado por MV/MVZ y acorde OMSA':
+      return 100;
 
-      case 'Solo lo conocen':
-        return 30;
+    case 'No existe evidencia documental o no cumple requisitos':
+      return 0;
 
-      case 'No existe':
-      case 'Incompleto o no existe':
-        return 0;
-
-      default:
-        return 0;
-
-    }
+    default:
+      return 0;
 
   }
+
+}
+
+  // ===== GUARDAR =====
 
   async guardar(): Promise<void> {
 
-    const { data, error } = await this.supabaseService.supabase
-      .from('capacitacion')
-      .insert([
-        {
-          personal_capacitado: this.personalCapacitado,
+    const fincaId =
+      localStorage.getItem('finca_id');
 
-          protocolo_sacrificio: this.protocoloSacrificio,
+    if (!fincaId) {
 
-          protocolo_eutanasia: this.protocoloEutanasia,
+      alert('No hay finca seleccionada');
 
-          plan_contingencia: this.planContingencia,
+      return;
 
-          puntos_personal:
-            this.obtenerPuntosPersonal(
-              this.personalCapacitado
-            ),
-
-          puntos_sacrificio:
-            this.obtenerPuntosSiNo(
-              this.protocoloSacrificio
-            ),
-
-          puntos_eutanasia:
-            this.obtenerPuntosSiNo(
-              this.protocoloEutanasia
-            ),
-
-          puntos_contingencia:
-            this.obtenerPuntosSiNo(
-              this.planContingencia
-            )
-        }
-      ]);
-
-    console.log(data);
-    console.log(error);
-
-    if (!error) {
-      alert('Capacitación guardada correctamente');
     }
+
+    // ===== PUNTAJES =====
+
+    const personalPuntaje =
+      this.obtenerPuntajePersonal();
+
+    const sacrificioPuntaje =
+      this.obtenerPuntajeSacrificio();
+
+    const eutanasiaPuntaje =
+      this.obtenerPuntajeEutanasia();
+
+    console.log(
+      'PUNTAJES:',
+      personalPuntaje,
+      sacrificioPuntaje,
+      eutanasiaPuntaje
+    );
+
+    // ===== PAYLOAD =====
+
+    const payload = {
+
+      finca_id: fincaId,
+
+      cantidad_personal:
+        this.cantidadPersonal,
+
+      personal_capacitado:
+        this.respuestas.conocimiento_bienestar,
+
+      protocolo_sacrificio:
+        this.respuestas.protocolo_sacrificio,
+
+      protocolo_eutanasia:
+        this.respuestas.protocolo_eutanasia,
+
+      personal_capacitado_puntaje:
+        personalPuntaje,
+
+      protocolo_sacrificio_puntaje:
+        sacrificioPuntaje,
+
+      protocolo_eutanasia_puntaje:
+        eutanasiaPuntaje,
+
+      observaciones:
+        this.observaciones || null
+
+    };
+
+    console.log(
+      'CAPACITACION PAYLOAD',
+      payload
+    );
+
+    // ===== INSERT =====
+
+    console.log(payload);
+
+    const { error } =
+      await this.supabaseService.supabase
+        .from('capacitacion')
+        .insert([payload]);
+
+    if (error) {
+
+      console.log(error);
+
+      alert('Error guardando capacitación');
+
+      return;
+
+    }
+
+    // ===== EVALUACION =====
+
+    await this.supabaseService.supabase
+      .from('evaluaciones')
+      .upsert(
+        [
+          {
+            finca_id: fincaId,
+            tipo: 'capacitacion'
+          }
+        ],
+        {
+          onConflict: 'finca_id,tipo'
+        }
+      );
+
+    alert(
+      'Capacitación guardada correctamente'
+    );
+
+    this.router.navigate([
+      '/evaluaciones'
+    ]);
 
   }
 

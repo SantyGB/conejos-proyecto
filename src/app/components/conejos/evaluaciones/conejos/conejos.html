@@ -19,6 +19,23 @@
 
   <div class="main">
 
+    <!-- FINCA BANNER -->
+  <div class="finca-banner" *ngIf="fincaNombre">
+    <div class="finca-banner-left">
+      <div class="finca-icon-wrap">
+        <span class="material-symbols-outlined">home_work</span>
+      </div>
+      <div class="finca-info">
+        <span class="finca-label">Evaluando predio</span>
+        <strong class="finca-nombre">{{ fincaNombre }}</strong>
+      </div>
+    </div>
+    <div class="finca-badge">
+      <span class="badge-dot"></span>
+      Evaluación en curso
+    </div>
+  </div>
+
     <!-- HEADER -->
     <div class="header">
       <div class="header-left">

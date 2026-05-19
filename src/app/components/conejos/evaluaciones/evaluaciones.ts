@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import {
+  RouterModule,
+  RouterOutlet
+} from '@angular/router';
+
 import { FormsModule } from '@angular/forms';
 
 import { SupabaseService } from '../../../services/supabase.service';
@@ -8,9 +12,9 @@ import { FincaService } from '../../../services/finca.service';
 
 @Component({
   selector: 'app-evaluaciones',
+  standalone: true,
   templateUrl: './evaluaciones.html',
   styleUrls: ['./evaluaciones.scss'],
-  standalone: true,
   imports: [
     CommonModule,
     RouterModule,
@@ -18,13 +22,15 @@ import { FincaService } from '../../../services/finca.service';
     FormsModule
   ]
 })
-export class EvaluacionesComponent {
+export class EvaluacionesComponent implements OnInit {
 
   fincas: any[] = [];
 
   fincaSeleccionada: any = null;
 
   evaluacionesCompletadas: string[] = [];
+
+  totalSecciones = 8;
 
   constructor(
     private supabaseService: SupabaseService,
@@ -35,7 +41,6 @@ export class EvaluacionesComponent {
 
     await this.cargarFincas();
 
-    // recuperar finca guardada
     const fincaGuardada =
       localStorage.getItem('finca_id');
 
@@ -64,16 +69,17 @@ export class EvaluacionesComponent {
     const { data, error } =
       await this.supabaseService.supabase
       .from('fincas')
-      .select('*');
+      .select('*')
+      .order('id', { ascending: false });
 
-    console.log(data);
-    console.log(error);
+    if (error) {
 
-    if (data) {
-
-      this.fincas = data;
+      console.log(error);
+      return;
 
     }
+
+    this.fincas = data || [];
 
   }
 
@@ -82,17 +88,14 @@ export class EvaluacionesComponent {
     if (!this.fincaSeleccionada) {
 
       alert('Selecciona una finca');
-
       return;
 
     }
 
-    // guardar finca globalmente
     this.fincaService.setFinca(
       this.fincaSeleccionada
     );
 
-    // guardar en localStorage
     localStorage.setItem(
       'finca_id',
       this.fincaSeleccionada.id
@@ -105,30 +108,39 @@ export class EvaluacionesComponent {
 
     await this.cargarEvaluaciones();
 
-    alert('Finca seleccionada correctamente');
+    alert(
+      'Finca seleccionada correctamente'
+    );
 
   }
 
   async cargarEvaluaciones() {
 
+    if (!this.fincaSeleccionada) return;
+
     const { data, error } =
       await this.supabaseService.supabase
       .from('evaluaciones')
-      .select('*')
+      .select('tipo')
       .eq(
         'finca_id',
         this.fincaSeleccionada.id
       );
 
-    console.log(data);
-    console.log(error);
+    if (error) {
 
-    if (data) {
-
-      this.evaluacionesCompletadas =
-        data.map((e: any) => e.tipo);
+      console.log(error);
+      return;
 
     }
+
+    this.evaluacionesCompletadas =
+      data?.map((e: any) => e.tipo) || [];
+
+    console.log(
+      'Evaluaciones completadas:',
+      this.evaluacionesCompletadas
+    );
 
   }
 
@@ -136,6 +148,23 @@ export class EvaluacionesComponent {
 
     return this.evaluacionesCompletadas
       .includes(tipo);
+
+  }
+
+  get seccionesCompletadas(): number {
+
+    return this.evaluacionesCompletadas.length;
+
+  }
+
+  get porcentajeCompletado(): number {
+
+    return Math.round(
+      (
+        this.seccionesCompletadas /
+        this.totalSecciones
+      ) * 100
+    );
 
   }
 

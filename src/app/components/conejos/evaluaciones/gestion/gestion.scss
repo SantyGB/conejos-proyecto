@@ -1,170 +1,257 @@
 :host {
-
-  --primary: #012d1d;
-  --secondary: #1b7a5a;
-  --bg: #f4f7f6;
-  --card: #e8f5ef;
-  --border: #c7eadc;
-
   display: block;
-}
-
-/* ===== LAYOUT ===== */
-
-.layout {
-  display: flex;
+  width: 100%;
   min-height: 100vh;
-  background: var(--bg);
-  font-family: 'Segoe UI', sans-serif;
 }
 
-/* ===== SIDEBAR ===== */
+/* ===== TOPBAR ===== */
 
 .sidebar {
-  width: 240px;
-  background: linear-gradient(to bottom,#014421,#00331a);
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
-  padding: 20px;
-}
 
-.logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+
+  padding: 0 30px;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .logo h2 {
   margin: 0;
+  font-size: 22px;
+  font-weight: 700;
 }
 
-.back-btn {
-  margin-top: 30px;
+.menu {
+  display: flex;
+  gap: 12px;
+}
 
+.menu a {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 
-  padding: 12px 15px;
+  padding: 10px 16px;
 
   border-radius: 12px;
 
-  background: rgba(255,255,255,0.1);
-
+  color: rgba(255,255,255,0.8);
   text-decoration: none;
-  color: white;
 
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
-.back-btn:hover {
-  background: rgba(255,255,255,0.2);
+.menu a:hover {
+  background: rgba(255,255,255,0.12);
+  color: white;
+}
+
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: rgba(255,255,255,0.08);
+
+  padding: 10px 14px;
+  border-radius: 14px;
+}
+
+.user-card img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+.user-card small {
+  color: rgba(255,255,255,0.7);
 }
 
 /* ===== MAIN ===== */
 
-.main {
-  flex: 1;
-  padding: 30px;
+.container {
+  padding: 36px 40px 60px;
+  background: #f1f5f9;
+  min-height: calc(100vh - 90px);
 }
 
 /* ===== HEADER ===== */
 
+.header {
+  margin-bottom: 30px;
+}
+
+.header-tag {
+  display: inline-block;
+  background: #dbeafe;
+  color: #2563eb;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  padding: 5px 12px;
+
+  border-radius: 20px;
+
+  margin-bottom: 10px;
+}
+
 .header h1 {
   margin: 0;
-  font-size: 28px;
-  color: var(--primary);
+  font-size: 30px;
+  color: #0f172a;
 }
 
 .header p {
-  color: gray;
+  color: #64748b;
+  margin-top: 8px;
 }
 
-/* ===== SELECT ===== */
+/* ===== SECTION ===== */
 
-.finca-bar {
-  margin-top: 18px;
-}
-
-.finca-select {
+.section-title {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 18px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: #64748b;
+
+  text-transform: uppercase;
 }
 
-.finca-select label {
-  color: #014d33;
-  font-size: 14px;
-}
-
-.finca-select select {
-  width: 260px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+.section-title .material-symbols-outlined {
+  color: #2563eb;
 }
 
 /* ===== GRID ===== */
 
 .grid {
-  margin-top: 20px;
-
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-
-  gap: 15px;
+  grid-template-columns: repeat(2,1fr);
+  gap: 18px;
 }
 
 /* ===== CARD ===== */
 
 .card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 15px;
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+
+  transition: 0.25s;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.card h3 {
-  margin: 0 0 12px;
+.card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 24px rgba(37,99,235,0.08);
+
+  border-color: #bfdbfe;
+}
+
+.card-wide {
+  grid-column: 1 / -1;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  background: #eff6ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon .material-symbols-outlined {
+  color: #2563eb;
+}
+
+.card-body h3 {
+  margin: 0;
   font-size: 15px;
-  color: #014d33;
+  color: #0f172a;
 }
 
 /* ===== OPTIONS ===== */
 
 .options {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
-.option {
-  background: white;
-  border: 1px solid var(--border);
+.options-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+}
 
-  padding: 10px;
+.option {
+  background: #f8fafc;
+
+  border: 1.5px solid #e2e8f0;
 
   border-radius: 10px;
 
-  text-align: center;
+  padding: 12px;
 
   cursor: pointer;
 
   transition: 0.2s;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  text-align: center;
 }
 
 .option:hover {
-  background: #eefaf4;
+  background: #eff6ff;
+  border-color: #93c5fd;
 }
 
 .option.active {
-  background: var(--secondary);
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
   color: white;
-  font-weight: 600;
+  border-color: #2563eb;
 }
 
 /* ===== EXTRA ===== */
 
 .extra {
-  margin-top: 20px;
+  margin-top: 25px;
 
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -172,103 +259,248 @@
   gap: 20px;
 }
 
+.observaciones-card,
+.upload-container {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+
+  border: 1px solid #e2e8f0;
+}
+
 textarea {
   width: 100%;
-  height: 90px;
+  height: 120px;
 
   border-radius: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #cbd5e1;
 
-  padding: 12px;
+  padding: 14px;
 
   resize: none;
+
+  margin-top: 12px;
 }
 
 /* ===== UPLOAD ===== */
 
-.upload-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .upload-box {
-  border: 2px dashed var(--secondary);
+  border: 2px dashed #3b82f6;
+
   border-radius: 16px;
 
-  padding: 20px;
+  padding: 24px;
 
-  background: #eefaf4;
+  background: #eff6ff;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   cursor: pointer;
 
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 .upload-box:hover {
-  background: #dff5ea;
+  background: #dbeafe;
 }
 
 .icon {
   font-size: 42px;
-  color: var(--secondary);
+  color: #2563eb;
 }
 
 .upload-title {
-  font-size: 15px;
   font-weight: 600;
   margin-top: 10px;
 }
 
 .upload-subtitle {
   font-size: 12px;
-  color: gray;
+  color: #64748b;
 }
 
 .preview {
+  margin-top: 14px;
+
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .file-name {
-  background: white;
-  padding: 8px 10px;
-  border-radius: 8px;
+  background: #f8fafc;
+
+  border-radius: 10px;
+
+  padding: 10px;
+
   font-size: 13px;
-  border: 1px solid #ddd;
 }
 
 /* ===== ACTIONS ===== */
 
 .actions {
-  margin-top: 20px;
+  margin-top: 30px;
 
   display: flex;
   justify-content: space-between;
 }
 
 .btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
   padding: 12px 20px;
 
-  border-radius: 10px;
+  border-radius: 12px;
+
   border: none;
+
+  font-size: 14px;
+  font-weight: 600;
 
   cursor: pointer;
 
-  font-size: 14px;
+  transition: 0.25s;
 }
 
-.btn.secondary {
-  background: #d1d5db;
+.btn-secondary {
+  background: white;
+  border: 1px solid #e2e8f0;
 }
 
-.btn.primary {
-  background: var(--primary);
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
   color: white;
+
+  box-shadow: 0 4px 14px rgba(37,99,235,0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 900px) {
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .extra {
+    grid-template-columns: 1fr;
+  }
+
+  .options-row {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  .container {
+    padding: 20px 16px 40px;
+  }
+
+  .options-row {
+    grid-template-columns: 1fr;
+  }
+
+}
+// ═══════════ FINCA BANNER ═══════════
+.finca-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+  border-radius: 18px;
+  padding: 16px 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 24px rgba(29,78,216,0.28);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+}
+
+.finca-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 1;
+}
+
+.finca-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  span { font-size: 22px; color: white; }
+}
+
+.finca-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1;
+}
+
+.finca-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.finca-nombre {
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+}
+
+.finca-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  z-index: 1;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 2px rgba(74,222,128,0.3);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(74,222,128,0.3); }
+  50%       { box-shadow: 0 0 0 5px rgba(74,222,128,0.15); }
 }

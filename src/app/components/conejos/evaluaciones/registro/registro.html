@@ -1,6 +1,6 @@
 <div class="layout">
 
-  <!-- NAVBAR TOP (igual al panel) -->
+  <!-- NAVBAR TOP -->
   <div class="navbar">
     <div class="nav-brand">
       <span class="material-symbols-outlined nav-logo-icon">cruelty_free</span>
@@ -119,6 +119,65 @@
 
       </div>
 
+      <!-- ─── SECCIÓN IMAGEN DE LA FINCA ─── -->
+      <div class="form-section-title image-section-title">
+        <span class="material-symbols-outlined">photo_camera</span>
+        Fotografía de la finca
+      </div>
+
+      <div class="image-upload-area"
+           [class.has-image]="imagenPreview"
+           (dragover)="onDragOver($event)"
+           (dragleave)="onDragLeave($event)"
+           (drop)="onDrop($event)"
+           [class.drag-over]="isDragging">
+
+        <!-- Estado vacío -->
+        <div class="upload-placeholder" *ngIf="!imagenPreview" (click)="fileInput.click()">
+          <div class="upload-icon-wrap">
+            <span class="material-symbols-outlined">add_photo_alternate</span>
+          </div>
+          <p class="upload-title">Arrastra una imagen aquí</p>
+          <p class="upload-sub">o haz clic para seleccionar un archivo</p>
+          <span class="upload-formats">JPG, PNG, WEBP · Máx. 5 MB</span>
+        </div>
+
+        <!-- Preview imagen -->
+        <div class="image-preview-wrap" *ngIf="imagenPreview">
+          <img [src]="imagenPreview" alt="Imagen de la finca" class="image-preview">
+          <div class="image-overlay">
+            <button class="img-action-btn" (click)="fileInput.click()" title="Cambiar imagen">
+              <span class="material-symbols-outlined">edit</span>
+              Cambiar
+            </button>
+            <button class="img-action-btn danger" (click)="eliminarImagen()" title="Eliminar imagen">
+              <span class="material-symbols-outlined">delete</span>
+              Eliminar
+            </button>
+          </div>
+          <div class="image-badge">
+            <span class="material-symbols-outlined">check_circle</span>
+            {{ imagenNombre }}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Input oculto -->
+      <input
+        #fileInput
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        style="display: none"
+        (change)="onFileSelected($event)">
+
+      <!-- Error de tamaño -->
+      <div class="img-error" *ngIf="imagenError">
+        <span class="material-symbols-outlined">error</span>
+        {{ imagenError }}
+      </div>
+      <!-- ─── FIN SECCIÓN IMAGEN ─── -->
+
       <!-- CÁLCULO TAMAÑO DE MUESTRA -->
       <div class="muestra-box" *ngIf="muestraCalculada > 0">
         <span class="material-symbols-outlined muestra-icon">calculate</span>
@@ -166,7 +225,15 @@
 
         <div class="table-row" *ngFor="let f of fincas">
           <div class="row-name">
-            <span class="material-symbols-outlined row-icon">home_work</span>
+            <!-- Miniatura si tiene imagen, ícono si no -->
+            <img
+              *ngIf="f.imagenUrl"
+              [src]="f.imagenUrl"
+              class="row-thumbnail"
+              alt="Foto finca">
+            <span
+              *ngIf="!f.imagenUrl"
+              class="material-symbols-outlined row-icon">home_work</span>
             {{ f.nombreFinca }}
           </div>
           <div>{{ f.propietario }}</div>

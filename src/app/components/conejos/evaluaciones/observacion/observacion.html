@@ -1,213 +1,182 @@
-<div class="layout">
+<aside class="sidebar">
+  <div class="logo">
+    <h2>Cunicultura</h2>
+  </div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
+  <nav class="menu">
+    <a class="active" routerLink="/evaluaciones">
 
-    <div class="logo">
-      <span class="material-symbols-outlined"></span>
-      <h2>Cunicultura</h2>
+      <span>Evaluaciones</span>
+    </a>
+    <a routerLink="/seleccion">
+      <span class="material-symbols-outlined">grid_view</span>
+      <span>Menú principal</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <img src="https://i.pravatar.cc/100" alt="">
+      <div>
+        <strong>Administrador</strong>
+        <small>Panel principal</small>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<div class="container">
+
+    <!-- FINCA BANNER -->
+  <div class="finca-banner" *ngIf="fincaNombre">
+    <div class="finca-banner-left">
+      <div class="finca-icon-wrap">
+        <span class="material-symbols-outlined">home_work</span>
+      </div>
+      <div class="finca-info">
+        <span class="finca-label">Evaluando predio</span>
+        <strong class="finca-nombre">{{ fincaNombre }}</strong>
+      </div>
+    </div>
+    <div class="finca-badge">
+      <span class="badge-dot"></span>
+      Evaluación en curso
+    </div>
+  </div>
+  
+  <div class="header">
+    <div class="header-text">
+      <span class="header-tag">Panel de evaluación</span>
+      <h1>Observación Animal</h1>
+      <p>Evaluación del comportamiento y confort de los conejos</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat">
+        <span class="stat-number">0/5</span>
+        <span class="stat-label">Secciones completadas</span>
+      </div>
+      <div class="stat-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width]="progreso + '%'"></div>
+        </div>
+        <span>{{ progreso }}% completado</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <span class="material-symbols-outlined">grid_view</span>
+    Preguntas de observación
+  </div>
+
+  <div class="grid">
+
+    <!-- COMPORTAMIENTOS -->
+    <div class="card" [class.answered]="estaCompleta('comportamientos')">
+      <div class="card-icon"><span class="material-symbols-outlined">monitor_heart</span></div>
+      <div class="card-body">
+        <h3>¿Los animales presentan comportamientos anormales?</h3>
+        <p class="hint">Evaluar durante 2 minutos sin alertar: sacudir cabeza, morder/rascar jaula, movimientos repetitivos ≥15 seg.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let item of comportamientos"
+          [class.active]="item.active"
+          (click)="seleccionar(comportamientos, item, 'comportamientos')">
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+        </div>
+      </div>
     </div>
 
-    <a routerLink="/evaluaciones" class="back-btn">
-      <span class="material-symbols-outlined">
-        arrow_back
-      </span>
+    <!-- ESTIRADOS -->
+    <div class="card" [class.answered]="estaCompleta('estirados')">
+      <div class="card-icon"><span class="material-symbols-outlined">open_in_full</span></div>
+      <div class="card-body">
+        <h3>¿Qué proporción de animales se encuentran totalmente estirados?</h3>
+        <p class="hint">Tumbados con extremidades delanteras y traseras completamente extendidas.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let item of estirados"
+          [class.active]="item.active"
+          (click)="seleccionar(estirados, item, 'estirados')">
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+        </div>
+      </div>
+    </div>
 
-      Regresar
-    </a>
+    <!-- ESTRÉS -->
+    <div class="card" [class.answered]="estaCompleta('estres')">
+      <div class="card-icon"><span class="material-symbols-outlined">device_thermostat</span></div>
+      <div class="card-body">
+        <h3>¿Los animales presentan signos de estrés térmico?</h3>
+        <p class="hint">Calor: jadeo, salivación, orejas dilatadas. Frío: acurrucamiento persistente.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let item of estres"
+          [class.active]="item.active"
+          (click)="seleccionar(estres, item, 'estres')">
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOJADOS -->
+    <div class="card" [class.answered]="estaCompleta('mojados')">
+      <div class="card-icon"><span class="material-symbols-outlined">water_drop</span></div>
+      <div class="card-body">
+        <h3>¿Los animales se encuentran mojados?</h3>
+        <p class="hint">Cualquier parte del cuerpo mojada cuenta para la evaluación.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let item of mojados"
+          [class.active]="item.active"
+          (click)="seleccionar(mojados, item, 'mojados')">
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- AISLADOS -->
+    <div class="card card-wide" [class.answered]="estaCompleta('aislados')">
+      <div class="card-icon"><span class="material-symbols-outlined">person_off</span></div>
+      <div class="card-body">
+        <h3>¿Hay presencia de animales aislados del contacto social?</h3>
+        <p class="hint">Sin contacto visual u olfativo con otros. No aplica a animales en cuarentena médica.</p>
+      </div>
+      <div class="options options-row">
+        <div class="option"
+          *ngFor="let item of aislados"
+          [class.active]="item.active"
+          (click)="seleccionar(aislados, item, 'aislados')">
+          <span>{{ item.nombre }}</span>
+          <strong>{{ item.puntaje }}</strong>
+        </div>
+      </div>
+    </div>
 
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
-
-    <div class="header">
-
-      <div>
-        <h1>Observación Animal</h1>
-
-        <p>
-          Evaluación del comportamiento y confort de los conejos
-        </p>
-      </div>
-
-      <!-- PROGRESS -->
-      <div class="progress">
-
-        <small>Progreso</small>
-
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
-        </div>
-
-      </div>
-
+  <!-- ACTIONS -->
+  <div class="actions">
+    <button class="btn btn-secondary">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Anterior
+    </button>
+    <div class="score-badge">
+      <span class="material-symbols-outlined">bar_chart</span>
+      Puntaje: <strong>{{ puntajeTotal }}</strong> / 15
     </div>
-
-    <!-- GRID -->
-    <div class="grid">
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>
-          Comportamientos anormales en conejos
-        </h3>
-
-        <div class="options">
-
-          <div
-            class="option"
-            *ngFor="let item of comportamientos"
-            [class.active]="item.active"
-            (click)="seleccionar(comportamientos, item, 'comportamientos')"
-          >
-            {{ item.nombre }}
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>
-          Conejos totalmente estirados
-        </h3>
-
-        <div class="options">
-
-          <div
-            class="option"
-            *ngFor="let item of estirados"
-            [class.active]="item.active"
-            (click)="seleccionar(estirados, item, 'estirados')"
-          >
-            {{ item.nombre }}
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>
-          Signos de estrés térmico en conejos
-        </h3>
-
-        <div class="options">
-
-          <div
-            class="option"
-            *ngFor="let item of estres"
-            [class.active]="item.active"
-            (click)="seleccionar(estres, item, 'estres')"
-          >
-            {{ item.nombre }}
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>
-          Torsión del cuello en conejos
-        </h3>
-
-        <div class="options">
-
-          <div
-            class="option"
-            *ngFor="let item of torsion"
-            [class.active]="item.active"
-            (click)="seleccionar(torsion, item, 'torsion')"
-          >
-            {{ item.nombre }}
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>
-          Conejos mojados
-        </h3>
-
-        <div class="options">
-
-          <div
-            class="option"
-            *ngFor="let item of mojados"
-            [class.active]="item.active"
-            (click)="seleccionar(mojados, item, 'mojados')"
-          >
-            {{ item.nombre }}
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>
-          Conejos sucios
-        </h3>
-
-        <div class="options">
-
-          <div
-            class="option"
-            *ngFor="let item of sucios"
-            [class.active]="item.active"
-            (click)="seleccionar(sucios, item, 'sucios')"
-          >
-            {{ item.nombre }}
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- BOTONES -->
-    <div class="actions">
-
-      <button class="btn secondary">
-
-        <span class="material-symbols-outlined">
-          arrow_back
-        </span>
-
-        Anterior
-
-      </button>
-
-      <button
-class="btn"
-(click)="guardar()">
-
-  Guardar y continuar
-
-  <span class="material-symbols-outlined">
-    arrow_forward
-  </span>
-
-</button>
-
-    </div>
-
+    <button class="btn btn-primary" (click)="guardar()">
+      Guardar y continuar
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </button>
   </div>
 
 </div>

@@ -1,611 +1,511 @@
-<div class="layout">
-
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="nav-brand">
-      <span class="material-symbols-outlined nav-logo-icon">cruelty_free</span>
-      <span class="nav-title">Cunicultura</span>
-    </div>
-    <div class="nav-center">
-      <span class="nav-crumb">Evaluaciones</span>
-      <span class="material-symbols-outlined nav-sep">chevron_right</span>
-      <span class="nav-crumb active">Alimentación y Agua</span>
-    </div>
-    <a routerLink="/evaluaciones" class="back-btn">
-      <span class="material-symbols-outlined">arrow_back</span>
-      Regresar
-    </a>
+<aside class="sidebar">
+  <div class="logo">
+    <span class="material-symbols-outlined logo-icon">cruelty_free</span>
+    <h2>Cunicultura</h2>
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
+  <nav class="menu">
+    <a class="active" routerLink="/evaluaciones">
 
-    <!-- FINCA BANNER -->
-    <div class="finca-banner" *ngIf="fincaNombre">
-      <div class="finca-banner-left">
-        <div class="finca-icon">
-          <span class="material-symbols-outlined">home_work</span>
-        </div>
-        <div class="finca-info">
-          <span class="finca-label">Evaluando predio</span>
-          <strong class="finca-nombre">{{ fincaNombre }}</strong>
-        </div>
-      </div>
-      <div class="finca-badge">
-        <span class="badge-dot"></span>
-        Evaluación en curso
+      <span>Evaluaciones</span>
+    </a>
+    <a routerLink="/seleccion">
+      <span class="material-symbols-outlined">grid_view</span>
+      <span>Menú principal</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <img src="https://i.pravatar.cc/100" alt="Avatar">
+      <div>
+        <strong>Administrador</strong>
+        <small>Panel principal</small>
       </div>
     </div>
+  </div>
+</aside>
 
-    <!-- HEADER -->
-    <div class="header">
+<div class="container">
+
+  <!-- FINCA BANNER -->
+  <div class="finca-banner" *ngIf="fincaNombre">
+    <div class="finca-banner-left">
+      <div class="finca-icon-wrap">
+        <span class="material-symbols-outlined">home_work</span>
+      </div>
+      <div class="finca-info">
+        <span class="finca-label">Evaluando predio</span>
+        <strong class="finca-nombre">{{ fincaNombre }}</strong>
+      </div>
+    </div>
+    <div class="finca-badge">
+      <span class="badge-dot"></span>
+      Evaluación en curso
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-text">
       <span class="header-tag">Medidas Basadas en Recursos</span>
       <h1>Alimentación y Agua</h1>
-      <p>Evaluación del bienestar animal relacionado con alimentación y disponibilidad de agua.</p>
+      <p>Evaluación del bienestar animal relacionado con alimentación y disponibilidad de agua</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat">
+        <span class="stat-number">{{ getTotalRespondidas() }}/{{ preguntas.length }}</span>
+        <span class="stat-label">Preguntas respondidas</span>
+      </div>
+      <div class="stat-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width]="(getTotalRespondidas() / preguntas.length * 100) + '%'"></div>
+        </div>
+        <span>{{ (getTotalRespondidas() / preguntas.length * 100) | number:'1.0-0' }}% completado</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORE PANEL -->
+  <div class="score-panel">
+    <div class="score-gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 160 160">
+        <circle class="gauge-track" cx="80" cy="80" r="64"/>
+        <circle
+          class="gauge-fill"
+          cx="80" cy="80" r="64"
+          [style.stroke-dashoffset]="getGaugeOffset()"
+          [attr.stroke]="getGaugeColor()"/>
+        <text x="80" y="76" class="gauge-num" text-anchor="middle">
+          {{ calcularSubtotal() | number:'1.0-0' }}
+        </text>
+        <text x="80" y="96" class="gauge-pct" text-anchor="middle">puntos</text>
+      </svg>
+      <div class="gauge-nivel" [style.color]="getGaugeColor()">{{ getNivelTexto() }}</div>
     </div>
 
-    <!-- PANEL DE PUNTUACIÓN -->
-    <div class="score-panel">
-
-      <!-- Gauge circular -->
-      <div class="gauge-wrap">
-        <svg class="gauge-svg" viewBox="0 0 160 160">
-          <circle class="gauge-track" cx="80" cy="80" r="64"/>
-          <circle
-            class="gauge-fill"
-            cx="80" cy="80" r="64"
-            [style.stroke-dashoffset]="getGaugeOffset()"
-            [attr.stroke]="getGaugeColor()"/>
-          <text x="80" y="76" class="gauge-num" text-anchor="middle">
-            {{ calcularSubtotal() | number:'1.0-0' }}
-          </text>
-          <text x="80" y="96" class="gauge-pct" text-anchor="middle">puntos</text>
-        </svg>
-        <div class="gauge-nivel" [style.color]="getGaugeColor()">
-          {{ getNivelTexto() }}
-        </div>
-      </div>
-
-      <!-- Barras por bloque -->
-      <div class="score-details">
-        <div class="score-details-title">Progreso por sección</div>
-
-        <div class="bloque-bar" *ngFor="let bloque of bloques">
-          <div class="bloque-bar-header">
-            <span class="material-symbols-outlined bloque-icon" [style.color]="bloque.color">
-              {{ bloque.icono }}
-            </span>
-            <span class="bloque-nombre">{{ bloque.nombre }}</span>
-            <span class="bloque-val">{{ getPromedioBloque(bloque.keys) | number:'1.0-0' }}%</span>
-          </div>
-          <div class="bloque-track">
-            <div class="bloque-fill"
-                 [style.width.%]="getPromedioBloque(bloque.keys)"
-                 [style.background]="bloque.color">
-            </div>
-          </div>
-          <div class="bloque-respondidas">
-            {{ getRespondidas(bloque.keys) }} / {{ bloque.keys.length }} respondidas
+    <div class="score-blocks">
+      <div class="score-block-title">Progreso por sección</div>
+      <div class="score-block-row" *ngFor="let bloque of bloques">
+        <span class="material-symbols-outlined score-block-icon" [style.color]="bloque.color">{{ bloque.icono }}</span>
+        <span class="score-block-name">{{ bloque.nombre }}</span>
+        <div class="score-block-bar-wrap">
+          <div class="score-block-bar-fill"
+               [style.width.%]="getPromedioBloque(bloque.keys)"
+               [style.background]="bloque.color">
           </div>
         </div>
-      </div>
-
-      <!-- Contador total -->
-      <div class="score-counter">
-        <div class="counter-ring">
-          <span class="counter-num">{{ getTotalRespondidas() }}</span>
-          <span class="counter-total">/ {{ preguntas.length }}</span>
-        </div>
-        <div class="counter-label">preguntas<br>respondidas</div>
-      </div>
-
-    </div>
-
-    <!-- ── BLOQUE 1: COMEDEROS ── -->
-    <div class="seccion">
-      <div class="seccion-header">
-        <div class="seccion-icon-wrap" style="background:#dbeafe">
-          <span class="material-symbols-outlined" style="color:#2563eb">restaurant</span>
-        </div>
-        <div>
-          <h2 class="seccion-titulo">Comederos</h2>
-          <p class="seccion-desc">Estado, mantenimiento y acceso a los comederos</p>
-        </div>
-        <div class="seccion-score" [style.color]="getColorBloque(['comederos_limpios','comederos_mantenimiento','acceso_alimento'])">
-          {{ getPromedioBloque(['comederos_limpios','comederos_mantenimiento','acceso_alimento']) | number:'1.0-0' }}%
-        </div>
-      </div>
-
-      <div class="preguntas-grid">
-
-        <!-- P1: Comederos limpios -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['comederos_limpios'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">1</span>
-            ¿Los comederos se encuentran limpios?
-          </div>
-          <div class="pregunta-hint">
-            Sin alimento viejo, heces ni suciedad acumulada en el interior
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesComederoLimpio"
-                 [class.selected]="respuestas['comederos_limpios'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('comederos_limpios', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- P2: Comederos mantenimiento -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['comederos_mantenimiento'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">2</span>
-            ¿Los comederos están en buenas condiciones de mantenimiento?
-          </div>
-          <div class="pregunta-hint">
-            Sin bordes afilados, en buen estado, permiten introducción solo de la cabeza
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesComederoLimpio"
-                 [class.selected]="respuestas['comederos_mantenimiento'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('comederos_mantenimiento', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- P3: Acceso alimento -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['acceso_alimento'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">3</span>
-            ¿Los comederos facilitan el acceso al alimento?
-          </div>
-          <div class="pregunta-hint">
-            Mínimo 10 cm por jaula; borde a 8–14 cm del piso según etapa productiva
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesComederoLimpio"
-                 [class.selected]="respuestas['acceso_alimento'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('acceso_alimento', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
+        <span class="score-block-pct">{{ getPromedioBloque(bloque.keys) | number:'1.0-0' }}%</span>
       </div>
     </div>
 
-    <!-- ── BLOQUE 2: ALIMENTO BALANCEADO ── -->
-    <div class="seccion">
-      <div class="seccion-header">
-        <div class="seccion-icon-wrap" style="background:#ccfbf1">
-          <span class="material-symbols-outlined" style="color:#0d9488">verified</span>
-        </div>
-        <div>
-          <h2 class="seccion-titulo">Alimento Balanceado</h2>
-          <p class="seccion-desc">Registro ICA y condiciones de almacenamiento</p>
-        </div>
-        <div class="seccion-score" [style.color]="getColorBloque(['alimento_ica','almacenamiento'])">
-          {{ getPromedioBloque(['alimento_ica','almacenamiento']) | number:'1.0-0' }}%
-        </div>
+    <div class="score-badge-total">
+      <span class="material-symbols-outlined">bar_chart</span>
+      Puntaje: <strong>{{ calcularSubtotal() | number:'1.0-0' }}</strong>
+    </div>
+  </div>
+
+  <!-- ── BLOQUE 1: COMEDEROS ── -->
+  <div class="section-title">
+    <span class="material-symbols-outlined" style="color:#2563eb">restaurant</span>
+    Comederos
+    <span class="section-pct" [style.color]="getColorBloque(['comederos_limpios','comederos_mantenimiento','acceso_alimento'])">
+      {{ getPromedioBloque(['comederos_limpios','comederos_mantenimiento','acceso_alimento']) | number:'1.0-0' }}%
+    </span>
+  </div>
+
+  <div class="grid">
+
+    <div class="card" [class.answered]="respuestas['comederos_limpios'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">cleaning_services</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">1</span> ¿Los comederos se encuentran limpios?</h3>
+        <p class="hint">Sin alimento viejo, heces ni suciedad acumulada en el interior.</p>
       </div>
-
-      <!-- NOTA NORMATIVA -->
-      <div class="nota-normativa">
-        <span class="material-symbols-outlined">info</span>
-        <span>Aplica a todos los sistemas productivos. Las granjas con dietas no comerciales deben contar con documento avalado y firmado por Zootecnista o MVZ con matrícula profesional vigente.</span>
-      </div>
-
-      <div class="preguntas-grid">
-
-        <!-- P4: Registro ICA -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['alimento_ica'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">4</span>
-            ¿Los alimentos balanceados comerciales cuentan con registro ICA vigente?
-          </div>
-          <div class="pregunta-hint">
-            Verificar etiqueta o documentación del alimento balanceado en uso
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesAlimentoBalanceado"
-                 [class.selected]="respuestas['alimento_ica'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('alimento_ica', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesComederoLimpio"
+          [class.active]="respuestas['comederos_limpios'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('comederos_limpios', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
         </div>
-
-        <!-- P5: Almacenamiento -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['almacenamiento'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">5</span>
-            ¿Las áreas de almacenamiento evitan el deterioro y contaminación?
-          </div>
-          <div class="pregunta-hint">
-            Sobre estibas, separados de la pared, temperatura y humedad adecuadas
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesAlimentoBalanceado"
-                 [class.selected]="respuestas['almacenamiento'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('almacenamiento', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <!-- ── BLOQUE 3: FORRAJE ── -->
-    <div class="seccion">
-      <div class="seccion-header">
-        <div class="seccion-icon-wrap" style="background:#dcfce7">
-          <span class="material-symbols-outlined" style="color:#16a34a">grass</span>
-        </div>
-        <div>
-          <h2 class="seccion-titulo">Acceso a Forraje</h2>
-          <p class="seccion-desc">Solo aplica para sistemas extensivos y semi-intensivos</p>
-        </div>
-        <div class="seccion-score" [style.color]="getColorBloque(['oferta_forraje'])">
-          {{ getPromedioBloque(['oferta_forraje']) | number:'1.0-0' }}%
-        </div>
+    <div class="card" [class.answered]="respuestas['comederos_mantenimiento'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">build</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">2</span> ¿Los comederos están en buenas condiciones?</h3>
+        <p class="hint">Sin bordes afilados, en buen estado, permiten introducción solo de la cabeza.</p>
       </div>
-
-      <div class="nota-normativa nota-amber">
-        <span class="material-symbols-outlined">warning</span>
-        <span>No utilizar productos vencidos, contaminados, ni subproductos de cultivos ornamentales o desechos de alimentación humana.</span>
-      </div>
-
-      <div class="preguntas-grid preguntas-grid-2">
-
-        <!-- P6: Forraje -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['oferta_forraje'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">6</span>
-            ¿Los animales tienen oferta de forraje?
-          </div>
-          <div class="pregunta-hint">
-            Verificar disponibilidad en pastoreo, pasteras o comederos
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesForraje"
-                 [class.selected]="respuestas['oferta_forraje'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('oferta_forraje', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesComederoLimpio"
+          [class.active]="respuestas['comederos_mantenimiento'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('comederos_mantenimiento', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
         </div>
-
       </div>
     </div>
 
-    <!-- ── BLOQUE 4: GAZAPOS ── -->
-    <div class="seccion">
-      <div class="seccion-header">
-        <div class="seccion-icon-wrap" style="background:#ede9fe">
-          <span class="material-symbols-outlined" style="color:#7c3aed">pets</span>
-        </div>
-        <div>
-          <h2 class="seccion-titulo">Alimentación de Gazapos</h2>
-          <p class="seccion-desc">Solo aplica para sistemas con fase de cría</p>
-        </div>
-        <div class="seccion-score" [style.color]="getColorBloque(['leche_materna','alimento_solido'])">
-          {{ getPromedioBloque(['leche_materna','alimento_solido']) | number:'1.0-0' }}%
-        </div>
+    <div class="card" [class.answered]="respuestas['acceso_alimento'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">restaurant</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">3</span> ¿Los comederos facilitan el acceso al alimento?</h3>
+        <p class="hint">Mínimo 10 cm por jaula; borde a 8–14 cm del piso según etapa productiva.</p>
       </div>
-
-      <div class="preguntas-grid">
-
-        <!-- P7: Leche materna -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['leche_materna'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">7</span>
-            ¿Los gazapos tienen acceso a leche materna mínimo hasta los 30 días?
-          </div>
-          <div class="pregunta-hint">
-            Verificar registros de edad al destete y observación directa
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesGazapos"
-                 [class.selected]="respuestas['leche_materna'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('leche_materna', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesComederoLimpio"
+          [class.active]="respuestas['acceso_alimento'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('acceso_alimento', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
         </div>
-
-        <!-- P8: Alimento sólido -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['alimento_solido'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">8</span>
-            ¿Los gazapos tienen acceso a alimento sólido desde los 16 días?
-          </div>
-          <div class="pregunta-hint">
-            Acceso libre al alimento sólido a partir de los 16 días de edad
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesGazapos"
-                 [class.selected]="respuestas['alimento_solido'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('alimento_solido', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── BLOQUE 5: AGUA ── -->
-    <div class="seccion">
-      <div class="seccion-header">
-        <div class="seccion-icon-wrap" style="background:#dbeafe">
-          <span class="material-symbols-outlined" style="color:#1d4ed8">water_drop</span>
-        </div>
-        <div>
-          <h2 class="seccion-titulo">Acceso y Calidad del Agua</h2>
-          <p class="seccion-desc">Disponibilidad, acceso, calidad y estado de bebederos o chupos</p>
-        </div>
-        <div class="seccion-score" [style.color]="getColorBloque(['suficientes_bebederos','agua_voluntad','acceso_agua','calidad_agua','estado_bebederos','altura_bebederos'])">
-          {{ getPromedioBloque(['suficientes_bebederos','agua_voluntad','acceso_agua','calidad_agua','estado_bebederos','altura_bebederos']) | number:'1.0-0' }}%
-        </div>
-      </div>
-
-      <div class="nota-normativa">
-        <span class="material-symbols-outlined">info</span>
-        <span>Jaulas individuales: 1 bebedero por animal + 1 extra para gazapos en maternidad. Jaulas grupales: máximo 7 animales por bebedero o chupo.</span>
-      </div>
-
-      <div class="preguntas-grid">
-
-        <!-- P9: Suficientes bebederos -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['suficientes_bebederos'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">9</span>
-            ¿Se dispone de suficientes chupos o bebederos?
-          </div>
-          <div class="pregunta-hint">
-            Verificar cantidad acorde al número de animales alojados por jaula
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesAgua"
-                 [class.selected]="respuestas['suficientes_bebederos'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('suficientes_bebederos', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- P10: Agua voluntad -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['agua_voluntad'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">10</span>
-            ¿Los animales beben agua a voluntad?
-          </div>
-          <div class="pregunta-hint">
-            Todos los animales pueden acceder al agua en todo momento
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesAgua"
-                 [class.selected]="respuestas['agua_voluntad'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('agua_voluntad', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- P11: Acceso agua -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['acceso_agua'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">11</span>
-            ¿Los animales pueden acceder con facilidad al agua?
-          </div>
-          <div class="pregunta-hint">
-            Verificar que los chupos o bebederos estén funcionales y accesibles
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesAgua"
-                 [class.selected]="respuestas['acceso_agua'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('acceso_agua', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- P12: Calidad agua -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['calidad_agua'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">12</span>
-            ¿La calidad del agua es aceptable?
-          </div>
-          <div class="pregunta-hint">
-            Sin malos olores, aceites, productos químicos ni materia orgánica en suspensión
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesAgua"
-                 [class.selected]="respuestas['calidad_agua'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('calidad_agua', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- P13: Estado bebederos -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['estado_bebederos'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">13</span>
-            ¿El estado de los bebederos o chupos es apropiado para su uso?
-          </div>
-          <div class="pregunta-hint">
-            Sin elementos que ocasionen lesiones, fugas de líquido ni presencia de lama
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesEstadoBebederos"
-                 [class.selected]="respuestas['estado_bebederos'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('estado_bebederos', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- P14: Altura bebederos -->
-        <div class="pregunta-card" [class.card-completa]="respuestas['altura_bebederos'] !== undefined">
-          <div class="pregunta-titulo">
-            <span class="pregunta-num">14</span>
-            ¿Los bebederos se encuentran a una altura apropiada?
-          </div>
-          <div class="pregunta-hint">
-            Adultos: 16–20 cm del piso. Gazapos: recomendado bajo 14 cm, aceptable 14–22 cm
-          </div>
-          <div class="opciones-lista">
-            <div class="opcion"
-                 *ngFor="let op of opcionesAlturaBebederos"
-                 [class.selected]="respuestas['altura_bebederos'] === op.valor"
-                 [class.op-warn]="op.valor === 0"
-                 (click)="seleccionar('altura_bebederos', op.valor)">
-              <div class="opcion-radio"></div>
-              <div class="opcion-body">
-                <span class="opcion-texto">{{ op.texto }}</span>
-                <span class="opcion-sub">{{ op.criterio }}</span>
-              </div>
-              <span class="opcion-pts">{{ op.valor }}</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- OBSERVACIONES + EVIDENCIAS -->
-    <div class="extra">
-
-      <div class="obs-wrap">
-        <label class="obs-label">
-          <span class="material-symbols-outlined">edit_note</span>
-          Observaciones del técnico
-        </label>
-        <textarea
-          [(ngModel)]="observaciones"
-          placeholder="Describe hallazgos relevantes sobre alimentación, agua, almacenamiento o bienestar...">
-        </textarea>
-      </div>
-
-      <label class="upload-box">
-        <input type="file" accept="image/*" multiple hidden>
-        <span class="material-symbols-outlined">cloud_upload</span>
-        <div class="upload-text">
-          <strong>Subir evidencias</strong>
-          <small>JPG, PNG o WEBP</small>
-        </div>
-      </label>
-
-    </div>
-
-    <!-- ACCIONES -->
-    <div class="actions">
-      <button class="btn secondary">
-        <span class="material-symbols-outlined">arrow_back_ios</span>
-        Anterior
-      </button>
-      <div class="actions-right">
-        <button class="btn ghost">Guardar borrador</button>
-        <button class="btn primary">
-          Guardar y continuar
-          <span class="material-symbols-outlined">arrow_forward_ios</span>
-        </button>
       </div>
     </div>
 
   </div>
+
+  <!-- ── BLOQUE 2: ALIMENTO BALANCEADO ── -->
+  <div class="section-title">
+    <span class="material-symbols-outlined" style="color:#0d9488">verified</span>
+    Alimento Balanceado
+    <span class="section-pct" [style.color]="getColorBloque(['alimento_ica','almacenamiento'])">
+      {{ getPromedioBloque(['alimento_ica','almacenamiento']) | number:'1.0-0' }}%
+    </span>
+  </div>
+
+  <div class="nota-normativa">
+    <span class="material-symbols-outlined">info</span>
+    Las granjas con dietas no comerciales deben contar con documento avalado y firmado por Zootecnista o MVZ con matrícula profesional vigente.
+  </div>
+
+  <div class="grid">
+
+    <div class="card" [class.answered]="respuestas['alimento_ica'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">verified_user</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">4</span> ¿Los alimentos balanceados tienen registro ICA vigente?</h3>
+        <p class="hint">Verificar etiqueta o documentación del alimento balanceado en uso.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesAlimentoBalanceado"
+          [class.active]="respuestas['alimento_ica'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('alimento_ica', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" [class.answered]="respuestas['almacenamiento'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">warehouse</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">5</span> ¿Las áreas de almacenamiento evitan deterioro y contaminación?</h3>
+        <p class="hint">Sobre estibas, separados de la pared, temperatura y humedad adecuadas.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesAlimentoBalanceado"
+          [class.active]="respuestas['almacenamiento'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('almacenamiento', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── BLOQUE 3: FORRAJE ── -->
+  <div class="section-title">
+    <span class="material-symbols-outlined" style="color:#16a34a">grass</span>
+    Acceso a Forraje
+    <span class="section-pct" [style.color]="getColorBloque(['oferta_forraje'])">
+      {{ getPromedioBloque(['oferta_forraje']) | number:'1.0-0' }}%
+    </span>
+  </div>
+
+  <div class="nota-normativa nota-amber">
+    <span class="material-symbols-outlined">warning</span>
+    Solo aplica para sistemas extensivos y semi-intensivos. No utilizar productos vencidos, contaminados ni subproductos de cultivos ornamentales.
+  </div>
+
+  <div class="grid grid-single">
+
+    <div class="card card-wide" [class.answered]="respuestas['oferta_forraje'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">grass</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">6</span> ¿Los animales tienen oferta de forraje?</h3>
+        <p class="hint">Verificar disponibilidad en pastoreo, pasteras o comederos.</p>
+      </div>
+      <div class="options options-row">
+        <div class="option"
+          *ngFor="let op of opcionesForraje"
+          [class.active]="respuestas['oferta_forraje'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('oferta_forraje', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── BLOQUE 4: GAZAPOS ── -->
+  <div class="section-title">
+    <span class="material-symbols-outlined" style="color:#7c3aed">pets</span>
+    Alimentación de Gazapos
+    <span class="section-pct" [style.color]="getColorBloque(['leche_materna','alimento_solido'])">
+      {{ getPromedioBloque(['leche_materna','alimento_solido']) | number:'1.0-0' }}%
+    </span>
+  </div>
+
+  <div class="grid">
+
+    <div class="card" [class.answered]="respuestas['leche_materna'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">child_care</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">7</span> ¿Los gazapos tienen acceso a leche materna mínimo hasta los 30 días?</h3>
+        <p class="hint">Verificar registros de edad al destete y observación directa.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesGazapos"
+          [class.active]="respuestas['leche_materna'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('leche_materna', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" [class.answered]="respuestas['alimento_solido'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">lunch_dining</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">8</span> ¿Los gazapos tienen acceso a alimento sólido desde los 16 días?</h3>
+        <p class="hint">Acceso libre al alimento sólido a partir de los 16 días de edad.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesGazapos"
+          [class.active]="respuestas['alimento_solido'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('alimento_solido', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── BLOQUE 5: AGUA ── -->
+  <div class="section-title">
+    <span class="material-symbols-outlined" style="color:#1d4ed8">water_drop</span>
+    Acceso y Calidad del Agua
+    <span class="section-pct" [style.color]="getColorBloque(['suficientes_bebederos','agua_voluntad','acceso_agua','calidad_agua','estado_bebederos','altura_bebederos'])">
+      {{ getPromedioBloque(['suficientes_bebederos','agua_voluntad','acceso_agua','calidad_agua','estado_bebederos','altura_bebederos']) | number:'1.0-0' }}%
+    </span>
+  </div>
+
+  <div class="nota-normativa">
+    <span class="material-symbols-outlined">info</span>
+    Jaulas individuales: 1 bebedero por animal + 1 extra para gazapos en maternidad. Jaulas grupales: máximo 7 animales por bebedero o chupo.
+  </div>
+
+  <div class="grid">
+
+    <div class="card" [class.answered]="respuestas['suficientes_bebederos'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">water_drop</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">9</span> ¿Se dispone de suficientes chupos o bebederos?</h3>
+        <p class="hint">Verificar cantidad acorde al número de animales alojados por jaula.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesAgua"
+          [class.active]="respuestas['suficientes_bebederos'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('suficientes_bebederos', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" [class.answered]="respuestas['agua_voluntad'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">local_drink</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">10</span> ¿Los animales beben agua a voluntad?</h3>
+        <p class="hint">Todos los animales pueden acceder al agua en todo momento.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesAgua"
+          [class.active]="respuestas['agua_voluntad'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('agua_voluntad', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" [class.answered]="respuestas['acceso_agua'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">faucet</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">11</span> ¿Los animales pueden acceder con facilidad al agua?</h3>
+        <p class="hint">Verificar que los chupos o bebederos estén funcionales y accesibles.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesAgua"
+          [class.active]="respuestas['acceso_agua'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('acceso_agua', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" [class.answered]="respuestas['calidad_agua'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">opacity</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">12</span> ¿La calidad del agua es aceptable?</h3>
+        <p class="hint">Sin malos olores, aceites, productos químicos ni materia orgánica en suspensión.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesAgua"
+          [class.active]="respuestas['calidad_agua'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('calidad_agua', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" [class.answered]="respuestas['estado_bebederos'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">plumbing</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">13</span> ¿El estado de los bebederos o chupos es apropiado?</h3>
+        <p class="hint">Sin elementos que ocasionen lesiones, fugas de líquido ni presencia de lama.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesEstadoBebederos"
+          [class.active]="respuestas['estado_bebederos'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('estado_bebederos', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" [class.answered]="respuestas['altura_bebederos'] !== undefined">
+      <div class="card-icon"><span class="material-symbols-outlined">height</span></div>
+      <div class="card-body">
+        <h3><span class="pregunta-num">14</span> ¿Los bebederos se encuentran a una altura apropiada?</h3>
+        <p class="hint">Adultos: 16–20 cm del piso. Gazapos: recomendado bajo 14 cm, aceptable 14–22 cm.</p>
+      </div>
+      <div class="options">
+        <div class="option"
+          *ngFor="let op of opcionesAlturaBebederos"
+          [class.active]="respuestas['altura_bebederos'] === op.valor"
+          [class.warn]="op.valor === 0"
+          (click)="seleccionar('altura_bebederos', op.valor)">
+          <span>{{ op.texto }}<small>{{ op.criterio }}</small></span>
+          <strong>{{ op.valor }}</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OBSERVACIONES + EVIDENCIAS -->
+  <div class="extras">
+    <div class="obs-wrap">
+      <label class="obs-label">
+        <span class="material-symbols-outlined">edit_note</span>
+        Observaciones del técnico
+      </label>
+      <textarea
+        [(ngModel)]="observaciones"
+        placeholder="Describe hallazgos relevantes sobre alimentación, agua, almacenamiento o bienestar...">
+      </textarea>
+    </div>
+    <label class="upload-box">
+      <input type="file" accept="image/*" multiple hidden>
+      <span class="material-symbols-outlined">cloud_upload</span>
+      <div class="upload-text">
+        <strong>Subir evidencias</strong>
+        <small>JPG, PNG o WEBP</small>
+      </div>
+    </label>
+  </div>
+
+  <!-- ACTIONS -->
+<div class="actions">
+  <button class="btn btn-secondary">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Anterior
+  </button>
+
+  <div class="score-badge">
+    <span class="material-symbols-outlined">bar_chart</span>
+    Puntaje: <strong>{{ calcularSubtotal() | number:'1.0-0' }}</strong> / 100
+  </div>
+
+  <p *ngIf="errorGuardar" class="error-msg">
+    <span class="material-symbols-outlined">error</span>
+    {{ errorGuardar }}
+  </p>
+
+  <div class="actions-right">
+    <button class="btn btn-ghost" [disabled]="guardando">
+      Guardar borrador
+    </button>
+    <button class="btn btn-primary" (click)="guardar()" [disabled]="guardando">
+      <span *ngIf="guardando" class="material-symbols-outlined spin">progress_activity</span>
+      <span *ngIf="!guardando">Guardar y continuar</span>
+      <span *ngIf="!guardando" class="material-symbols-outlined">arrow_forward</span>
+    </button>
+  </div>
+</div>
+<!-- MODAL ÉXITO -->
+<div class="modal-overlay" *ngIf="guardadoExitoso">
+  <div class="modal-card">
+    <div class="modal-icon">
+      <span class="material-symbols-outlined">check_circle</span>
+    </div>
+    <h3>¡Evaluación guardada!</h3>
+    <p>La evaluación de alimentación y agua fue registrada correctamente.</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" (click)="router.navigate(['/evaluaciones'])">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Ir a evaluaciones
+      </button>
+      <button class="btn btn-primary" (click)="guardadoExitoso = false">
+        Continuar aquí
+        <span class="material-symbols-outlined">edit</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 </div>

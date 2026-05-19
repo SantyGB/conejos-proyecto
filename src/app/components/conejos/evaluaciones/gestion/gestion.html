@@ -1,369 +1,383 @@
-<div class="layout">
+<!-- TOPBAR -->
+<aside class="sidebar">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
+  <div class="logo">
+    <h2>Cunicultura</h2>
+  </div>
 
-    <div class="logo">
-      <span class="material-symbols-outlined"></span>
-      <h2>Cunicultura</h2>
+  <nav class="menu">
+
+    <a routerLink="/evaluaciones">
+      <span class="material-symbols-outlined">assignment</span>
+      <span>Evaluaciones</span>
+    </a>
+
+    <a routerLink="/seleccion">
+      <span class="material-symbols-outlined">grid_view</span>
+      <span>Menú principal</span>
+    </a>
+
+  </nav>
+
+  <div class="sidebar-footer">
+
+    <div class="user-card">
+      <img src="https://i.pravatar.cc/100" alt="">
+
+      <div>
+        <strong>Administrador</strong>
+        <small>Panel principal</small>
+      </div>
+
     </div>
 
-    <a routerLink="/evaluaciones" class="back-btn">
+  </div>
+
+</aside>
+
+<!-- MAIN -->
+<div class="container">
+
+    <!-- FINCA BANNER -->
+  <div class="finca-banner" *ngIf="fincaNombre">
+    <div class="finca-banner-left">
+      <div class="finca-icon-wrap">
+        <span class="material-symbols-outlined">home_work</span>
+      </div>
+      <div class="finca-info">
+        <span class="finca-label">Evaluando predio</span>
+        <strong class="finca-nombre">{{ fincaNombre }}</strong>
+      </div>
+    </div>
+    <div class="finca-badge">
+      <span class="badge-dot"></span>
+      Evaluación en curso
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+
+    <div class="header-text">
+
+      <span class="header-tag">
+        Gestión del predio
+      </span>
+
+      <h1>
+        Manejo Sanitario y Administrativo
+      </h1>
+
+      <p>
+        Evaluación de protocolos, mortalidad y control sanitario
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- SECTION -->
+  <div class="section-title">
+
+    <span class="material-symbols-outlined">
+      checklist
+    </span>
+
+    Evaluación de gestión
+
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- P42 -->
+    <div class="card">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          pets
+        </span>
+      </div>
+
+      <div class="card-body">
+
+        <h3>
+          Mortalidad en gazapos pre destete
+        </h3>
+
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of mortalidadGazapos"
+          [class.active]="respuestas.mortalidad_gazapos === item.nombre"
+          (click)="seleccionar(item.nombre, 'mortalidad_gazapos')"
+        >
+          <span>{{ item.nombre }}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- P43 -->
+    <div class="card">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          monitoring
+        </span>
+      </div>
+
+      <div class="card-body">
+        <h3>Mortalidad en engorde</h3>
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of mortalidadEngorde"
+          [class.active]="respuestas.mortalidad_engorde === item.nombre"
+          (click)="seleccionar(item.nombre, 'mortalidad_engorde')"
+        >
+          <span>{{ item.nombre }}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- P44 -->
+    <div class="card">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          groups
+        </span>
+      </div>
+
+      <div class="card-body">
+        <h3>Mortalidad en reproductores</h3>
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of mortalidadReproductores"
+          [class.active]="respuestas.mortalidad_reproductores === item.nombre"
+          (click)="seleccionar(item.nombre, 'mortalidad_reproductores')"
+        >
+          <span>{{ item.nombre }}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- P45 -->
+    <div class="card">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          description
+        </span>
+      </div>
+
+      <div class="card-body">
+        <h3>Protocolo de manejo documentado</h3>
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of manejoPredio"
+          [class.active]="respuestas.manejo_predio === item.nombre"
+          (click)="seleccionar(item.nombre, 'manejo_predio')"
+        >
+          <span>{{ item.nombre }}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- P46 -->
+    <div class="card">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          health_and_safety
+        </span>
+      </div>
+
+      <div class="card-body">
+        <h3>Plan sanitario</h3>
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of planSanitario"
+          [class.active]="respuestas.plan_sanitario === item.nombre"
+          (click)="seleccionar(item.nombre, 'plan_sanitario')"
+        >
+          <span>{{ item.nombre }}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- P47 -->
+    <div class="card">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          medication
+        </span>
+      </div>
+
+      <div class="card-body">
+        <h3>Buenas prácticas medicamentos veterinarios</h3>
+      </div>
+
+      <div class="options">
+
+        <div
+          class="option"
+          *ngFor="let item of medicamentos"
+          [class.active]="respuestas.medicamentos_legales === item.nombre"
+          (click)="seleccionar(item.nombre, 'medicamentos_legales')"
+        >
+          <span>{{ item.nombre }}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- P48 -->
+    <div class="card card-wide">
+
+      <div class="card-icon">
+        <span class="material-symbols-outlined">
+          warning
+        </span>
+      </div>
+
+      <div class="card-body">
+        <h3>Plan de contingencia para desastres</h3>
+      </div>
+
+      <div class="options options-row">
+
+        <div
+          class="option"
+          *ngFor="let item of contingencia"
+          [class.active]="respuestas.contingencia_desastres === item.nombre"
+          (click)="seleccionar(item.nombre, 'contingencia_desastres')"
+        >
+          <span>{{ item.nombre }}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- EXTRA -->
+  <div class="extra">
+
+    <div class="observaciones-card">
+
+      <h3>Observaciones del técnico</h3>
+
+      <textarea
+        [(ngModel)]="observaciones"
+        placeholder="Escribe observaciones relevantes..."
+      ></textarea>
+
+    </div>
+
+    <div class="upload-container">
+
+      <label for="fileUpload" class="upload-box">
+
+        <span class="material-symbols-outlined icon">
+          cloud_upload
+        </span>
+
+        <span class="upload-title">
+          Subir fotos
+        </span>
+
+        <span class="upload-subtitle">
+          JPG, PNG
+        </span>
+
+      </label>
+
+      <input
+        type="file"
+        id="fileUpload"
+        multiple
+        hidden
+        (change)="subirFotos($event)"
+      >
+
+      <div
+        class="preview"
+        *ngIf="imagenes.length > 0"
+      >
+
+        <div
+          class="file-name"
+          *ngFor="let img of imagenes"
+        >
+          {{ img }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+
+    <button
+      routerLink="/evaluaciones/salud"
+      class="btn btn-secondary"
+    >
 
       <span class="material-symbols-outlined">
         arrow_back
       </span>
 
-      Regresar
+      Anterior
 
-    </a>
+    </button>
 
-  </div>
+    <button
+      class="btn btn-primary"
+      (click)="guardar()"
+    >
 
-  <!-- MAIN -->
-  <div class="main">
+      Guardar y finalizar
 
-    <div class="header">
+      <span class="material-symbols-outlined">
+        arrow_forward
+      </span>
 
-      <h1>Gestión del predio</h1>
-
-      <p>
-        Evaluación del manejo sanitario y administrativo
-      </p>
-
-    </div>
-
-    <!-- SELECT -->
-    <div class="finca-bar">
-
-      <div class="finca-select">
-
-        <label>Elegir finca para el registro</label>
-
-        <select>
-
-          <option>Seleccionar finca</option>
-          <option>Finca El Paraíso</option>
-          <option>Granja Los Conejos</option>
-
-        </select>
-
-      </div>
-
-    </div>
-
-    <!-- GRID -->
-    <div class="grid">
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Mortalidad de gazapos</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_gazapos')">
-            Baja
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_gazapos')">
-            Media
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_gazapos')">
-            Alta
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Mortalidad en engorde</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_engorde')">
-            Baja
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_engorde' )">
-            Media
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_engorde')">
-            Alta
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Mortalidad reproductores</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_reproductores')">
-            Baja
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_reproductores')">
-            Media
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'mortalidad_reproductores')">
-            Alta
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Manejo del predio</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'manejo_predio')">
-            Completo
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'manejo_predio')">
-            Parcial
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'manejo_predio')">
-            Básico
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'manejo_predio')">
-            No tiene
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Plan sanitario</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'plan_sanitario')">
-            Completo
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'plan_sanitario')">
-            Parcial
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'plan_sanitario')">
-            Básico
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'plan_sanitario')">
-            No tiene
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Medicamentos legales</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'medicamentos_legales')">
-            Sí cumple
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'medicamentos_legales')">
-            No cumple
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Medicamentos vencidos</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'medicamentos_vencidos')">
-            No hay
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'medicamentos_vencidos')">
-            Sí hay
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Tratamientos veterinarios</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'tratamientos_veterinarios')">
-            Siempre
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'tratamientos_veterinarios')">
-            A veces
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'tratamientos_veterinarios')">
-            Nunca
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CARD -->
-      <div class="card">
-
-        <h3>Registros veterinarios</h3>
-
-        <div class="options">
-
-          <div class="option"
-          (click)="seleccionar($event, 'registros_veterinarios')">
-            Completos
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'registros_veterinarios')">
-            Parciales
-          </div>
-
-          <div class="option"
-          (click)="seleccionar($event, 'registros_veterinarios')">
-            No tienen
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- EXTRA -->
-    <div class="extra">
-
-      <textarea
-[(ngModel)]="observaciones"
-placeholder="Observaciones del técnico...">
-</textarea>
-
-      <!-- SUBIR -->
-      <div class="upload-container">
-
-        <label for="fileUpload" class="upload-box">
-
-          <span class="material-symbols-outlined icon">
-            cloud_upload
-          </span>
-
-          <span class="upload-title">
-            Subir fotos
-          </span>
-
-          <span class="upload-subtitle">
-            JPG, PNG
-          </span>
-
-        </label>
-
-        <input
-          type="file"
-          id="fileUpload"
-          multiple
-          hidden
-          (change)="subirFotos($event)"
-        >
-
-        <div
-          class="preview"
-          *ngIf="imagenes.length > 0">
-
-          <div
-            class="file-name"
-            *ngFor="let img of imagenes">
-
-            {{ img }}
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- ACTIONS -->
-    <div class="actions">
-
-      <button
-      routerLink="/evaluaciones/salud"
-      class="btn secondary">
-
-        Anterior
-
-      </button>
-
-      <button
-class="btn primary"
-(click)="guardar()">
-
-  Guardar y finalizar
-
-</button>
-
-    </div>
+    </button>
 
   </div>
 
