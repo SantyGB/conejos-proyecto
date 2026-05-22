@@ -1,345 +1,289 @@
-  <div class="dashboard-layout">
+<div class="dashboard-layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
-      <div class="logo">
-        <div>
-          <h2>Cunicultura</h2>
-        </div>
+    <div class="logo">
+      <div>
+        <h2>Cunicultura</h2>
       </div>
+    </div>
 
-      <nav class="menu">
+    <nav class="menu">
 
-        <a class="active" routerLink="/dashboard">
-          <span class="material-symbols-outlined">dashboard</span>
-          <span>Dashboard</span>
-        </a>
+      <a class="active" routerLink="/dashboard">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
 
-        <a routerLink="/granjas">
-          <span class="material-symbols-outlined">home_work</span>
-          <span>Granjas</span>
-        </a>
+      <a routerLink="/granjas">
+        <span class="material-symbols-outlined">home_work</span>
+        <span>Granjas</span>
+      </a>
 
-        <a routerLink="/resultados">
-          <span class="material-symbols-outlined">analytics</span>
-          <span>Resultados</span>
-        </a>
+      <a routerLink="/resultados">
+        <span class="material-symbols-outlined">analytics</span>
+        <span>Resultados</span>
+      </a>
 
-        <a routerLink="/configuracion">
-          <span class="material-symbols-outlined">settings</span>
-          <span>Sistema</span>
-        </a>
+      <a routerLink="/configuracion">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Sistema</span>
+      </a>
 
-        <a routerLink="/seleccion">
-          <span class="material-symbols-outlined">apps</span>
-          <span>Menú principal</span>
-        </a>
+      <a routerLink="/seleccion">
+        <span class="material-symbols-outlined">apps</span>
+        <span>Menú principal</span>
+      </a>
 
-      </nav>
+    </nav>
 
-      <div class="sidebar-footer">
-        <div class="user-card">
-          <img src="https://i.pravatar.cc/100" alt="">
-          <div>
-            <strong>Administrador</strong>
-            <small>Panel principal</small>
-          </div>
-        </div>
-      </div>
+    <div class="sidebar-footer">
 
-    </aside>
+      <div class="user-card">
 
-    <!-- CONTENIDO -->
-    <main class="container">
-
-      <!-- HEADER -->
-      <div class="header">
+        <img src="https://i.pravatar.cc/100" alt="">
 
         <div>
-          <p class="welcome">Panel General</p>
-          <h1>Indicadores de Bienestar</h1>
-        </div>
-
-        <button class="btn">
-          <span class="material-symbols-outlined">add_circle</span>
-          Nueva Evaluación
-        </button>
-
-      </div>
-
-      <!-- GRID -->
-      <div class="grid">
-
-        <!-- CARD PRINCIPAL -->
-        <div class="card-big">
-
-          <p class="card-label">Puntaje promedio</p>
-
-          <div class="score-circle">
-
-            <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
-
-              <defs>
-                <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#22c55e"/>
-                  <stop offset="100%" stop-color="#16a34a"/>
-                </linearGradient>
-              </defs>
-
-              <circle
-                class="progress-ring-bg"
-                cx="90"
-                cy="90"
-                r="80"
-              />
-
-              <circle
-                class="progress-ring-fill"
-                cx="90"
-                cy="90"
-                r="80"
-                style="stroke-dashoffset: calc(502 * (1 - 0.84));"
-              />
-
-            </svg>
-
-            <div class="score-text">8.4</div>
-
-          </div>
-
-          <div class="trend">
-            <span class="material-symbols-outlined">trending_up</span>
-            +12% desde el mes pasado
-          </div>
-
-        </div>
-
-        <!-- CARD -->
-        <div class="card">
-
-          <div class="card-icon">
-            <span class="material-symbols-outlined">home_work</span>
-          </div>
-
-          <div class="value">24</div>
-
-          <p>Granjas activas</p>
-
-        </div>
-
-        <!-- CARD -->
-        <div class="card">
-
-          <div class="card-icon">
-            <span class="material-symbols-outlined">fact_check</span>
-          </div>
-
-          <div class="value">07</div>
-
-          <p>Evaluaciones pendientes</p>
-
+          <strong>Administrador</strong>
+          <small>Panel principal</small>
         </div>
 
       </div>
 
-      <!-- SECTION -->
-      <div class="section">
+    </div>
 
-        <!-- LISTA -->
-        <div>
+  </aside>
 
-          <h2>Evaluaciones recientes</h2>
+  <!-- CONTENIDO -->
+  <main class="container">
 
-          <div class="list">
+    <!-- HEADER -->
+    <div class="header">
 
-            <!-- ITEM -->
-            <div class="item">
+      <div>
+        <p class="welcome">Panel General</p>
+        <h1>Indicadores de Bienestar</h1>
+      </div>
 
-              <div class="item-content">
+      <button class="btn" routerLink="/evaluaciones">
 
-                <img
-                  src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?q=80&w=400"
-                  class="item-img"
-                >
+        <span class="material-symbols-outlined">
+          add_circle
+        </span>
 
-                <div class="item-info">
-                  <b>Finca Meadowbrook</b>
-                  <small>24 Oct • Dr. Aris</small>
-                </div>
+        Nueva Evaluación
 
-              </div>
+      </button>
 
-              <div class="score-progress">
+    </div>
 
-                <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
+    <!-- GRID -->
+    <div class="grid">
 
-                  <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
+      <!-- CARD PRINCIPAL -->
+      <div class="card-big">
 
-                  <circle
-                    class="mini-ring-fill"
-                    cx="35"
-                    cy="35"
-                    r="28"
-                    style="stroke-dashoffset: calc(176 * (1 - 0.92))"
-                  />
+        <p class="card-label">
+          Puntaje promedio general
+        </p>
 
-                </svg>
+        <div class="score-circle">
 
-                <div class="mini-score-text">9.2</div>
+          <svg
+            class="progress-ring"
+            width="180"
+            height="180"
+            viewBox="0 0 180 180"
+          >
 
-              </div>
+            <defs>
 
-            </div>
+              <linearGradient
+                id="circleGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
 
-            <!-- ITEM -->
-            <div class="item">
+                <stop offset="0%" stop-color="#22c55e"/>
 
-              <div class="item-content">
+                <stop offset="100%" stop-color="#16a34a"/>
 
-                <img
-                  src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=400"
-                  class="item-img"
-                >
+              </linearGradient>
 
-                <div class="item-info">
-                  <b>Granja Green Valley</b>
-                  <small>21 Oct • Dr. Aris</small>
-                </div>
+            </defs>
 
-              </div>
+            <circle
+              class="progress-ring-bg"
+              cx="90"
+              cy="90"
+              r="80"
+            />
 
-              <div class="score-progress">
+            <circle
+              class="progress-ring-fill"
+              cx="90"
+              cy="90"
+              r="80"
+              [style.stroke-dashoffset]="502 * (1 - promedioGeneral / 100)"
+            />
 
-                <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
+          </svg>
 
-                  <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
+          <div class="score-text">
 
-                  <circle
-                    class="mini-ring-fill"
-                    cx="35"
-                    cy="35"
-                    r="28"
-                    style="stroke-dashoffset: calc(176 * (1 - 0.68))"
-                  />
-
-                </svg>
-
-                <div class="mini-score-text">6.8</div>
-
-              </div>
-
-            </div>
-
-            <!-- ITEM -->
-            <div class="item">
-
-              <div class="item-content">
-
-                <img
-                  src="https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=400"
-                  class="item-img"
-                >
-
-                <div class="item-info">
-                  <b>Santuario Riverbend</b>
-                  <small>18 Oct • Sarah</small>
-                </div>
-
-              </div>
-
-              <div class="score-progress">
-
-                <svg class="mini-ring" width="70" height="70" viewBox="0 0 70 70">
-
-                  <circle class="mini-ring-bg" cx="35" cy="35" r="28"/>
-
-                  <circle
-                    class="mini-ring-fill"
-                    cx="35"
-                    cy="35"
-                    r="28"
-                    style="stroke-dashoffset: calc(176 * (1 - 0.87))"
-                  />
-
-                </svg>
-
-                <div class="mini-score-text">8.7</div>
-
-              </div>
-
-            </div>
+            {{ promedioGeneral }}
 
           </div>
 
         </div>
 
-        <!-- INSIGHT -->
-        <div class="insight">
+        <div class="trend">
 
-          <h3>Insight biológico</h3>
+          <span class="material-symbols-outlined">
+            trending_up
+          </span>
 
-          <p>
-            Los niveles de hidratación han bajado un 4%.
-            Se recomienda una revisión preventiva en las granjas activas.
-          </p>
+          {{ obtenerClasificacion(promedioGeneral) }}
 
-          <!-- METRIC -->
-          <div class="metric">
+        </div>
 
-            <div class="metric-header">
+      </div>
 
-              <small class="metric-title">
-                <span class="material-symbols-outlined">restaurant</span>
-                Alimentación
-              </small>
+      <!-- GRANJAS -->
+      <div class="card">
 
-              <span class="metric-value">94%</span>
+        <div class="card-icon">
+
+          <span class="material-symbols-outlined">
+            home_work
+          </span>
+
+        </div>
+
+        <div class="value">
+
+          {{ totalGranjas }}
+
+        </div>
+
+        <p>Granjas activas</p>
+
+      </div>
+
+      <!-- EVALUACIONES -->
+      <div class="card">
+
+        <div class="card-icon">
+
+          <span class="material-symbols-outlined">
+            fact_check
+          </span>
+
+        </div>
+
+        <div class="value">
+
+          {{ evaluaciones }}
+
+        </div>
+
+        <p>Evaluaciones realizadas</p>
+
+      </div>
+
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+
+      <!-- LISTA -->
+      <div>
+
+        <h2>Evaluaciones recientes</h2>
+
+        <div
+          class="empty-state"
+          *ngIf="evaluacionesRecientes.length === 0"
+        >
+
+          No hay evaluaciones registradas todavía
+
+        </div>
+
+        <div
+          class="list"
+          *ngIf="evaluacionesRecientes.length > 0"
+        >
+
+          <!-- ITEM -->
+          <div
+            class="item"
+            *ngFor="let evaluacion of evaluacionesRecientes"
+          >
+
+            <div class="item-content">
+
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
+                class="item-img"
+              >
+
+              <div class="item-info">
+
+                <b>
+                  {{ evaluacion.nombre_finca }}
+                </b>
+
+                <small>
+
+                  {{
+                    evaluacion.created_at
+                    | date:'dd MMM yyyy'
+                  }}
+
+                </small>
+
+              </div>
 
             </div>
 
-            <div class="bar">
-              <div class="fill" style="width:94%"></div>
-            </div>
+            <!-- SCORE -->
+            <div class="score-progress">
 
-          </div>
+              <svg
+                class="mini-ring"
+                width="70"
+                height="70"
+                viewBox="0 0 70 70"
+              >
 
-          <!-- METRIC -->
-          <div class="metric">
+                <circle
+                  class="mini-ring-bg"
+                  cx="35"
+                  cy="35"
+                  r="28"
+                />
 
-            <div class="metric-header">
+                <circle
+                  class="mini-ring-fill"
+                  cx="35"
+                  cy="35"
+                  r="28"
+                  [style.stroke]="obtenerColor(evaluacion.puntaje_total)"
+                  [style.stroke-dashoffset]="176 * (1 - evaluacion.puntaje_total / 100)"
+                />
 
-              <small class="metric-title">
-                <span class="material-symbols-outlined">fullscreen</span>
-                Espacio
-              </small>
+              </svg>
 
-              <span class="metric-value">82%</span>
+              <div class="mini-score-text">
 
-            </div>
+                {{ evaluacion.puntaje_total }}
 
-            <div class="bar">
-              <div class="fill blue" style="width:82%"></div>
-            </div>
+              </div>
 
-          </div>
-
-          <!-- METRIC -->
-          <div class="metric">
-
-            <div class="metric-header">
-
-              <small class="metric-title">
-                <span class="material-symbols-outlined">water_drop</span>
-                Hidratación
-              </small>
-
-              <span class="metric-value">71%</span>
-
-            </div>
-
-            <div class="bar">
-              <div class="fill orange" style="width:71%"></div>
             </div>
 
           </div>
@@ -348,6 +292,125 @@
 
       </div>
 
-    </main>
+      <!-- INSIGHT -->
+      <div class="insight">
 
-  </div>
+        <h3>Indicadores generales</h3>
+
+        <p>
+
+          Resumen promedio de bienestar animal
+          calculado automáticamente con los
+          datos registrados en Supabase.
+
+        </p>
+
+        <!-- ALIMENTACIÓN -->
+        <div class="metric">
+
+          <div class="metric-header">
+
+            <small class="metric-title">
+
+              <span class="material-symbols-outlined">
+                restaurant
+              </span>
+
+              Alimentación
+
+            </small>
+
+            <span class="metric-value">
+
+              {{ promedioAlimentacion }}%
+
+            </span>
+
+          </div>
+
+          <div class="bar">
+
+            <div
+              class="fill"
+              [style.width.%]="promedioAlimentacion"
+            ></div>
+
+          </div>
+
+        </div>
+
+        <!-- ANIMAL -->
+        <div class="metric">
+
+          <div class="metric-header">
+
+            <small class="metric-title">
+
+              <span class="material-symbols-outlined">
+                pets
+              </span>
+
+              Bienestar Animal
+
+            </small>
+
+            <span class="metric-value">
+
+              {{ promedioInstalaciones }}%
+
+            </span>
+
+          </div>
+
+          <div class="bar">
+
+            <div
+              class="fill blue"
+              [style.width.%]="promedioInstalaciones"
+            ></div>
+
+          </div>
+
+        </div>
+
+        <!-- GESTIÓN -->
+        <div class="metric">
+
+          <div class="metric-header">
+
+            <small class="metric-title">
+
+              <span class="material-symbols-outlined">
+                monitoring
+              </span>
+
+              Gestión
+
+            </small>
+
+            <span class="metric-value">
+
+              {{ promedioSalud }}%
+
+            </span>
+
+          </div>
+
+          <div class="bar">
+
+            <div
+              class="fill orange"
+              [style.width.%]="promedioSalud"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

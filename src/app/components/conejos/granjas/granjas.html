@@ -4,28 +4,33 @@
   </div>
 
   <nav class="menu">
- 
+
     <a class="active" routerLink="/granjas">
       <span class="material-symbols-outlined">home_work</span>
       <span>Granjas</span>
     </a>
+
     <a routerLink="/resultados">
       <span class="material-symbols-outlined">analytics</span>
       <span>Resultados</span>
     </a>
+
     <a routerLink="/configuracion">
       <span class="material-symbols-outlined">settings</span>
       <span>Sistema</span>
     </a>
+
     <a routerLink="/seleccion">
       <span class="material-symbols-outlined">apps</span>
       <span>Menú principal</span>
     </a>
+
   </nav>
 
   <div class="sidebar-footer">
     <div class="user-card">
       <img src="https://i.pravatar.cc/100" alt="">
+
       <div>
         <strong>Administrador</strong>
         <small>Panel principal</small>
@@ -38,351 +43,663 @@
 
   <!-- HEADER -->
   <div class="header">
+
     <div class="header-text">
       <span class="header-tag">Gestión de fincas</span>
+
       <h1>Granjas</h1>
-      <p>Producción, salud y población de conejos en todas las fincas</p>
+
+      <p>
+        Producción, salud y población de conejos
+        en todas las fincas
+      </p>
     </div>
+
     <div class="header-actions">
+
       <div class="search-box">
-        <span class="material-symbols-outlined">search</span>
-        <input type="text" placeholder="Buscar granjas...">
+        <span class="material-symbols-outlined">
+          search
+        </span>
+
+        <input
+          type="text"
+          placeholder="Buscar granjas..."
+          [(ngModel)]="busqueda"
+          (input)="filtrar()"
+        >
       </div>
+
       <button class="btn-add">
-        <span class="material-symbols-outlined">add</span>
+        <span class="material-symbols-outlined">
+          add
+        </span>
+
         Agregar granja
       </button>
+
     </div>
+
   </div>
 
-  <!-- KPIs GLOBALES -->
+  <!-- KPIs -->
   <div class="kpi-row">
+
     <div class="kpi">
-      <div class="kpi-icon"><span class="material-symbols-outlined">home_work</span></div>
-      <div>
-        <span class="kpi-value">4</span>
-        <span class="kpi-label">Granjas activas</span>
+
+      <div class="kpi-icon">
+        <span class="material-symbols-outlined">
+          home_work
+        </span>
       </div>
+
+      <div>
+        <span class="kpi-value">
+          {{ granjas.length }}
+        </span>
+
+        <span class="kpi-label">
+          Granjas activas
+        </span>
+      </div>
+
     </div>
+
     <div class="kpi">
-      <div class="kpi-icon"><span class="material-symbols-outlined">cruelty_free</span></div>
-      <div>
-        <span class="kpi-value">1.903</span>
-        <span class="kpi-label">Conejos en total</span>
+
+      <div class="kpi-icon">
+        <span class="material-symbols-outlined">
+          cruelty_free
+        </span>
       </div>
+
+      <div>
+
+        <span class="kpi-value">
+
+          {{ totalConejos }}
+
+        </span>
+
+        <span class="kpi-label">
+          Conejos en total
+        </span>
+
+      </div>
+
     </div>
+
     <div class="kpi">
-      <div class="kpi-icon kpi-green"><span class="material-symbols-outlined">trending_up</span></div>
-      <div>
-        <span class="kpi-value">+12%</span>
-        <span class="kpi-label">Producción este mes</span>
+
+      <div class="kpi-icon kpi-green">
+        <span class="material-symbols-outlined">
+          analytics
+        </span>
       </div>
+
+      <div>
+
+        <span class="kpi-value">
+
+          {{ puntajeMasAlto }}%
+
+        </span>
+
+        <span class="kpi-label">
+          Puntaje más alto
+        </span>
+
+      </div>
+
     </div>
+
     <div class="kpi">
-      <div class="kpi-icon kpi-green"><span class="material-symbols-outlined">health_and_safety</span></div>
-      <div>
-        <span class="kpi-value">97%</span>
-        <span class="kpi-label">Salud promedio</span>
+
+      <div class="kpi-icon kpi-green">
+        <span class="material-symbols-outlined">
+          health_and_safety
+        </span>
       </div>
+
+      <div>
+
+        <span class="kpi-value">
+
+          {{ promedioSalud }}%
+
+        </span>
+
+        <span class="kpi-label">
+          Salud promedio
+        </span>
+
+      </div>
+
     </div>
+
   </div>
 
-  <!-- GRANJA PRINCIPAL -->
-  <div class="section-title">
-    <span class="material-symbols-outlined">star</span>
+  <!-- GRANJA DESTACADA -->
+  <div
+    class="section-title"
+    *ngIf="granjas.length > 0"
+  >
+
+    <span class="material-symbols-outlined">
+      star
+    </span>
+
     Granja destacada
+
   </div>
 
-  <div class="featured-grid">
+  <div
+    class="featured-grid"
+    *ngIf="granjas.length > 0"
+  >
 
     <div class="featured-card">
+
       <div class="featured-image-wrap">
-        <img src="https://picsum.photos/seed/farm1/800/400" alt="Granja Principal" class="featured-img">
+
+        <img
+          [src]="granjas[0].imagen_url || 'https://picsum.photos/800/400'"
+          class="featured-img"
+        >
+
         <div class="featured-overlay">
-          <span class="nivel-badge nivel-alto">
-            <span class="material-symbols-outlined">verified</span>
-            Nivel Alto
+
+          <span
+            class="nivel-badge"
+            [ngClass]="{
+              'nivel-alto':
+                granjas[0].evaluacion_final?.[0]?.resultado_total >= 85,
+
+              'nivel-medio':
+                granjas[0].evaluacion_final?.[0]?.resultado_total >= 60 &&
+                granjas[0].evaluacion_final?.[0]?.resultado_total < 85,
+
+              'nivel-bajo':
+                granjas[0].evaluacion_final?.[0]?.resultado_total < 60
+            }"
+          >
+
+            {{
+              obtenerNivel(
+                granjas[0].evaluacion_final?.[0]?.resultado_total || 0
+              )
+            }}
+
           </span>
+
         </div>
+
       </div>
+
       <div class="featured-body">
+
         <div class="featured-header">
+
           <div>
-            <h2>Granja Principal</h2>
-            <p>Especializada en producción intensiva de conejos para carne</p>
+
+            <h2>
+              {{ granjas[0].nombre_finca }}
+            </h2>
+
+            <p>
+              {{ granjas[0].ubicacion }}
+            </p>
+
           </div>
+
           <div class="featured-score">
-            <span class="score-num">9.8</span>
-            <span class="score-label">/ 10</span>
+
+            <span class="score-num">
+
+              {{
+                granjas[0].evaluacion_final?.[0]?.resultado_total || 0
+              }}
+
+            </span>
+
+            <span class="score-label">
+              / 100
+            </span>
+
           </div>
+
         </div>
+
         <div class="featured-stats">
+
           <div class="fstat">
-            <span class="material-symbols-outlined">cruelty_free</span>
+
+            <span class="material-symbols-outlined">
+              cruelty_free
+            </span>
+
             <div>
-              <strong>1.248</strong>
+              <strong>
+                {{ granjas[0].total_conejos }}
+              </strong>
+
               <small>Población</small>
             </div>
-          </div>
-          <div class="fstat">
-            <span class="material-symbols-outlined">trending_up</span>
-            <div>
-              <strong>+12%</strong>
-              <small>Producción</small>
-            </div>
-          </div>
-          <div class="fstat fstat-green">
-            <span class="material-symbols-outlined">health_and_safety</span>
-            <div>
-              <strong>98%</strong>
-              <small>Salud</small>
-            </div>
-          </div>
-          <div class="fstat">
-            <span class="material-symbols-outlined">calendar_today</span>
-            <div>
-              <strong>8 años</strong>
-              <small>Antigüedad</small>
-            </div>
-          </div>
-        </div>
-        <div class="featured-footer">
-          <div class="nivel-bar-wrap">
-            <div class="nivel-bar-labels">
-              <span>Nivel general</span>
-              <span>98%</span>
-            </div>
-            <div class="nivel-bar-track">
-              <div class="nivel-bar-fill" style="width:98%"></div>
-            </div>
-          </div>
-          <div class="featured-actions">
-            <a routerLink="/evaluaciones" class="btn-eval">
-              <span class="material-symbols-outlined">assignment</span>
-              Evaluar
-            </a>
-            <a routerLink="/resultados" class="btn-ver">Ver resultados</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="insight-card">
-      <div class="insight-header">
-        <span class="material-symbols-outlined">psychology</span>
-        Insight IA
+          </div>
+
+          <div class="fstat">
+
+            <span class="material-symbols-outlined">
+              health_and_safety
+            </span>
+
+            <div>
+
+              <strong>
+
+                {{
+                  granjas[0].evaluacion_final?.[0]?.puntaje_mba || 0
+                }}%
+
+              </strong>
+
+              <small>Bienestar</small>
+
+            </div>
+
+          </div>
+
+          <div class="fstat">
+
+            <span class="material-symbols-outlined">
+              analytics
+            </span>
+
+            <div>
+
+              <strong>
+
+                {{
+                  granjas[0].evaluacion_final?.[0]?.puntaje_mbr || 0
+                }}%
+
+              </strong>
+
+              <small>MBR</small>
+
+            </div>
+
+          </div>
+
+          <div class="fstat">
+
+            <span class="material-symbols-outlined">
+              psychology
+            </span>
+
+            <div>
+
+              <strong>
+
+                {{
+                  granjas[0].evaluacion_final?.[0]?.puntaje_mbg || 0
+                }}%
+
+              </strong>
+
+              <small>MBG</small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="featured-footer">
+
+          <div class="nivel-bar-wrap">
+
+            <div class="nivel-bar-labels">
+
+              <span>
+                Nivel general
+              </span>
+
+              <span>
+
+                {{
+                  granjas[0].evaluacion_final?.[0]?.resultado_total || 0
+                }}%
+
+              </span>
+
+            </div>
+
+            <div class="nivel-bar-track">
+
+              <div
+                class="nivel-bar-fill"
+                [style.width.%]="
+                  granjas[0].evaluacion_final?.[0]?.resultado_total || 0
+                "
+              >
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="featured-actions">
+
+            <a
+              routerLink="/evaluaciones"
+              class="btn-eval"
+            >
+
+              <span class="material-symbols-outlined">
+                assignment
+              </span>
+
+              Evaluar
+
+            </a>
+
+            <a
+              routerLink="/resultados"
+              class="btn-ver"
+            >
+              Ver resultados
+            </a>
+
+          </div>
+
+        </div>
+
       </div>
-      <div class="insight-main">
-        <span class="material-symbols-outlined insight-icon-big">trending_up</span>
-        <p>La población aumentó un <strong>18%</strong> este mes. Se recomienda ampliar el área de jaulas en el galpón 3 antes de la próxima temporada.</p>
-      </div>
-      <div class="insight-divider"></div>
-      <div class="insight-alerts">
-        <div class="i-alert i-green">
-          <span class="material-symbols-outlined">check_circle</span>
-          <span>Vacunación al día</span>
-        </div>
-        <div class="i-alert i-yellow">
-          <span class="material-symbols-outlined">warning</span>
-          <span>Revisar ventilación galpón 2</span>
-        </div>
-        <div class="i-alert i-blue">
-          <span class="material-symbols-outlined">info</span>
-          <span>Próxima evaluación: 20 may</span>
-        </div>
-      </div>
-      <div class="insight-divider"></div>
-      <div class="insight-niveles">
-        <div class="i-nivel-row">
-          <span>Bienestar</span>
-          <div class="i-bar-track"><div class="i-bar-fill" style="width:95%"></div></div>
-          <span class="i-nivel-val">9.5</span>
-        </div>
-        <div class="i-nivel-row">
-          <span>Sanidad</span>
-          <div class="i-bar-track"><div class="i-bar-fill i-bar-blue" style="width:88%"></div></div>
-          <span class="i-nivel-val">8.8</span>
-        </div>
-        <div class="i-nivel-row">
-          <span>Gestión</span>
-          <div class="i-bar-track"><div class="i-bar-fill i-bar-purple" style="width:92%"></div></div>
-          <span class="i-nivel-val">9.2</span>
-        </div>
-      </div>
+
     </div>
 
   </div>
 
-  <!-- OTRAS GRANJAS -->
+  <!-- TODAS LAS GRANJAS -->
   <div class="section-title">
-    <span class="material-symbols-outlined">home_work</span>
+
+    <span class="material-symbols-outlined">
+      home_work
+    </span>
+
     Todas las granjas
+
   </div>
 
   <div class="farms-grid">
 
-    <!-- GRANJA NORTE -->
-    <div class="farm-card">
+    <div
+      class="farm-card"
+      *ngFor="let granja of filtradas"
+    >
+
       <div class="farm-img-wrap">
-        <img src="https://picsum.photos/seed/farm2/400/200" alt="Granja Norte" class="farm-img">
-        <span class="nivel-badge nivel-medio farm-badge">Nivel Medio</span>
+
+        <img
+          [src]="granja.imagen_url || 'https://picsum.photos/400/200'"
+          alt="granja"
+          class="farm-img"
+        >
+
+        <span
+          class="nivel-badge farm-badge"
+          [ngClass]="{
+            'nivel-alto':
+              granja.evaluacion_final?.[0]?.resultado_total >= 85,
+
+            'nivel-medio':
+              granja.evaluacion_final?.[0]?.resultado_total >= 60 &&
+              granja.evaluacion_final?.[0]?.resultado_total < 85,
+
+            'nivel-bajo':
+              granja.evaluacion_final?.[0]?.resultado_total < 60
+          }"
+        >
+
+          {{
+            obtenerNivel(
+              granja.evaluacion_final?.[0]?.resultado_total || 0
+            )
+          }}
+
+        </span>
+
       </div>
+
       <div class="farm-body">
+
         <div class="farm-title-row">
-          <h3>Granja Norte</h3>
-          <span class="farm-score score-yellow">7.4</span>
+
+          <h3>
+            {{ granja.nombre_finca }}
+          </h3>
+
+          <span class="farm-score">
+
+            {{
+              granja.evaluacion_final?.[0]?.resultado_total || 0
+            }}
+
+          </span>
+
         </div>
-        <p class="farm-desc">Producción mixta. Conejos de carne y reproductores.</p>
+
+        <p class="farm-desc">
+          {{ granja.ubicacion }}
+        </p>
+
         <div class="farm-metrics">
+
           <div class="metric">
-            <span class="material-symbols-outlined">cruelty_free</span>
+
+            <span class="material-symbols-outlined">
+              cruelty_free
+            </span>
+
             <div>
-              <strong>215</strong>
+
+              <strong>
+                {{ granja.total_conejos }}
+              </strong>
+
               <small>Conejos</small>
+
             </div>
+
           </div>
+
           <div class="metric">
-            <span class="material-symbols-outlined">egg</span>
+
+            <span class="material-symbols-outlined">
+              analytics
+            </span>
+
             <div>
-              <strong>42</strong>
-              <small>Gazapos</small>
+
+              <strong>
+
+                {{
+                  granja.evaluacion_final?.[0]?.puntaje_mbr || 0
+                }}%
+
+              </strong>
+
+              <small>MBR</small>
+
             </div>
+
           </div>
+
           <div class="metric">
-            <span class="material-symbols-outlined">health_and_safety</span>
+
+            <span class="material-symbols-outlined">
+              health_and_safety
+            </span>
+
             <div>
-              <strong>93%</strong>
-              <small>Salud</small>
+
+              <strong>
+
+                {{
+                  granja.evaluacion_final?.[0]?.puntaje_mba || 0
+                }}%
+
+              </strong>
+
+              <small>MBA</small>
+
             </div>
+
           </div>
+
         </div>
+
         <div class="farm-nivel-bar">
+
           <div class="farm-nivel-labels">
-            <span>Nivel general</span>
-            <span>74%</span>
+
+            <span>
+              Nivel general
+            </span>
+
+            <span>
+
+              {{
+                granja.evaluacion_final?.[0]?.resultado_total || 0
+              }}%
+
+            </span>
+
           </div>
+
           <div class="farm-bar-track">
-            <div class="farm-bar-fill bar-yellow" style="width:74%"></div>
+
+            <div
+              class="farm-bar-fill"
+              [style.width.%]="
+                granja.evaluacion_final?.[0]?.resultado_total || 0
+              "
+              [ngClass]="{
+                'bar-green':
+                  granja.evaluacion_final?.[0]?.resultado_total >= 85,
+
+                'bar-yellow':
+                  granja.evaluacion_final?.[0]?.resultado_total >= 60 &&
+                  granja.evaluacion_final?.[0]?.resultado_total < 85,
+
+                'bar-red':
+                  granja.evaluacion_final?.[0]?.resultado_total < 60
+              }"
+            >
+            </div>
+
           </div>
+
         </div>
-        <div class="farm-actions">
+
+       <div class="farm-actions">
           <a routerLink="/evaluaciones" class="btn-eval-sm">
             <span class="material-symbols-outlined">assignment</span>
             Evaluar
           </a>
           <a routerLink="/resultados" class="btn-ver-sm">Ver más</a>
+          <button class="btn-edit-sm" (click)="abrirEdicion(granja)">
+            <span class="material-symbols-outlined">edit</span>
+            Editar
+          </button>
+          <button class="btn-delete-sm" (click)="confirmarEliminar(granja)">
+            <span class="material-symbols-outlined">delete</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div> <!-- cierre .main -->
+
+<!-- MODAL AQUÍ, FUERA DE TODO -->
+<div class="edit-modal-overlay" *ngIf="mostrarModal" (click)="cerrarModal()">
+  <div class="edit-modal" (click)="$event.stopPropagation()">
+
+    <div class="edit-modal-header">
+      <h3>Editar granja</h3>
+      <button class="edit-modal-close" (click)="cerrarModal()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="edit-modal-body" *ngIf="granjaEditando">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre de la finca</label>
+          <input type="text" [(ngModel)]="granjaEditando.nombre_finca">
+        </div>
+        <div class="form-group">
+          <label>Propietario</label>
+          <input type="text" [(ngModel)]="granjaEditando.propietario">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ubicación</label>
+          <input type="text" [(ngModel)]="granjaEditando.ubicacion">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" [(ngModel)]="granjaEditando.telefono">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Técnico</label>
+          <input type="text" [(ngModel)]="granjaEditando.tecnico">
+        </div>
+        <div class="form-group">
+          <label>Tipo de productor</label>
+          <select [(ngModel)]="granjaEditando.tipo_productor">
+            <option value="pequeno">Pequeño</option>
+            <option value="mediano">Mediano</option>
+            <option value="intensivo">Intensivo</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Total conejos</label>
+          <input type="number" [(ngModel)]="granjaEditando.total_conejos">
+        </div>
+        <div class="form-group">
+          <label>Empleados</label>
+          <input type="number" [(ngModel)]="granjaEditando.empleados">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Fecha de visita</label>
+          <input type="date" [(ngModel)]="granjaEditando.fecha_visita">
+        </div>
+        <div class="form-group">
+          <label>URL imagen</label>
+          <input type="text" [(ngModel)]="granjaEditando.imagen_url">
         </div>
       </div>
     </div>
 
-    <!-- GRANJA SUR -->
-    <div class="farm-card">
-      <div class="farm-img-wrap">
-        <img src="https://picsum.photos/seed/farm3/400/200" alt="Granja Sur" class="farm-img">
-        <span class="nivel-badge nivel-bajo farm-badge">Nivel Bajo</span>
-      </div>
-      <div class="farm-body">
-        <div class="farm-title-row">
-          <h3>Granja Sur</h3>
-          <span class="farm-score score-red">4.8</span>
-        </div>
-        <p class="farm-desc">Granja nueva en proceso de certificación y mejora.</p>
-        <div class="farm-metrics">
-          <div class="metric">
-            <span class="material-symbols-outlined">cruelty_free</span>
-            <div>
-              <strong>58</strong>
-              <small>Conejos</small>
-            </div>
-          </div>
-          <div class="metric">
-            <span class="material-symbols-outlined">egg</span>
-            <div>
-              <strong>12</strong>
-              <small>Gazapos</small>
-            </div>
-          </div>
-          <div class="metric">
-            <span class="material-symbols-outlined">health_and_safety</span>
-            <div>
-              <strong>78%</strong>
-              <small>Salud</small>
-            </div>
-          </div>
-        </div>
-        <div class="farm-nivel-bar">
-          <div class="farm-nivel-labels">
-            <span>Nivel general</span>
-            <span>48%</span>
-          </div>
-          <div class="farm-bar-track">
-            <div class="farm-bar-fill bar-red" style="width:48%"></div>
-          </div>
-        </div>
-        <div class="farm-actions">
-          <a routerLink="/evaluaciones" class="btn-eval-sm">
-            <span class="material-symbols-outlined">assignment</span>
-            Evaluar
-          </a>
-          <a routerLink="/resultados" class="btn-ver-sm">Ver más</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- GRANJA OESTE -->
-    <div class="farm-card">
-      <div class="farm-img-wrap">
-        <img src="https://picsum.photos/seed/farm4/400/200" alt="Granja Oeste" class="farm-img">
-        <span class="nivel-badge nivel-alto farm-badge">Nivel Alto</span>
-      </div>
-      <div class="farm-body">
-        <div class="farm-title-row">
-          <h3>Granja Oeste</h3>
-          <span class="farm-score score-green">8.9</span>
-        </div>
-        <p class="farm-desc">Alta eficiencia reproductiva. Referente regional en manejo.</p>
-        <div class="farm-metrics">
-          <div class="metric">
-            <span class="material-symbols-outlined">cruelty_free</span>
-            <div>
-              <strong>412</strong>
-              <small>Conejos</small>
-            </div>
-          </div>
-          <div class="metric">
-            <span class="material-symbols-outlined">egg</span>
-            <div>
-              <strong>88</strong>
-              <small>Gazapos</small>
-            </div>
-          </div>
-          <div class="metric">
-            <span class="material-symbols-outlined">health_and_safety</span>
-            <div>
-              <strong>97%</strong>
-              <small>Salud</small>
-            </div>
-          </div>
-        </div>
-        <div class="farm-nivel-bar">
-          <div class="farm-nivel-labels">
-            <span>Nivel general</span>
-            <span>89%</span>
-          </div>
-          <div class="farm-bar-track">
-            <div class="farm-bar-fill bar-green" style="width:89%"></div>
-          </div>
-        </div>
-        <div class="farm-actions">
-          <a routerLink="/evaluaciones" class="btn-eval-sm">
-            <span class="material-symbols-outlined">assignment</span>
-            Evaluar
-          </a>
-          <a routerLink="/resultados" class="btn-ver-sm">Ver más</a>
-        </div>
-      </div>
+    <div class="edit-modal-footer">
+      <button class="btn-cancelar" (click)="cerrarModal()">Cancelar</button>
+      <button class="btn-guardar" (click)="guardarEdicion()" [disabled]="guardandoEdicion">
+        <span class="material-symbols-outlined">save</span>
+        {{ guardandoEdicion ? 'Guardando...' : 'Guardar cambios' }}
+      </button>
     </div>
 
   </div>
-
 </div>

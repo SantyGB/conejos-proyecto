@@ -535,7 +535,7 @@ export class AlimentacionComponent implements OnInit {
       const { error } =
         await this.supabase.supabase
           .from('alimentacion')
-          .insert([payload]);
+          .upsert([payload], { onConflict: 'finca_id' });
 
       if (error) {
 

@@ -37,339 +37,230 @@
   <div class="header">
     <div class="header-text">
       <span class="header-tag">Administración del sistema</span>
-      <h1>Configuración</h1>
-      <p>Gestiona especies, criterios e indicadores de evaluación</p>
-    </div>
-    <div class="header-actions">
-      <button class="btn-outline">
-        <span class="material-symbols-outlined">download</span>
-        Exportar
-      </button>
-      <button class="btn-primary-action">
-        <span class="material-symbols-outlined">add</span>
-        Nueva especie
-      </button>
+      <h1>Sistema de evaluación ICA</h1>
+      <p>Conoce cómo funciona el índice de cumplimiento animal, sus criterios y clasificaciones</p>
     </div>
   </div>
 
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi">
-      <div class="kpi-icon"><span class="material-symbols-outlined">category</span></div>
+      <div class="kpi-icon">
+        <span class="material-symbols-outlined">home_work</span>
+      </div>
       <div>
-        <span class="kpi-value">2</span>
-        <span class="kpi-label">Especies activas</span>
+        <span class="kpi-value">{{ totalFincas }}</span>
+        <span class="kpi-label">Fincas registradas</span>
       </div>
     </div>
     <div class="kpi">
-      <div class="kpi-icon kpi-blue"><span class="material-symbols-outlined">checklist</span></div>
+      <div class="kpi-icon kpi-blue">
+        <span class="material-symbols-outlined">checklist</span>
+      </div>
       <div>
-        <span class="kpi-value">124</span>
-        <span class="kpi-label">Indicadores totales</span>
+        <span class="kpi-value">{{ totalEvaluaciones }}</span>
+        <span class="kpi-label">Secciones completadas</span>
       </div>
     </div>
     <div class="kpi">
-      <div class="kpi-icon kpi-green"><span class="material-symbols-outlined">folder_special</span></div>
+      <div class="kpi-icon kpi-green">
+        <span class="material-symbols-outlined">verified</span>
+      </div>
       <div>
-        <span class="kpi-value">9</span>
-        <span class="kpi-label">Criterios de evaluación</span>
+        <span class="kpi-value">{{ totalResultados }}</span>
+        <span class="kpi-label">Evaluaciones finalizadas</span>
       </div>
     </div>
     <div class="kpi">
-      <div class="kpi-icon kpi-yellow"><span class="material-symbols-outlined">verified</span></div>
+      <div class="kpi-icon kpi-yellow">
+        <span class="material-symbols-outlined">category</span>
+      </div>
       <div>
-        <span class="kpi-value">v2.4</span>
-        <span class="kpi-label">Versión del sistema</span>
+        <span class="kpi-value">{{ totalIndicadores }}</span>
+        <span class="kpi-label">Indicadores evaluados</span>
       </div>
     </div>
   </div>
 
-  <!-- CUERPO PRINCIPAL -->
-  <div class="body-grid">
+  <!-- FORMULA ICA -->
+  <div class="section-title">
+    <span class="material-symbols-outlined">functions</span>
+    Fórmula ICA — Índice de Cumplimiento Animal
+  </div>
 
-    <!-- COLUMNA IZQUIERDA -->
-    <div class="left-col">
-
-      <!-- ESPECIES -->
-      <div class="section-title">
-        <span class="material-symbols-outlined">cruelty_free</span>
-        Especies
-      </div>
-      <div class="card">
-        <div class="species-list">
-          <div class="species-item active">
-            <div class="species-icon">
-              <span class="material-symbols-outlined">cruelty_free</span>
-            </div>
-            <div class="species-info">
-              <strong>Conejo</strong>
-              <small>96 indicadores · 9 criterios</small>
-            </div>
-            <span class="species-badge active-badge">Activa</span>
-          </div>
-          <div class="species-item">
-            <div class="species-icon species-cuy">
-              <span class="material-symbols-outlined">pets</span>
-            </div>
-            <div class="species-info">
-              <strong>Cuy</strong>
-              <small>28 indicadores · 6 criterios</small>
-            </div>
-            <span class="species-badge draft-badge">Borrador</span>
-          </div>
+  <div class="formula-card">
+    <div class="formula-visual">
+      <div class="formula-eq">
+        <span class="formula-label">ICA</span>
+        <span class="formula-op">=</span>
+        <div class="formula-part mbr">
+          <span class="part-tag">MBR</span>
+          <span class="part-weight">× 0.30</span>
         </div>
-        <button class="btn-add-species">
-          <span class="material-symbols-outlined">add_circle</span>
-          Agregar especie
-        </button>
-      </div>
-
-      <!-- RESUMEN DE PESOS -->
-      <div class="section-title" style="margin-top:24px">
-        <span class="material-symbols-outlined">pie_chart</span>
-        Distribución de pesos
-      </div>
-      <div class="card">
-        <div class="peso-row">
-          <span class="peso-label">Registro de la finca</span>
-          <div class="peso-bar-track"><div class="peso-bar-fill" style="width:80%"></div></div>
-          <span class="peso-val">80%</span>
+        <span class="formula-op">+</span>
+        <div class="formula-part mba">
+          <span class="part-tag">MBA</span>
+          <span class="part-weight">× 0.60</span>
         </div>
-        <div class="peso-row">
-          <span class="peso-label">Alimentación</span>
-          <div class="peso-bar-track"><div class="peso-bar-fill bar-blue" style="width:65%"></div></div>
-          <span class="peso-val">65%</span>
-        </div>
-        <div class="peso-row">
-          <span class="peso-label">Instalaciones</span>
-          <div class="peso-bar-track"><div class="peso-bar-fill bar-green" style="width:90%"></div></div>
-          <span class="peso-val">90%</span>
-        </div>
-        <div class="peso-row">
-          <span class="peso-label">Salud</span>
-          <div class="peso-bar-track"><div class="peso-bar-fill bar-yellow" style="width:75%"></div></div>
-          <span class="peso-val">75%</span>
-        </div>
-        <div class="peso-row">
-          <span class="peso-label">Bienestar Animal</span>
-          <div class="peso-bar-track"><div class="peso-bar-fill bar-purple" style="width:85%"></div></div>
-          <span class="peso-val">85%</span>
+        <span class="formula-op">+</span>
+        <div class="formula-part mbg">
+          <span class="part-tag">MBG</span>
+          <span class="part-weight">× 0.10</span>
         </div>
       </div>
-
+      <p class="formula-note">
+        Cada grupo es el promedio simple de sus componentes. El resultado final va de 0 a 100.
+      </p>
     </div>
 
-    <!-- COLUMNA CENTRAL/DERECHA -->
-    <div class="right-col">
+    <div class="grupos-row">
+      <div class="grupo-card mbr-card">
+        <div class="grupo-header">
+          <span class="grupo-tag">MBR</span>
+          <span class="grupo-peso">30%</span>
+        </div>
+        <div class="grupo-nombre">Medidas de Buen Recurso</div>
+        <div class="grupo-items">
+          <span>Alimentación</span>
+          <span>Instalaciones</span>
+        </div>
+        <div class="grupo-bar-track">
+          <div class="grupo-bar-fill mbr-bar" style="width:30%"></div>
+        </div>
+      </div>
 
-      <!-- CRITERIOS -->
+      <div class="grupo-card mba-card">
+        <div class="grupo-header">
+          <span class="grupo-tag">MBA</span>
+          <span class="grupo-peso">60%</span>
+        </div>
+        <div class="grupo-nombre">Medidas de Buen Animal</div>
+        <div class="grupo-items">
+          <span>Observación animal</span>
+          <span>Salud</span>
+        </div>
+        <div class="grupo-bar-track">
+          <div class="grupo-bar-fill mba-bar" style="width:60%"></div>
+        </div>
+      </div>
+
+      <div class="grupo-card mbg-card">
+        <div class="grupo-header">
+          <span class="grupo-tag">MBG</span>
+          <span class="grupo-peso">10%</span>
+        </div>
+        <div class="grupo-nombre">Medidas de Buen Ganadero</div>
+        <div class="grupo-items">
+          <span>Gestión</span>
+          <span>Capacitación</span>
+        </div>
+        <div class="grupo-bar-track">
+          <div class="grupo-bar-fill mbg-bar" style="width:10%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRID INFERIOR -->
+  <div class="bottom-grid">
+
+    <!-- CRITERIOS -->
+    <div>
       <div class="section-title">
         <span class="material-symbols-outlined">folder_special</span>
-        Criterios de evaluación — Conejo
+        Criterios de evaluación
       </div>
       <div class="card">
-        <div class="criteria-grid">
-
-          <div class="criteria-item">
-            <div class="criteria-left">
-              <div class="criteria-icon"><span class="material-symbols-outlined">home_work</span></div>
-              <div>
-                <strong>Registro de la finca</strong>
-                <small>Datos básicos del predio</small>
-              </div>
+        <div class="criteria-list">
+          <div class="criteria-item" *ngFor="let c of criterios">
+            <div class="criteria-icon">
+              <span class="material-symbols-outlined">{{ c.icono }}</span>
             </div>
-            <div class="criteria-right">
-              <span class="criteria-count">14</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
+            <div class="criteria-info">
+              <strong>{{ c.nombre }}</strong>
+              <small>{{ c.descripcion }}</small>
             </div>
-          </div>
-
-          <div class="criteria-item">
-            <div class="criteria-left">
-              <div class="criteria-icon"><span class="material-symbols-outlined">cruelty_free</span></div>
-              <div>
-                <strong>Datos de los conejos</strong>
-                <small>Información general de la población</small>
-              </div>
-            </div>
-            <div class="criteria-right">
-              <span class="criteria-count">10</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </div>
-
-          <div class="criteria-item">
-            <div class="criteria-left">
-              <div class="criteria-icon"><span class="material-symbols-outlined">eco</span></div>
-              <div>
-                <strong>Alimentación</strong>
-                <small>Comida, agua y suplementos</small>
-              </div>
-            </div>
-            <div class="criteria-right">
-              <span class="criteria-count">12</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </div>
-
-          <div class="criteria-item">
-            <div class="criteria-left">
-              <div class="criteria-icon"><span class="material-symbols-outlined">warehouse</span></div>
-              <div>
-                <strong>Instalaciones</strong>
-                <small>Condiciones del espacio</small>
-              </div>
-            </div>
-            <div class="criteria-right">
-              <span class="criteria-count">15</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </div>
-
-          <div class="criteria-item">
-            <div class="criteria-left">
-              <div class="criteria-icon"><span class="material-symbols-outlined">visibility</span></div>
-              <div>
-                <strong>Observación</strong>
-                <small>Comportamiento animal</small>
-              </div>
-            </div>
-            <div class="criteria-right">
-              <span class="criteria-count">11</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </div>
-
-          <div class="criteria-item">
-            <div class="criteria-left">
-              <div class="criteria-icon"><span class="material-symbols-outlined">health_and_safety</span></div>
-              <div>
-                <strong>Salud</strong>
-                <small>Estado sanitario</small>
-              </div>
-            </div>
-            <div class="criteria-right">
-              <span class="criteria-count">13</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </div>
-
-          <div class="criteria-item">
-            <div class="criteria-left">
-              <div class="criteria-icon"><span class="material-symbols-outlined">manage_accounts</span></div>
-              <div>
-                <strong>Gestión</strong>
-                <small>Administración del predio</small>
-              </div>
-            </div>
-            <div class="criteria-right">
-              <span class="criteria-count">9</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </div>
-
-          <div class="criteria-item">
-            <div class="criteria-left">
-              <div class="criteria-icon"><span class="material-symbols-outlined">school</span></div>
-              <div>
-                <strong>Capacitación</strong>
-                <small>Formación y protocolos</small>
-              </div>
-            </div>
-            <div class="criteria-right">
-              <span class="criteria-count">8</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </div>
-
-          <div class="criteria-item criteria-final">
-            <div class="criteria-left">
-              <div class="criteria-icon criteria-icon-gold"><span class="material-symbols-outlined">star</span></div>
-              <div>
-                <strong>Bienestar Animal</strong>
-                <small>Diagnóstico final integrado</small>
-              </div>
-            </div>
-            <div class="criteria-right">
-              <span class="criteria-count">4</span>
-              <span class="criteria-label">indicadores</span>
-              <button class="btn-edit"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- NUEVO INDICADOR -->
-      <div class="section-title" style="margin-top:24px">
-        <span class="material-symbols-outlined">add_circle</span>
-        Nuevo indicador
-      </div>
-      <div class="card">
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Nombre del indicador</label>
-            <input type="text" placeholder="Ej: Temperatura del galpón">
-          </div>
-          <div class="form-group">
-            <label>Criterio asociado</label>
-            <select>
-              <option>Seleccionar criterio</option>
-              <option>Registro de la finca</option>
-              <option>Alimentación</option>
-              <option>Instalaciones</option>
-              <option>Salud</option>
-              <option>Bienestar Animal</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Tipo de respuesta</label>
-            <select>
-              <option>Seleccionar tipo</option>
-              <option>Sí / No</option>
-              <option>Escala 1-5</option>
-              <option>Numérico</option>
-              <option>Texto libre</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Especie</label>
-            <select>
-              <option>Conejo</option>
-              <option>Cuy</option>
-            </select>
-          </div>
-          <div class="form-group form-full">
-            <label>Descripción / instrucción</label>
-            <textarea placeholder="Describe qué debe observar el evaluador..."></textarea>
-          </div>
-          <div class="form-group form-full">
-            <label>Peso del indicador: <strong>50%</strong></label>
-            <input type="range" class="range-styled" min="0" max="100" value="50">
-            <div class="range-labels">
-              <span>0%</span>
-              <span>50%</span>
-              <span>100%</span>
+            <div class="criteria-meta">
+              <span class="criteria-num">{{ c.indicadores }}</span>
+              <span class="criteria-sublabel">indicadores</span>
+              <span class="grupo-badge" *ngIf="c.grupo !== '—'">{{ c.grupo }}</span>
             </div>
           </div>
         </div>
-        <div class="form-actions">
-          <button class="btn-reset">
-            <span class="material-symbols-outlined">restart_alt</span>
-            Limpiar
-          </button>
-          <button class="btn-save">
-            <span class="material-symbols-outlined">save</span>
-            Crear indicador
-          </button>
+      </div>
+    </div>
+
+    <!-- CLASIFICACIONES + FLUJO -->
+    <div class="right-stack">
+
+      <!-- CLASIFICACIONES -->
+      <div>
+        <div class="section-title">
+          <span class="material-symbols-outlined">grade</span>
+          Clasificaciones de bienestar
+        </div>
+        <div class="card">
+          <div class="clasif-list">
+            <div class="clasif-row" *ngFor="let c of clasificaciones">
+              <div class="clasif-bar-wrap">
+                <div class="clasif-dot" [ngClass]="c.color"></div>
+                <div class="clasif-info">
+                  <div class="clasif-top">
+                    <strong>{{ c.label }}</strong>
+                    <span class="clasif-rango" [ngClass]="c.color">{{ c.rango }}</span>
+                  </div>
+                  <small>{{ c.descripcion }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLUJO -->
+      <div>
+        <div class="section-title" style="margin-top:24px">
+          <span class="material-symbols-outlined">route</span>
+          Flujo de una evaluación
+        </div>
+        <div class="card">
+          <ol class="flujo-list">
+            <li>
+              <div class="flujo-num">1</div>
+              <div class="flujo-content">
+                <strong>Registrar la finca</strong>
+                <p>Nombre, propietario, ubicación, técnico y datos del predio.</p>
+              </div>
+            </li>
+            <li>
+              <div class="flujo-num">2</div>
+              <div class="flujo-content">
+                <strong>Seleccionar la finca</strong>
+                <p>Se vinculan todas las secciones de evaluación a esa finca.</p>
+              </div>
+            </li>
+            <li>
+              <div class="flujo-num">3</div>
+              <div class="flujo-content">
+                <strong>Completar las 8 secciones</strong>
+                <p>Alimentación · Instalaciones · Observación · Salud · Gestión · Capacitación.</p>
+              </div>
+            </li>
+            <li>
+              <div class="flujo-num">4</div>
+              <div class="flujo-content">
+                <strong>Generar evaluación final</strong>
+                <p>El sistema calcula MBR, MBA, MBG y aplica la fórmula ICA automáticamente.</p>
+              </div>
+            </li>
+            <li>
+              <div class="flujo-num">5</div>
+              <div class="flujo-content">
+                <strong>Consultar resultados</strong>
+                <p>Puntaje, clasificación, desglose por sección e informe PDF descargable.</p>
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
 

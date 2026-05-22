@@ -267,7 +267,7 @@ export class GestionComponent implements OnInit {
     const { error } =
       await this.supabaseService.supabase
         .from('gestion')
-        .insert([payload]);
+        .upsert([payload], { onConflict: 'finca_id' });
 
     if (error) {
 

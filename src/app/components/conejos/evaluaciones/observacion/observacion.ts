@@ -443,7 +443,7 @@ const payload = {
       const { error } =
         await this.supabaseService.supabase
           .from('observacion_animal')
-          .insert([payload]);
+          .upsert([payload], { onConflict: 'finca_id' });
 
       if (error) {
 

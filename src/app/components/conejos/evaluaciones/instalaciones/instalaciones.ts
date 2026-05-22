@@ -367,7 +367,7 @@ async guardar(): Promise<void> {
     // ── Guardar en Supabase ───────────────────────────
     const { data, error } = await this.supabaseService.supabase
       .from('instalaciones')
-      .insert([payload])
+      .upsert([payload], { onConflict: 'finca_id' })
       .select()
       .single();
 

@@ -1,10 +1,7 @@
 <aside class="sidebar">
   <div class="logo">
-    <div>
-      <h2>Cunicultura</h2>
-    </div>
+    <div><h2>Cunicultura</h2></div>
   </div>
-
   <nav class="menu">
     <a routerLink="/granjas">
       <span class="material-symbols-outlined">agriculture</span>
@@ -23,7 +20,6 @@
       <span>Menú principal</span>
     </a>
   </nav>
-
   <div class="sidebar-footer">
     <div class="user-card">
       <img src="https://i.pravatar.cc/100" alt="">
@@ -45,318 +41,210 @@
       <p>Resumen del desempeño de todas las granjas evaluadas</p>
     </div>
     <div class="header-actions">
-      <button class="btn-outline">
-        <span class="material-symbols-outlined">download</span>
-        Exportar
-      </button>
-      <button class="btn-primary">
+      <button class="btn-primary" (click)="cargarResultados()">
         <span class="material-symbols-outlined">refresh</span>
         Actualizar
       </button>
     </div>
   </div>
 
-  <!-- KPIs RÁPIDOS -->
-  <div class="kpi-row">
-    <div class="kpi">
-      <span class="kpi-icon material-symbols-outlined">home_work</span>
-      <div>
-        <span class="kpi-value">3</span>
-        <span class="kpi-label">Granjas evaluadas</span>
-      </div>
-    </div>
-    <div class="kpi">
-      <span class="kpi-icon material-symbols-outlined">star</span>
-      <div>
-        <span class="kpi-value">8.5</span>
-        <span class="kpi-label">Puntaje promedio</span>
-      </div>
-    </div>
-    <div class="kpi">
-      <span class="kpi-icon material-symbols-outlined">check_circle</span>
-      <div>
-        <span class="kpi-value">1</span>
-        <span class="kpi-label">Granjas excelentes</span>
-      </div>
-    </div>
-    <div class="kpi kpi-alert">
-      <span class="kpi-icon material-symbols-outlined">warning</span>
-      <div>
-        <span class="kpi-value">2</span>
-        <span class="kpi-label">Requieren atención</span>
-      </div>
-    </div>
+  <!-- CARGANDO -->
+  <div class="loading-wrap" *ngIf="cargando">
+    <span class="material-symbols-outlined spin">autorenew</span>
+    <p>Cargando resultados...</p>
   </div>
 
-  <!-- RESULTADO DESTACADO + IA -->
-  <div class="top-grid">
+  <ng-container *ngIf="!cargando">
 
-    <div class="card card-result">
-      <div class="card-label">
-        <span class="material-symbols-outlined">emoji_events</span>
-        Mejor evaluación — Finca El Paraíso
-      </div>
-      <div class="result-container">
-        <div class="score-wrap">
-          <div class="score-circle-large">
-            <svg class="circle-chart-large" viewBox="0 0 36 36">
-              <path class="circle-bg-large"
-                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-              <path class="circle-fill-large"
-                stroke-dasharray="85, 100"
-                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-            </svg>
-            <div class="circle-score">8.5</div>
-          </div>
-          <div class="score-label">de 10</div>
-        </div>
-        <div class="result-info">
-          <div class="estado-badge excelente">
-            <span class="material-symbols-outlined">verified</span>
-            Excelente
-          </div>
-          <p class="result-desc">La finca presenta condiciones óptimas de manejo, bienestar animal y sanidad. Supera los estándares nacionales.</p>
-          <div class="result-meta">
-            <span><span class="material-symbols-outlined">calendar_today</span> Evaluado: 10 mayo 2025</span>
-            <span><span class="material-symbols-outlined">person</span> Evaluador: J. Martínez</span>
-          </div>
-          <p class="recomendacion">
-            <span class="material-symbols-outlined">lightbulb</span>
-            Ajustar temperatura en galpón 2 durante épocas de alta humedad.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card card-ia">
-      <div class="card-label">
-        <span class="material-symbols-outlined">psychology</span>
-        Diagnóstico IA
-      </div>
-      <div class="ia-content">
-        <div class="ia-alert">
-          <span class="material-symbols-outlined">humidity_high</span>
-          <div>
-            <strong>Alta humedad detectada</strong>
-            <p>Riesgo respiratorio moderado en conejos jóvenes. Se recomienda ventilación forzada.</p>
-          </div>
-        </div>
-        <div class="ia-alert ia-ok">
-          <span class="material-symbols-outlined">favorite</span>
-          <div>
-            <strong>Bienestar animal: Óptimo</strong>
-            <p>Comportamiento normal, sin signos de estrés observados en los últimos 30 días.</p>
-          </div>
-        </div>
-        <div class="ia-alert ia-warn">
-          <span class="material-symbols-outlined">nutrition</span>
-          <div>
-            <strong>Ajuste nutricional sugerido</strong>
-            <p>Incrementar fibra bruta un 8% en la dieta de reproductoras.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- RENDIMIENTO POR CATEGORIA -->
-  <div class="section-title">
-    <span class="material-symbols-outlined">leaderboard</span>
-    Rendimiento por categoría
-  </div>
-
-  <div class="categories-grid">
-
-    <div class="cat-card">
-      <div class="cat-header">
-        <div class="cat-icon"><span class="material-symbols-outlined">warehouse</span></div>
+    <!-- KPIs RÁPIDOS -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <span class="kpi-icon material-symbols-outlined">home_work</span>
         <div>
-          <h4>Instalaciones</h4>
-          <span class="cat-score excelente-text">9.2 / 10</span>
+          <span class="kpi-value">{{ totalGranjas }}</span>
+          <span class="kpi-label">Granjas registradas</span>
         </div>
       </div>
-      <div class="bar-track">
-        <div class="bar-fill bar-green" style="width:92%"></div>
-      </div>
-      <p class="cat-desc">Excelentes condiciones de infraestructura y espacio por animal.</p>
-    </div>
-
-    <div class="cat-card">
-      <div class="cat-header">
-        <div class="cat-icon"><span class="material-symbols-outlined">cruelty_free</span></div>
+      <div class="kpi">
+        <span class="kpi-icon material-symbols-outlined">star</span>
         <div>
-          <h4>Bienestar Animal</h4>
-          <span class="cat-score bueno-text">7.8 / 10</span>
+          <span class="kpi-value">{{ promedioGeneral }}%</span>
+          <span class="kpi-label">Puntaje promedio ICA</span>
         </div>
       </div>
-      <div class="bar-track">
-        <div class="bar-fill bar-blue" style="width:78%"></div>
-      </div>
-      <p class="cat-desc">Indicadores de comportamiento dentro de rangos aceptables.</p>
-    </div>
-
-    <div class="cat-card">
-      <div class="cat-header">
-        <div class="cat-icon"><span class="material-symbols-outlined">manage_accounts</span></div>
+      <div class="kpi">
+        <span class="kpi-icon material-symbols-outlined">check_circle</span>
         <div>
-          <h4>Gestión</h4>
-          <span class="cat-score excelente-text">8.5 / 10</span>
+          <span class="kpi-value">{{ granjasExcelentes }}</span>
+          <span class="kpi-label">Granjas con alto bienestar</span>
         </div>
       </div>
-      <div class="bar-track">
-        <div class="bar-fill bar-green" style="width:85%"></div>
-      </div>
-      <p class="cat-desc">Registros actualizados y protocolos aplicados correctamente.</p>
-    </div>
-
-    <div class="cat-card">
-      <div class="cat-header">
-        <div class="cat-icon"><span class="material-symbols-outlined">eco</span></div>
+      <div class="kpi">
+        <span class="kpi-icon material-symbols-outlined">pending</span>
         <div>
-          <h4>Alimentación</h4>
-          <span class="cat-score medio-text">6.4 / 10</span>
+          <span class="kpi-value">{{ granjasEnProceso }}</span>
+          <span class="kpi-label">Evaluaciones en proceso</span>
         </div>
       </div>
-      <div class="bar-track">
-        <div class="bar-fill bar-yellow" style="width:64%"></div>
-      </div>
-      <p class="cat-desc">Dieta deficiente en fibra. Requiere reformulación urgente.</p>
     </div>
 
-    <div class="cat-card">
-      <div class="cat-header">
-        <div class="cat-icon"><span class="material-symbols-outlined">health_and_safety</span></div>
-        <div>
-          <h4>Salud</h4>
-          <span class="cat-score bueno-text">8.1 / 10</span>
+    <!-- SIN DATOS -->
+    <div class="empty-state" *ngIf="resultados.length === 0">
+      <span class="material-symbols-outlined">assignment_late</span>
+      <h3>No hay granjas registradas</h3>
+      <p>Registra una finca y completa su evaluación para ver resultados aquí.</p>
+      <a routerLink="/evaluaciones/registro" class="btn-primary">
+        <span class="material-symbols-outlined">add</span>
+        Registrar finca
+      </a>
+    </div>
+
+    <!-- TABLA DE RESULTADOS -->
+    <div class="section-title" *ngIf="resultados.length > 0">
+      <span class="material-symbols-outlined">table_chart</span>
+      Detalle por granja
+    </div>
+
+    <div class="table-card" *ngIf="resultados.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Granja</th>
+            <th>Técnico</th>
+            <th>Puntaje ICA</th>
+            <th>Clasificación</th>
+            <th>Secciones</th>
+            <th>Última evaluación</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of resultados">
+            <td>
+              <span class="granja-name">
+                <span class="material-symbols-outlined">home_work</span>
+                {{ r.nombre_finca }}
+              </span>
+              <small class="granja-sub">{{ r.ubicacion }}</small>
+            </td>
+            <td>{{ r.tecnico || '—' }}</td>
+            <td>
+              <span class="score-badge" [ngClass]="getScoreClass(r.resultado_total)">
+                {{ r.tiene_resultado ? r.resultado_total + '%' : '—' }}
+              </span>
+            </td>
+            <td>
+              <span class="estado-pill" [ngClass]="getEstadoClass(r)">
+                {{ getEstadoLabel(r) }}
+              </span>
+            </td>
+            <td>
+              <div class="mini-bar-track">
+                <div class="mini-bar-fill" [style.width.%]="getPorcentajeSecciones(r)"></div>
+              </div>
+              <span class="mini-bar-label">
+                {{ r.secciones_completadas }}/{{ r.total_secciones }}
+              </span>
+            </td>
+            <td>{{ formatFecha(r.ultima_evaluacion) }}</td>
+            <td>
+              <div style="display:flex; gap:6px; align-items:center;">
+                <a routerLink="/evaluaciones" class="btn-table">Evaluar</a>
+                <button
+                  class="btn-informe"
+                  (click)="generarInforme(r)"
+                  [disabled]="generandoInforme === r.id"
+                  *ngIf="r.tiene_resultado">
+                  <span class="material-symbols-outlined">picture_as_pdf</span>
+                  {{ generandoInforme === r.id ? '...' : 'Informe' }}
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DETALLE PUNTAJES ICA -->
+    <div class="section-title" *ngIf="resultados.length > 0">
+      <span class="material-symbols-outlined">analytics</span>
+      Desglose de puntajes ICA
+    </div>
+
+    <div class="desglose-grid" *ngIf="resultados.length > 0">
+      <div
+        class="desglose-card"
+        *ngFor="let r of resultados"
+        [class.sin-resultado]="!r.tiene_resultado"
+      >
+
+        <div class="desglose-header">
+          <div class="desglose-header-left">
+            <h3>{{ r.nombre_finca }}</h3>
+            <small>{{ r.ubicacion }}</small>
+          </div>
+          <div class="desglose-header-right">
+            <span class="desglose-total" [ngClass]="getScoreClass(r.resultado_total)">
+              {{ r.tiene_resultado ? r.resultado_total + '%' : 'Pendiente' }}
+            </span>
+            <button
+              class="btn-informe-card"
+              (click)="generarInforme(r)"
+              *ngIf="r.tiene_resultado"
+              [disabled]="generandoInforme === r.id">
+              <span class="material-symbols-outlined">picture_as_pdf</span>
+              {{ generandoInforme === r.id ? 'Generando...' : 'Informe PDF' }}
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill bar-blue" style="width:81%"></div>
-      </div>
-      <p class="cat-desc">Plan sanitario al día, bajas tasas de mortalidad registradas.</p>
-    </div>
 
-    <div class="cat-card">
-      <div class="cat-header">
-        <div class="cat-icon"><span class="material-symbols-outlined">school</span></div>
-        <div>
-          <h4>Capacitación</h4>
-          <span class="cat-score bueno-text">7.5 / 10</span>
+        <div class="desglose-grupos" *ngIf="r.tiene_resultado">
+          <div class="grupo mbr">
+            <span class="grupo-tag">MBR</span>
+            <div class="grupo-bar"><div [style.width.%]="r.puntaje_mbr"></div></div>
+            <span class="grupo-val">{{ r.puntaje_mbr }}%</span>
+            <span class="grupo-lbl">Buen Recurso</span>
+          </div>
+          <div class="grupo mba">
+            <span class="grupo-tag">MBA</span>
+            <div class="grupo-bar"><div [style.width.%]="r.puntaje_mba"></div></div>
+            <span class="grupo-val">{{ r.puntaje_mba }}%</span>
+            <span class="grupo-lbl">Buen Animal</span>
+          </div>
+          <div class="grupo mbg">
+            <span class="grupo-tag">MBG</span>
+            <div class="grupo-bar"><div [style.width.%]="r.puntaje_mbg"></div></div>
+            <span class="grupo-val">{{ r.puntaje_mbg }}%</span>
+            <span class="grupo-lbl">Buen Ganadero</span>
+          </div>
         </div>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill bar-blue" style="width:75%"></div>
-      </div>
-      <p class="cat-desc">Personal con formación básica. Se sugiere capacitación avanzada.</p>
-    </div>
 
-  </div>
+        <div class="desglose-items" *ngIf="r.tiene_resultado">
+          <div class="di" *ngFor="let item of [
+            {label:'Alimentación',  val: r.puntaje_alimentacion},
+            {label:'Instalaciones', val: r.puntaje_instalaciones},
+            {label:'Observación',   val: r.puntaje_observacion},
+            {label:'Salud',         val: r.puntaje_salud},
+            {label:'Gestión',       val: r.puntaje_gestion},
+            {label:'Capacitación',  val: r.puntaje_capacitacion}
+          ]">
+            <span class="di-label">{{ item.label }}</span>
+            <div class="di-bar">
+              <div [style.width.%]="item.val" [ngClass]="getBarClass(item.val)"></div>
+            </div>
+            <span class="di-val">{{ item.val }}%</span>
+          </div>
+        </div>
 
-  <!-- RESUMEN GRANJAS -->
-  <div class="section-title">
-    <span class="material-symbols-outlined">home_work</span>
-    Comparativo de granjas
-  </div>
+        <div class="pendiente-msg" *ngIf="!r.tiene_resultado">
+          <span class="material-symbols-outlined">hourglass_empty</span>
+          <p>Completa todas las evaluaciones para ver el resultado ICA.</p>
+          <a routerLink="/evaluaciones" class="btn-table">Ir a evaluaciones</a>
+        </div>
 
-  <div class="table-card">
-    <table>
-      <thead>
-        <tr>
-          <th>Granja</th>
-          <th>Puntaje</th>
-          <th>Estado</th>
-          <th>Secciones completas</th>
-          <th>Última evaluación</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="granja-name"><span class="material-symbols-outlined">home_work</span> Finca El Paraíso</span></td>
-          <td><span class="score-badge score-green">8.5</span></td>
-          <td><span class="estado-pill excelente">Excelente</span></td>
-          <td>
-            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:89%"></div></div>
-            <span class="mini-bar-label">8/9</span>
-          </td>
-          <td>10 may 2025</td>
-          <td><a class="btn-table" routerLink="/resultados/paraiso">Ver detalle</a></td>
-        </tr>
-        <tr>
-          <td><span class="granja-name"><span class="material-symbols-outlined">home_work</span> Granja Conejos</span></td>
-          <td><span class="score-badge score-yellow">6.2</span></td>
-          <td><span class="estado-pill medio">En proceso</span></td>
-          <td>
-            <div class="mini-bar-track"><div class="mini-bar-fill mini-bar-yellow" style="width:56%"></div></div>
-            <span class="mini-bar-label">5/9</span>
-          </td>
-          <td>8 may 2025</td>
-          <td><a class="btn-table" routerLink="/resultados/conejos">Ver detalle</a></td>
-        </tr>
-        <tr>
-          <td><span class="granja-name"><span class="material-symbols-outlined">home_work</span> Finca La Esperanza</span></td>
-          <td><span class="score-badge score-red">4.8</span></td>
-          <td><span class="estado-pill critico">Crítico</span></td>
-          <td>
-            <div class="mini-bar-track"><div class="mini-bar-fill mini-bar-red" style="width:33%"></div></div>
-            <span class="mini-bar-label">3/9</span>
-          </td>
-          <td>5 may 2025</td>
-          <td><a class="btn-table" routerLink="/resultados/esperanza">Ver detalle</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- PLAN DE ACCIÓN -->
-  <div class="section-title">
-    <span class="material-symbols-outlined">task_alt</span>
-    Plan de acción
-  </div>
-
-  <div class="action-grid">
-
-    <div class="action-card urgente">
-      <div class="action-header">
-        <span class="material-symbols-outlined">priority_high</span>
-        <span class="action-tag urgente-tag">Urgente</span>
-      </div>
-      <h4>Revisar sensores de humedad</h4>
-      <p>Calibración de sensores en galpón 2 y 3 de Finca La Esperanza.</p>
-      <div class="action-meta">
-        <span><span class="material-symbols-outlined">person</span> M. Salcedo</span>
-        <span><span class="material-symbols-outlined">schedule</span> 48 horas</span>
       </div>
     </div>
 
-    <div class="action-card media">
-      <div class="action-header">
-        <span class="material-symbols-outlined">nutrition</span>
-        <span class="action-tag media-tag">Media prioridad</span>
-      </div>
-      <h4>Reformular dieta reproductoras</h4>
-      <p>Aumentar fibra bruta al 18% en Granja Conejos. Coordinar con nutricionista.</p>
-      <div class="action-meta">
-        <span><span class="material-symbols-outlined">person</span> P. Ríos</span>
-        <span><span class="material-symbols-outlined">schedule</span> 7 días</span>
-      </div>
-    </div>
-
-    <div class="action-card baja">
-      <div class="action-header">
-        <span class="material-symbols-outlined">school</span>
-        <span class="action-tag baja-tag">Baja prioridad</span>
-      </div>
-      <h4>Capacitación personal técnico</h4>
-      <p>Taller de bienestar animal para operarios de las 3 granjas evaluadas.</p>
-      <div class="action-meta">
-        <span><span class="material-symbols-outlined">person</span> C. Torres</span>
-        <span><span class="material-symbols-outlined">schedule</span> 30 días</span>
-      </div>
-    </div>
-
-  </div>
+  </ng-container>
 
 </div>

@@ -200,7 +200,7 @@ export class SaludComponent implements OnInit {
     const { error } =
       await this.supabaseService.supabase
       .from('salud')
-      .insert([payload]);
+      .upsert([payload], { onConflict: 'finca_id' });
 
     this.guardando = false;
 

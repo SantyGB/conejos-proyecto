@@ -210,7 +210,7 @@ obtenerPuntajeEutanasia(): number {
     const { error } =
       await this.supabaseService.supabase
         .from('capacitacion')
-        .insert([payload]);
+        .upsert([payload], { onConflict: 'finca_id' });
 
     if (error) {
 
