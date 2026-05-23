@@ -1,20 +1,17 @@
 <aside class="sidebar">
   <div class="logo">
-    <span class="material-symbols-outlined logo-icon">cruelty_free</span>
-    <h2>Cunicultura</h2>
+    <div><h2>Cunicultura</h2></div>
   </div>
-
   <nav class="menu">
-    <a class="active" routerLink="/evaluaciones">
-
+    <a routerLink="/evaluaciones">
+      <span class="material-symbols-outlined">assignment</span>
       <span>Evaluaciones</span>
     </a>
     <a routerLink="/seleccion">
-      <span class="material-symbols-outlined">grid_view</span>
+      <span class="material-symbols-outlined">apps</span>
       <span>Menú principal</span>
     </a>
   </nav>
-
   <div class="sidebar-footer">
     <div class="user-card">
       <img src="https://i.pravatar.cc/100" alt="Avatar">
@@ -123,8 +120,7 @@
         <p class="hint">Sin alimento viejo, heces ni suciedad acumulada en el interior.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesComederoLimpio"
+        <div class="option" *ngFor="let op of opcionesComederoLimpio"
           [class.active]="respuestas['comederos_limpios'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('comederos_limpios', op.valor)">
@@ -141,8 +137,7 @@
         <p class="hint">Sin bordes afilados, en buen estado, permiten introducción solo de la cabeza.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesComederoLimpio"
+        <div class="option" *ngFor="let op of opcionesComederoLimpio"
           [class.active]="respuestas['comederos_mantenimiento'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('comederos_mantenimiento', op.valor)">
@@ -159,8 +154,7 @@
         <p class="hint">Mínimo 10 cm por jaula; borde a 8–14 cm del piso según etapa productiva.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesComederoLimpio"
+        <div class="option" *ngFor="let op of opcionesComederoLimpio"
           [class.active]="respuestas['acceso_alimento'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('acceso_alimento', op.valor)">
@@ -195,8 +189,7 @@
         <p class="hint">Verificar etiqueta o documentación del alimento balanceado en uso.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesAlimentoBalanceado"
+        <div class="option" *ngFor="let op of opcionesAlimentoBalanceado"
           [class.active]="respuestas['alimento_ica'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('alimento_ica', op.valor)">
@@ -213,8 +206,7 @@
         <p class="hint">Sobre estibas, separados de la pared, temperatura y humedad adecuadas.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesAlimentoBalanceado"
+        <div class="option" *ngFor="let op of opcionesAlimentoBalanceado"
           [class.active]="respuestas['almacenamiento'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('almacenamiento', op.valor)">
@@ -241,7 +233,6 @@
   </div>
 
   <div class="grid grid-single">
-
     <div class="card card-wide" [class.answered]="respuestas['oferta_forraje'] !== undefined">
       <div class="card-icon"><span class="material-symbols-outlined">grass</span></div>
       <div class="card-body">
@@ -249,8 +240,7 @@
         <p class="hint">Verificar disponibilidad en pastoreo, pasteras o comederos.</p>
       </div>
       <div class="options options-row">
-        <div class="option"
-          *ngFor="let op of opcionesForraje"
+        <div class="option" *ngFor="let op of opcionesForraje"
           [class.active]="respuestas['oferta_forraje'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('oferta_forraje', op.valor)">
@@ -259,7 +249,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <!-- ── BLOQUE 4: GAZAPOS ── -->
@@ -280,8 +269,7 @@
         <p class="hint">Verificar registros de edad al destete y observación directa.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesGazapos"
+        <div class="option" *ngFor="let op of opcionesGazapos"
           [class.active]="respuestas['leche_materna'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('leche_materna', op.valor)">
@@ -298,8 +286,7 @@
         <p class="hint">Acceso libre al alimento sólido a partir de los 16 días de edad.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesGazapos"
+        <div class="option" *ngFor="let op of opcionesGazapos"
           [class.active]="respuestas['alimento_solido'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('alimento_solido', op.valor)">
@@ -334,8 +321,7 @@
         <p class="hint">Verificar cantidad acorde al número de animales alojados por jaula.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesAgua"
+        <div class="option" *ngFor="let op of opcionesAgua"
           [class.active]="respuestas['suficientes_bebederos'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('suficientes_bebederos', op.valor)">
@@ -352,8 +338,7 @@
         <p class="hint">Todos los animales pueden acceder al agua en todo momento.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesAgua"
+        <div class="option" *ngFor="let op of opcionesAgua"
           [class.active]="respuestas['agua_voluntad'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('agua_voluntad', op.valor)">
@@ -370,8 +355,7 @@
         <p class="hint">Verificar que los chupos o bebederos estén funcionales y accesibles.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesAgua"
+        <div class="option" *ngFor="let op of opcionesAgua"
           [class.active]="respuestas['acceso_agua'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('acceso_agua', op.valor)">
@@ -388,8 +372,7 @@
         <p class="hint">Sin malos olores, aceites, productos químicos ni materia orgánica en suspensión.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesAgua"
+        <div class="option" *ngFor="let op of opcionesAgua"
           [class.active]="respuestas['calidad_agua'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('calidad_agua', op.valor)">
@@ -406,8 +389,7 @@
         <p class="hint">Sin elementos que ocasionen lesiones, fugas de líquido ni presencia de lama.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesEstadoBebederos"
+        <div class="option" *ngFor="let op of opcionesEstadoBebederos"
           [class.active]="respuestas['estado_bebederos'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('estado_bebederos', op.valor)">
@@ -424,8 +406,7 @@
         <p class="hint">Adultos: 16–20 cm del piso. Gazapos: recomendado bajo 14 cm, aceptable 14–22 cm.</p>
       </div>
       <div class="options">
-        <div class="option"
-          *ngFor="let op of opcionesAlturaBebederos"
+        <div class="option" *ngFor="let op of opcionesAlturaBebederos"
           [class.active]="respuestas['altura_bebederos'] === op.valor"
           [class.warn]="op.valor === 0"
           (click)="seleccionar('altura_bebederos', op.valor)">
@@ -439,6 +420,7 @@
 
   <!-- OBSERVACIONES + EVIDENCIAS -->
   <div class="extras">
+
     <div class="obs-wrap">
       <label class="obs-label">
         <span class="material-symbols-outlined">edit_note</span>
@@ -449,63 +431,75 @@
         placeholder="Describe hallazgos relevantes sobre alimentación, agua, almacenamiento o bienestar...">
       </textarea>
     </div>
-    <label class="upload-box">
-      <input type="file" accept="image/*" multiple hidden>
-      <span class="material-symbols-outlined">cloud_upload</span>
-      <div class="upload-text">
-        <strong>Subir evidencias</strong>
-        <small>JPG, PNG o WEBP</small>
+
+    <!-- UPLOAD DE IMÁGENES -->
+    <div class="upload-section">
+      <label class="obs-label">
+        <span class="material-symbols-outlined">photo_library</span>
+        Evidencias fotográficas
+      </label>
+
+      <label class="upload-box" [class.upload-loading]="subiendoImagen">
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          hidden
+          #fileInput
+          (change)="onImagenesSeleccionadas($event)">
+        <span class="material-symbols-outlined upload-icon">cloud_upload</span>
+        <div class="upload-text">
+          <strong>{{ subiendoImagen ? 'Subiendo...' : 'Seleccionar imágenes' }}</strong>
+          <small>JPG, PNG o WEBP · Máx. 5 MB c/u</small>
+        </div>
+      </label>
+
+      <!-- PREVIEW DE IMÁGENES -->
+      <div class="imagenes-preview" *ngIf="imagenesSubidas.length > 0">
+        <div class="img-thumb" *ngFor="let img of imagenesSubidas; let i = index">
+          <img [src]="img.url" [alt]="img.nombre">
+          <button class="img-delete" (click)="eliminarImagen(i)" title="Eliminar">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
       </div>
-    </label>
+
+      <p class="upload-error" *ngIf="errorImagen">
+        <span class="material-symbols-outlined">error</span>
+        {{ errorImagen }}
+      </p>
+    </div>
+
   </div>
 
   <!-- ACTIONS -->
-<div class="actions">
-  <button class="btn btn-secondary">
-    <span class="material-symbols-outlined">arrow_back</span>
-    Anterior
-  </button>
-
-  <div class="score-badge">
-    <span class="material-symbols-outlined">bar_chart</span>
-    Puntaje: <strong>{{ calcularSubtotal() | number:'1.0-0' }}</strong> / 100
-  </div>
-
-  <p *ngIf="errorGuardar" class="error-msg">
-    <span class="material-symbols-outlined">error</span>
-    {{ errorGuardar }}
-  </p>
-
-  <div class="actions-right">
-    <button class="btn btn-ghost" [disabled]="guardando">
-      Guardar borrador
+  <div class="actions">
+    <button class="btn btn-secondary" routerLink="/evaluaciones">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Anterior
     </button>
-    <button class="btn btn-primary" (click)="guardar()" [disabled]="guardando">
-      <span *ngIf="guardando" class="material-symbols-outlined spin">progress_activity</span>
-      <span *ngIf="!guardando">Guardar y continuar</span>
-      <span *ngIf="!guardando" class="material-symbols-outlined">arrow_forward</span>
-    </button>
-  </div>
-</div>
-<!-- MODAL ÉXITO -->
-<div class="modal-overlay" *ngIf="guardadoExitoso">
-  <div class="modal-card">
-    <div class="modal-icon">
-      <span class="material-symbols-outlined">check_circle</span>
+
+    <div class="score-badge">
+      <span class="material-symbols-outlined">bar_chart</span>
+      Puntaje: <strong>{{ calcularSubtotal() | number:'1.0-0' }}</strong> / 100
     </div>
-    <h3>¡Evaluación guardada!</h3>
-    <p>La evaluación de alimentación y agua fue registrada correctamente.</p>
-    <div class="modal-actions">
-      <button class="btn btn-secondary" (click)="router.navigate(['/evaluaciones'])">
-        <span class="material-symbols-outlined">arrow_back</span>
-        Ir a evaluaciones
+
+    <p *ngIf="errorGuardar" class="error-msg">
+      <span class="material-symbols-outlined">error</span>
+      {{ errorGuardar }}
+    </p>
+
+    <div class="actions-right">
+      <button class="btn btn-ghost" [disabled]="guardando">
+        Guardar borrador
       </button>
-      <button class="btn btn-primary" (click)="guardadoExitoso = false">
-        Continuar aquí
-        <span class="material-symbols-outlined">edit</span>
+      <button class="btn btn-primary" (click)="guardar()" [disabled]="guardando">
+        <span *ngIf="guardando" class="material-symbols-outlined spin">progress_activity</span>
+        <span *ngIf="!guardando">Guardar y continuar</span>
+        <span *ngIf="!guardando" class="material-symbols-outlined">arrow_forward</span>
       </button>
     </div>
   </div>
-</div>
+
 
 </div>
