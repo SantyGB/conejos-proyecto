@@ -88,7 +88,7 @@ export class ResultadosComponent implements OnInit {
         puntaje_capacitacion:  ef?.puntaje_capacitacion  || 0,
         ultima_evaluacion:     ef?.created_at            || finca.fecha_visita || null,
         secciones_completadas: seccionesMap[finca.id]    || 0,
-        total_secciones:       8,
+        total_secciones:       7,
         tiene_resultado:       !!ef
       };
     });
